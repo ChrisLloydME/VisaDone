@@ -58,3 +58,7 @@ The VisaDone app icon was created for this prototype.
 ## Country flags
 
 Profile visa-experience flags use [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, under the MIT License. The original SVGs are bundled locally and cropped to circles at display time. See `Licenses/flag-icons-MIT.txt`.
+
+## Community avatars
+
+The project owner supplied the original avatar library, preserved in `DesignResources/AvatarLibrary`. Nineteen distinct source images are copied unchanged into `VisaDone/Assets.xcassets/Avatars` for the fictional community members.
