@@ -53,7 +53,7 @@ Community names, stories, avatars, and engagement figures are fictional demonstr
 
 ## App icon
 
-The VisaDone app icon was created for this prototype.
+The active app icon is the project owner’s `AppIcon.icon`, edited in Icon Composer. Its V foreground references the Visa wordmark; vector source and attribution are retained in `DesignResources/AppIcon/VISA-V`. The previous icon is archived in `DesignResources/AppIcon/LegacyAppIcon.appiconset`.
 
 ## Country flags
 

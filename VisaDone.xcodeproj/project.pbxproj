@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6559829AE54B4A9996BD42A4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DA59FA71AF05425B93B8FE1A /* AppIcon.icon */; };
 		D50000013090A3AA00C787DB /* SwiftUIMasonry in Frameworks */ = {isa = PBXBuildFile; productRef = D50000023090A3AA00C787DB /* SwiftUIMasonry */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA59FA71AF05425B93B8FE1A /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		6E1B25A13090A3A800C787DB /* VisaDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisaDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1B25AE3090A3AA00C787DB /* VisaDoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisaDoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1B25B83090A3AA00C787DB /* VisaDoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisaDoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 		6E1B25983090A3A800C787DB = {
 			isa = PBXGroup;
 			children = (
+				DA59FA71AF05425B93B8FE1A /* AppIcon.icon */,
 				6E1B25A33090A3A800C787DB /* VisaDone */,
 				6E1B25B13090A3AA00C787DB /* VisaDoneTests */,
 				6E1B25BB3090A3AA00C787DB /* VisaDoneUITests */,
@@ -208,6 +211,7 @@
 		6E1B259F3090A3A800C787DB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				6559829AE54B4A9996BD42A4 /* AppIcon.icon in Resources */,
 			);
 		};
 		6E1B25AC3090A3AA00C787DB /* Resources */ = {
