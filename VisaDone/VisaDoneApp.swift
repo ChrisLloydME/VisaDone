@@ -5,10 +5,12 @@
 //  Created by Christopher Lloyd on 2026.10.27.
 //
 
+import AppKit
 import SwiftUI
 
 @main
 struct VisaDoneApp: App {
+    @NSApplicationDelegateAdaptor(VisaDoneAppDelegate.self) private var appDelegate
     @State private var model = VisaDoneModel()
 
     var body: some Scene {
@@ -38,5 +40,11 @@ struct VisaDoneApp: App {
                 }
             }
         }
+    }
+}
+
+final class VisaDoneAppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        true
     }
 }
