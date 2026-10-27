@@ -33,7 +33,7 @@ struct ProfileAvatarView: View {
             .scaledToFill()
             .frame(width: size, height: size)
             .clipShape(Circle())
-            .accessibilityLabel("Profile photo of \(identity.displayName)")
+            .accessibilityLabel("\(identity.displayName)的头像")
     }
 }
 
@@ -65,7 +65,7 @@ struct ProfileMoreButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 5) {
-                Text("More")
+                Text("查看全部")
                 Image(systemName: "chevron.right")
                     .font(.system(size: 9, weight: .semibold))
             }
@@ -164,7 +164,7 @@ struct ProfilePostRow: View {
                         Text(post.timeLabel)
                         Text("·")
                         if let minutes = post.readMinutes {
-                            Text("\(minutes) min read")
+                            Text("\(minutes) 分钟")
                         } else {
                             Text(post.format.cardLabel)
                         }
@@ -222,7 +222,7 @@ struct ProfileFavoriteRow: View {
         }
         .buttonStyle(.plain)
         .onHover { isHovering = $0 }
-        .accessibilityLabel("Saved: \(post.title)")
+        .accessibilityLabel("已收藏：\(post.title)")
     }
 }
 
@@ -263,7 +263,7 @@ struct ProfileVisaExperiences: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Visa experiences")
+            Text("签证足迹")
                 .font(.system(size: 15, weight: .semibold))
                 .accessibilityAddTraits(.isHeader)
             HStack(alignment: .top, spacing: 10) {

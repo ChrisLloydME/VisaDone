@@ -94,7 +94,7 @@ struct ProfileView: View {
             Button {
                 isEditingProfile = true
             } label: {
-                Text("Edit Profile")
+                Text("编辑资料")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -110,9 +110,9 @@ struct ProfileView: View {
             HStack(spacing: 4) {
                 Image(systemName: "person.2")
                     .foregroundStyle(.secondary)
-                Text("\(Text(identity.followers.formatted()).fontWeight(.semibold)) followers")
+                Text("\(Text(identity.followers.formatted()).fontWeight(.semibold)) 粉丝")
                 Text("·").foregroundStyle(.secondary)
-                Text("\(Text(identity.following.formatted()).fontWeight(.semibold)) following")
+                Text("\(Text(identity.following.formatted()).fontWeight(.semibold)) 关注")
             }
             .font(.system(size: 12))
             .fixedSize()
@@ -134,11 +134,11 @@ struct ProfileView: View {
 
     private func postsColumn(previewCount: Int) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            ProfileSectionHeader(title: "Favorites", count: myPosts.count)
+            ProfileSectionHeader(title: "我的收藏", count: myPosts.count)
                 .padding(.horizontal, 4)
                 .padding(.bottom, 4)
             if myPosts.isEmpty {
-                emptyState("No posts yet", detail: "Your posts will appear here.")
+                emptyState("还没有发布帖子", detail: "分享一段经历，让准备出发的人少些迷茫。")
             } else {
                 ForEach(myPosts.prefix(previewCount)) { post in
                     ProfilePostRow(post: post, likeCount: model.likeCount(for: post), rowHeight: 92) {
@@ -152,7 +152,7 @@ struct ProfileView: View {
                 } else {
                     Spacer(minLength: 0)
                 }
-                ProfileMoreButton(help: "Show all posts") { collection = .posts }
+                ProfileMoreButton(help: "查看全部帖子") { collection = .posts }
             }
         }
         .padding(10)
@@ -161,11 +161,11 @@ struct ProfileView: View {
 
     private func favoritesSection(previewCount: Int) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            ProfileSectionHeader(title: "My Posts", count: savedPosts.count)
+            ProfileSectionHeader(title: "我的帖子", count: savedPosts.count)
                 .padding(.horizontal, 4)
                 .padding(.bottom, 4)
             if savedPosts.isEmpty {
-                emptyState("Nothing saved yet", detail: "Save posts in Discovery to find them here.")
+                emptyState("还没有收藏", detail: "在发现页收藏感兴趣的帖子，就能在这里找到。")
             } else {
                 ForEach(savedPosts.prefix(previewCount)) { post in
                     ProfileFavoriteRow(post: post) { selectedPost = post }
@@ -177,7 +177,7 @@ struct ProfileView: View {
                 } else {
                     Spacer(minLength: 0)
                 }
-                ProfileMoreButton(help: "Show all favorites") { collection = .favorites }
+                ProfileMoreButton(help: "查看全部收藏") { collection = .favorites }
             }
         }
         .padding(10)
@@ -186,7 +186,7 @@ struct ProfileView: View {
 
     private var settingsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ProfileSectionHeader(title: "Settings")
+            ProfileSectionHeader(title: "偏好设置")
             VStack(spacing: 0) {
                 ForEach(ProfileSetting.allCases) { setting in
                     ProfileSettingRow(setting: setting) { selectedSetting = setting }

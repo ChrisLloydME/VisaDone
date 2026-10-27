@@ -41,8 +41,8 @@ struct DiscoveryView: View {
         .buttonStyle(.glass(.regular.tint(Color.accentColor.opacity(0.55)).interactive()))
         .buttonBorderShape(.circle)
         .controlSize(.large)
-        .help("Write a community post (⌘N)")
-        .accessibilityLabel("New Post")
+        .help("发布帖子（⌘N）")
+        .accessibilityLabel("发布帖子")
     }
 
     // MARK: - Page header
@@ -51,13 +51,12 @@ struct DiscoveryView: View {
         VStack(spacing: 17) {
             HStack(alignment: .bottom, spacing: 28) {
                 VStack(alignment: .leading, spacing: 7) {
-                    Text("Discover")
+                    Text("社区发现")
                         .font(DiscoveryTheme.pageTitle)
-                        .tracking(-0.4)
                         .foregroundStyle(.primary)
                         .accessibilityAddTraits(.isHeader)
 
-                    Text("Field notes and honest questions from the visa community. Not official advice.")
+                    Text("从准备签证到出发，看看大家怎么做。")
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
@@ -160,7 +159,7 @@ struct DiscoveryView: View {
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 4)
 
-            Text(trimmedQuery.isEmpty ? "No posts in this category" : "No matching posts")
+            Text(trimmedQuery.isEmpty ? "这里还没有帖子" : "没有找到相关帖子")
                 .font(.system(size: 19, weight: .semibold))
 
             Text(emptyStateMessage)
@@ -171,7 +170,7 @@ struct DiscoveryView: View {
                 .frame(maxWidth: 360)
 
             HStack(spacing: 8) {
-                Button(trimmedQuery.isEmpty ? "Explore For You" : "Clear search") {
+                Button(trimmedQuery.isEmpty ? "看看推荐" : "清除搜索") {
                     if trimmedQuery.isEmpty {
                         model.selectedCategory = .forYou
                     } else {
@@ -182,7 +181,7 @@ struct DiscoveryView: View {
                 .controlSize(.regular)
 
                 if !trimmedQuery.isEmpty && model.selectedCategory != .forYou {
-                    Button("Search all topics") {
+                    Button("搜索全部分类") {
                         model.selectedCategory = .forYou
                     }
                     .buttonStyle(.borderless)
@@ -197,21 +196,21 @@ struct DiscoveryView: View {
 
     private var emptyStateMessage: String {
         if trimmedQuery.isEmpty {
-            return "Choose another category to see more posts."
+            return "换个分类，看看大家最近的分享。"
         }
-        return "No posts in \(model.selectedCategory.title) match “\(trimmedQuery)”. Try another search or category."
+        return "“\(trimmedQuery)”在\(model.selectedCategory.title)中暂无结果。换个关键词，或试试其他分类。"
     }
 
     // MARK: - Footer
 
     private var feedFooter: some View {
         VStack(spacing: 8) {
-            Text("End of feed")
+            Text("已经看到这里了")
                 .font(.system(size: 12, weight: .medium))
-            Text("Community experiences are not official guidance. Check current requirements with the relevant authority.")
+            Text("社区内容为个人经历，具体要求请以使领馆或官方签证中心为准。")
                 .font(.system(size: 11))
                 .frame(maxWidth: 500)
-            Text("Photos: Unsplash. Edinburgh: Mike McBey (CC BY 2.0). Castle Combe: Michael Garlick (CC BY-SA 2.0), via Wikimedia Commons.")
+            Text("图片来自 Unsplash。爱丁堡：Mike McBey（CC BY 2.0）；库姆堡：Michael Garlick（CC BY-SA 2.0），来源为维基共享资源。")
                 .font(.system(size: 11))
                 .frame(maxWidth: 500)
         }
@@ -225,7 +224,7 @@ struct DiscoveryView: View {
 
 }
 
-#Preview("Discovery") {
+#Preview("发现") {
     DiscoveryView(model: VisaDoneModel())
         .frame(width: 1280, height: 840)
 }

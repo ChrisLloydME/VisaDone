@@ -69,17 +69,16 @@ struct ComposePostView: View {
                         .fill(DiscoveryTheme.brandStrong)
                         .frame(width: 5, height: 5)
 
-                    Text("NEW COMMUNITY POST")
+                    Text("分享新经历")
                         .font(DiscoveryTheme.eyebrow)
-                        .tracking(1.15)
                         .foregroundStyle(DiscoveryTheme.brandStrong)
                 }
 
-                Text("Ask the community")
+                Text("发布帖子")
                     .font(.system(size: 26, weight: .semibold, design: .serif))
                     .tracking(-0.2)
 
-                Text("A good question is specific, honest, and yours.")
+                Text("写下你的问题，或分享一段准备出发的经历。")
                     .font(.system(size: 12.5))
                     .foregroundStyle(.secondary)
             }
@@ -100,8 +99,8 @@ struct ComposePostView: View {
                     .contentShape(Circle())
             }
             .buttonStyle(SoftPressButtonStyle())
-            .help("Close")
-            .accessibilityLabel("Close")
+            .help("关闭")
+            .accessibilityLabel("关闭")
         }
         .padding(.horizontal, 24)
         .padding(.top, 20)
@@ -113,20 +112,19 @@ struct ComposePostView: View {
     private var titleField: some View {
         VStack(alignment: .leading, spacing: 7) {
             HStack {
-                Text("QUESTION")
-                    .font(.system(size: 9.5, weight: .semibold))
-                    .tracking(0.9)
+                Text("标题")
+                    .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
 
                 Spacer()
 
-                Text("\(title.count)/110")
+                Text("\(title.count)/36")
                     .font(.system(size: 10, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
             }
 
-            TextField("What would you like to ask?", text: $title)
+            TextField("用一句话说说你想分享什么", text: $title)
                 .textFieldStyle(.plain)
                 .font(.system(size: 15, weight: .medium, design: .serif))
                 .focused($focusedField, equals: .title)
@@ -144,8 +142,8 @@ struct ComposePostView: View {
                         )
                 }
                 .onChange(of: title) { _, newValue in
-                    if newValue.count > 110 {
-                        title = String(newValue.prefix(110))
+                    if newValue.count > 36 {
+                        title = String(newValue.prefix(36))
                     }
                 }
                 .onSubmit {
@@ -156,14 +154,13 @@ struct ComposePostView: View {
 
     private var bodyField: some View {
         VStack(alignment: .leading, spacing: 7) {
-            Text("CONTEXT")
-                .font(.system(size: 9.5, weight: .semibold))
-                .tracking(0.9)
+            Text("正文")
+                .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(.secondary)
 
             ZStack(alignment: .topLeading) {
                 if bodyText.isEmpty {
-                    Text("Share the details that matter — dates, documents, the part you are unsure about. Please keep personal information out.")
+                    Text("可以聊聊行程、材料和你的实际经历。请勿填写护照号等个人敏感信息。")
                         .font(.system(size: 12.5))
                         .foregroundStyle(.secondary)
                         .lineSpacing(2.5)
@@ -179,7 +176,7 @@ struct ComposePostView: View {
                     .padding(.horizontal, 5)
                     .padding(.vertical, 4)
                     .focused($focusedField, equals: .body)
-                    .accessibilityLabel("Post context")
+                    .accessibilityLabel("帖子正文")
             }
             .frame(height: 148)
             .background {
@@ -199,12 +196,11 @@ struct ComposePostView: View {
     private var topicPicker: some View {
         HStack(alignment: .bottom, spacing: 18) {
             VStack(alignment: .leading, spacing: 7) {
-                Text("TOPIC")
-                    .font(.system(size: 9.5, weight: .semibold))
-                    .tracking(0.9)
+                Text("分类")
+                    .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
 
-                Picker("Topic", selection: $region) {
+                Picker("分类", selection: $region) {
                     ForEach(PostRegion.allCases, id: \.self) { region in
                         Text(region.title).tag(region)
                     }
@@ -219,9 +215,9 @@ struct ComposePostView: View {
             HStack(spacing: 7) {
                 AuthorAvatarView(author: .you, size: 22)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("Posting as You")
+                    Text("以林晚的身份发布")
                         .font(.system(size: 11, weight: .medium))
-                    Text("Local profile")
+                    Text("个人账号")
                         .font(.system(size: 10))
                         .foregroundStyle(.secondary)
                 }
@@ -237,7 +233,7 @@ struct ComposePostView: View {
                 .foregroundStyle(DiscoveryTheme.brandStrong)
                 .padding(.top, 1)
 
-            Text("This is a local prototype. Your post is added to this session only — it is not sent anywhere and disappears when the app closes.")
+            Text("发布后可在发现页查看，本次内容仅保存在当前使用中。")
                 .font(.system(size: 11))
                 .foregroundStyle(.secondary)
                 .lineSpacing(1.5)
@@ -259,18 +255,18 @@ struct ComposePostView: View {
 
     private var footer: some View {
         HStack(spacing: 9) {
-            Text(canPublish ? "A title is all you need to start." : "Add a title to publish.")
+            Text(canPublish ? "写好标题，就可以发布了。" : "请先填写标题。")
                 .font(.system(size: 10.5))
                 .foregroundStyle(.secondary)
 
             Spacer(minLength: 8)
 
-            Button("Cancel") {
+            Button("取消") {
                 dismiss()
             }
             .keyboardShortcut(.cancelAction)
 
-            Button("Publish") {
+            Button("发布") {
                 model.addPost(title: title, body: bodyText, region: region)
                 dismiss()
             }

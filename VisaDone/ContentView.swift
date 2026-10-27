@@ -17,7 +17,7 @@ struct ContentView: View {
             switch model.section {
             case .discovery:
                 DiscoveryView(model: model)
-                    .searchable(text: $model.searchText, placement: .toolbar, prompt: "Search Discovery")
+                    .searchable(text: $model.searchText, placement: .toolbar, prompt: "搜索签证、目的地或攻略")
             case .application:
                 // Intentionally blank for now.
                 Color.clear
@@ -28,7 +28,7 @@ struct ContentView: View {
         .toolbarBackgroundVisibility(model.section == .discovery ? .automatic : .hidden, for: .windowToolbar)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Picker("Section", selection: $model.section) {
+                Picker("页面", selection: $model.section) {
                     ForEach(AppSection.allCases) { section in
                         Text(section.title).tag(section)
                     }
@@ -36,8 +36,8 @@ struct ContentView: View {
                 .pickerStyle(.segmented)
                 .labelsHidden()
                 .fixedSize(horizontal: true, vertical: true)
-                .accessibilityLabel("Section")
-                .help("Switch between Discovery, Application, and Profile")
+                .accessibilityLabel("页面")
+                .help("切换社区发现、签证申请和个人主页")
             }
         }
         .navigationTitle("VisaDone")

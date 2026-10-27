@@ -17,7 +17,7 @@ struct EditProfileSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Edit Profile").font(.title2.weight(.semibold))
+            Text("编辑资料").font(.title2.weight(.semibold))
             HStack(spacing: 14) {
                 ProfileAvatarView(identity: draft, size: 56)
                 VStack(alignment: .leading, spacing: 4) {
@@ -26,19 +26,19 @@ struct EditProfileSheet: View {
                 }
             }
             Form {
-                TextField("Display name", text: $draft.displayName)
+                TextField("昵称", text: $draft.displayName)
                     .onChange(of: draft.displayName) { _, value in
                         draft.displayName = String(value.prefix(48))
                     }
-                TextField("Pronouns", text: $draft.pronouns)
+                TextField("称谓", text: $draft.pronouns)
                     .onChange(of: draft.pronouns) { _, value in
                         draft.pronouns = String(value.prefix(24))
                     }
-                TextField("Location", text: $draft.location)
+                TextField("所在地", text: $draft.location)
                     .onChange(of: draft.location) { _, value in
                         draft.location = String(value.prefix(40))
                     }
-                LabeledContent("Bio") {
+                LabeledContent("个人简介") {
                     TextEditor(text: $draft.bio)
                         .font(.body)
                         .frame(height: 90)
@@ -48,14 +48,14 @@ struct EditProfileSheet: View {
                         }
                 }
             }
-            Text("Changes stay in this app session.")
+            Text("修改仅保存在本次使用中。")
                 .font(.callout)
                 .foregroundStyle(.secondary)
             Divider()
             HStack {
                 Spacer()
-                Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction)
-                Button("Save Changes") {
+                Button("取消") { dismiss() }.keyboardShortcut(.cancelAction)
+                Button("保存") {
                     draft.displayName = draft.displayName.trimmingCharacters(in: .whitespacesAndNewlines)
                     draft.pronouns = draft.pronouns.trimmingCharacters(in: .whitespacesAndNewlines)
                     draft.location = draft.location.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -93,37 +93,37 @@ struct ProfileSettingsSheet: View {
             Form {
                 switch setting {
                 case .account:
-                    LabeledContent("Display name", value: identity.displayName)
-                    LabeledContent("Username", value: identity.handle)
-                    LabeledContent("Email", value: "nora.hale@visadone.demo")
-                    LabeledContent("Member since", value: identity.joinLabel)
+                    LabeledContent("昵称", value: identity.displayName)
+                    LabeledContent("用户名", value: identity.handle)
+                    LabeledContent("邮箱", value: "linwan@example.com")
+                    LabeledContent("加入时间", value: identity.joinLabel)
                 case .privacy:
-                    Toggle("Public profile", isOn: $publicProfile)
-                    Toggle("Show saved stories", isOn: $showSaved)
-                    Toggle("Discoverable in community", isOn: $discoverable)
+                    Toggle("公开个人主页", isOn: $publicProfile)
+                    Toggle("展示收藏", isOn: $showSaved)
+                    Toggle("允许在社区中被发现", isOn: $discoverable)
                 case .notifications:
-                    Toggle("Replies to my posts", isOn: $replies)
-                    Toggle("New followers", isOn: $newFollowers)
-                    Toggle("Weekly field notes", isOn: $weeklyNotes)
+                    Toggle("帖子回复", isOn: $replies)
+                    Toggle("新增关注", isOn: $newFollowers)
+                    Toggle("每周精选", isOn: $weeklyNotes)
                 case .data:
-                    Toggle("Personalize Discovery", isOn: $personalizedFeed)
-                    Toggle("Anonymous usage", isOn: $anonymousUsage)
+                    Toggle("个性化推荐", isOn: $personalizedFeed)
+                    Toggle("匿名使用数据", isOn: $anonymousUsage)
                 case .help:
                     VStack(alignment: .leading, spacing: 18) {
-                        answer("How do I save something?", "Open a post and choose the bookmark button. Saved posts appear in Favorites.")
-                        answer("Where does my data go?", "VisaDone is a local prototype. Profile details and saved posts stay in this app session.")
-                        answer("Can I change my profile?", "Choose Edit Profile on your profile page to update your name, pronouns, location, and bio.")
+                        answer("如何收藏帖子？", "打开帖子，点击收藏按钮，即可在个人主页查看。")
+                        answer("资料会同步到哪里？", "当前资料与收藏仅保存在本机，本次退出后不会保留。")
+                        answer("可以修改个人资料吗？", "在个人主页选择“编辑资料”，即可修改昵称、所在地和简介。")
                     }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Text("Demo settings · Changes preview locally in this panel.")
+            Text("偏好仅在当前面板中生效。")
                 .font(.callout)
                 .foregroundStyle(.secondary)
             Divider()
             HStack {
                 Spacer()
-                Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+                Button("完成") { dismiss() }.keyboardShortcut(.defaultAction)
             }
         }
         .padding(24)
@@ -167,16 +167,16 @@ struct ProfileCollectionSheet: View {
                         }
                     }
                     if posts.isEmpty {
-                        ContentUnavailableView("Nothing here yet", systemImage: kind.systemImage)
+                        ContentUnavailableView("这里暂时没有内容", systemImage: kind.systemImage)
                     }
                 }
                 .padding(1)
             }
             Divider()
             HStack {
-                Text("\(posts.count) posts").foregroundStyle(.secondary)
+                Text("共 \(posts.count) 篇帖子").foregroundStyle(.secondary)
                 Spacer()
-                Button("Done") { dismiss() }.keyboardShortcut(.cancelAction)
+                Button("完成") { dismiss() }.keyboardShortcut(.cancelAction)
             }
         }
         .padding(24)

@@ -24,7 +24,7 @@ struct DiscoveryPostCard: View {
             }
             .buttonStyle(DiscoveryCardButtonStyle())
             .accessibilityLabel(accessibilitySummary)
-            .accessibilityHint("Opens the full story")
+            .accessibilityHint("打开帖子详情")
 
             Rectangle()
                 .fill(DiscoveryTheme.hairline.opacity(0.55))
@@ -126,11 +126,11 @@ struct DiscoveryPostCard: View {
     private var titleFont: Font {
         switch post.format {
         case .photo:
-            .system(size: 16, weight: .semibold, design: .serif)
+            .custom("STSongti-SC-Bold", size: 18)
         case .guide:
-            .system(size: 19.5, weight: .semibold, design: .serif)
+            .custom("STSongti-SC-Bold", size: 20)
         case .question:
-            .system(size: 19, weight: .medium, design: .serif)
+            .custom("STSongti-SC-Bold", size: 19)
         }
     }
 
@@ -140,8 +140,8 @@ struct DiscoveryPostCard: View {
             Text(summary)
                 .font(.system(size: 12.5))
                 .foregroundStyle(.secondary)
-                .lineSpacing(2.5)
-                .lineLimit(3)
+                .lineSpacing(4)
+                .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -161,7 +161,7 @@ struct DiscoveryPostCard: View {
                 HStack(spacing: 3) {
                     Image(systemName: "clock")
                         .font(.system(size: 9.5, weight: .medium))
-                    Text("\(readMinutes) min read")
+                    Text("\(readMinutes) 分钟阅读")
                 }
                 .font(.system(size: 10.5))
                 .foregroundStyle(.secondary)
@@ -180,7 +180,7 @@ struct DiscoveryPostCard: View {
                 isActive: isLiked,
                 count: likeCount,
                 activeColor: DiscoveryTheme.liked,
-                label: isLiked ? "Unlike this story" : "Like this story",
+                label: isLiked ? "取消点赞" : "点赞",
                 action: {
                     withAnimation(.snappy(duration: 0.22)) {
                         onToggleLike()
@@ -194,7 +194,7 @@ struct DiscoveryPostCard: View {
                 isActive: isSaved,
                 count: nil,
                 activeColor: .accentColor,
-                label: isSaved ? "Remove from saved" : "Save this story",
+                label: isSaved ? "取消收藏" : "收藏",
                 action: {
                     withAnimation(.snappy(duration: 0.22)) {
                         onToggleSave()
@@ -214,9 +214,9 @@ struct DiscoveryPostCard: View {
                 }
                 .foregroundStyle(.secondary)
                 .padding(.trailing, 4)
-                .help("\(post.commentCount) replies in this discussion")
+                .help("这篇帖子有 \(post.commentCount) 条评论")
                 .accessibilityElement(children: .ignore)
-                .accessibilityLabel("\(post.commentCount) replies")
+                .accessibilityLabel("\(post.commentCount) 条评论")
             }
         }
         .padding(.horizontal, 8)
@@ -224,7 +224,7 @@ struct DiscoveryPostCard: View {
     }
 
     private var accessibilitySummary: String {
-        "\(post.format.eyebrow): \(post.title). By \(post.author.name). \(likeCount) likes, \(post.commentCount) replies."
+        "\(post.format.eyebrow)：\(post.title)，作者\(post.author.name)，\(likeCount) 人点赞，\(post.commentCount) 条评论。"
     }
 }
 
