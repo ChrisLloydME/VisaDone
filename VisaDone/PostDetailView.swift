@@ -48,7 +48,7 @@ struct PostDetailView: View {
             actionBar
         }
         .frame(width: 720, height: 620)
-        .background(DiscoveryTheme.canvas)
+        .background(.regularMaterial)
     }
 
     // MARK: - Hero

@@ -36,7 +36,7 @@ struct DiscoveryPostCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background {
             RoundedRectangle(cornerRadius: DiscoveryTheme.cardRadius, style: .continuous)
-                .fill(DiscoveryTheme.surface)
+                .fill(.regularMaterial)
         }
         .clipShape(RoundedRectangle(cornerRadius: DiscoveryTheme.cardRadius, style: .continuous))
         .overlay {

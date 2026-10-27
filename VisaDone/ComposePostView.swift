@@ -51,7 +51,7 @@ struct ComposePostView: View {
             footer
         }
         .frame(width: 600, height: 590)
-        .background(DiscoveryTheme.canvas)
+        .background(.regularMaterial)
         .onAppear {
             DispatchQueue.main.async {
                 focusedField = .title

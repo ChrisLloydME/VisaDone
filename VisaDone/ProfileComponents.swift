@@ -106,26 +106,15 @@ struct ProfileThumbnail: View {
     }
 }
 
-// Opaque, appearance-aware neutral surfaces with a visible step between layers.
-// AppKit's control/text backgrounds can resolve to the same shade in dark mode.
+// System materials keep the desktop visible while content retains its own layer.
 private enum ProfileSurface {
-    static let section = adaptive(light: 0.96, dark: 0.17)
-    static let card = adaptive(light: 1.0, dark: 0.235)
-    static let hoveredCard = adaptive(light: 0.98, dark: 0.275)
-    static let boundary = adaptive(light: 0.80, dark: 0.35)
-    static let secondaryText = adaptive(light: 0.30, dark: 0.80)
-
-    private static func adaptive(light: CGFloat, dark: CGFloat) -> Color {
-        Color(nsColor: NSColor(name: nil) { appearance in
-            let isDark = appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-            return NSColor(white: isDark ? dark : light, alpha: 1)
-        })
-    }
+    static let boundary = Color(nsColor: .separatorColor)
+    static let secondaryText = Color.primary.opacity(0.80)
 }
 
 extension View {
     func profileSectionCard(cornerRadius: CGFloat = 19) -> some View {
-        background(ProfileSurface.section, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+        background(.thinMaterial, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                     .strokeBorder(ProfileSurface.boundary, lineWidth: 0.5)
@@ -139,7 +128,7 @@ private struct ProfileContentSurface: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .background(hovered ? ProfileSurface.hoveredCard : ProfileSurface.card,
+            .background(hovered ? .thickMaterial : .regularMaterial,
                         in: RoundedRectangle(cornerRadius: 9, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 9, style: .continuous)
