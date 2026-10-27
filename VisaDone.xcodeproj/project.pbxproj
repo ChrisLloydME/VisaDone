@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		6E1B25AF3090A3AA00C787DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E1B25993090A3A800C787DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E1B25A03090A3A800C787DB;
+			remoteInfo = VisaDone;
+		};
+		6E1B25B93090A3AA00C787DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E1B25993090A3A800C787DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E1B25A03090A3A800C787DB;
+			remoteInfo = VisaDone;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E1B25A13090A3A800C787DB /* VisaDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisaDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1B25AE3090A3AA00C787DB /* VisaDoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisaDoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1B25B83090A3AA00C787DB /* VisaDoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisaDoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6E1B25A33090A3A800C787DB /* VisaDone */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VisaDone;
+			sourceTree = "<group>";
+		};
+		6E1B25B13090A3AA00C787DB /* VisaDoneTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VisaDoneTests;
+			sourceTree = "<group>";
+		};
+		6E1B25BB3090A3AA00C787DB /* VisaDoneUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VisaDoneUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E1B259E3090A3A800C787DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		6E1B25AB3090A3AA00C787DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		6E1B25B53090A3AA00C787DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E1B25983090A3A800C787DB = {
+			isa = PBXGroup;
+			children = (
+				6E1B25A33090A3A800C787DB /* VisaDone */,
+				6E1B25B13090A3AA00C787DB /* VisaDoneTests */,
+				6E1B25BB3090A3AA00C787DB /* VisaDoneUITests */,
+				6E1B25A23090A3A800C787DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6E1B25A23090A3A800C787DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E1B25A13090A3A800C787DB /* VisaDone.app */,
+				6E1B25AE3090A3AA00C787DB /* VisaDoneTests.xctest */,
+				6E1B25B83090A3AA00C787DB /* VisaDoneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E1B25A03090A3A800C787DB /* VisaDone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E1B25C03090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDone" */;
+			buildPhases = (
+				6E1B259D3090A3A800C787DB /* Sources */,
+				6E1B259E3090A3A800C787DB /* Frameworks */,
+				6E1B259F3090A3A800C787DB /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				6E1B25A33090A3A800C787DB /* VisaDone */,
+			);
+			name = VisaDone;
+			productName = VisaDone;
+			productReference = 6E1B25A13090A3A800C787DB /* VisaDone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E1B25AD3090A3AA00C787DB /* VisaDoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E1B25C33090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDoneTests" */;
+			buildPhases = (
+				6E1B25AA3090A3AA00C787DB /* Sources */,
+				6E1B25AB3090A3AA00C787DB /* Frameworks */,
+				6E1B25AC3090A3AA00C787DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E1B25B03090A3AA00C787DB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6E1B25B13090A3AA00C787DB /* VisaDoneTests */,
+			);
+			name = VisaDoneTests;
+			productName = VisaDoneTests;
+			productReference = 6E1B25AE3090A3AA00C787DB /* VisaDoneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6E1B25B73090A3AA00C787DB /* VisaDoneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E1B25C63090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDoneUITests" */;
+			buildPhases = (
+				6E1B25B43090A3AA00C787DB /* Sources */,
+				6E1B25B53090A3AA00C787DB /* Frameworks */,
+				6E1B25B63090A3AA00C787DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E1B25BA3090A3AA00C787DB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6E1B25BB3090A3AA00C787DB /* VisaDoneUITests */,
+			);
+			name = VisaDoneUITests;
+			productName = VisaDoneUITests;
+			productReference = 6E1B25B83090A3AA00C787DB /* VisaDoneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E1B25993090A3A800C787DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2710;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					6E1B25A03090A3A800C787DB = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					6E1B25AD3090A3AA00C787DB = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 6E1B25A03090A3A800C787DB;
+					};
+					6E1B25B73090A3AA00C787DB = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 6E1B25A03090A3A800C787DB;
+					};
+				};
+			};
+			buildConfigurationList = 6E1B259C3090A3A800C787DB /* Build configuration list for PBXProject "VisaDone" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E1B25983090A3A800C787DB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6E1B25A23090A3A800C787DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E1B25A03090A3A800C787DB /* VisaDone */,
+				6E1B25AD3090A3AA00C787DB /* VisaDoneTests */,
+				6E1B25B73090A3AA00C787DB /* VisaDoneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E1B259F3090A3A800C787DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		6E1B25AC3090A3AA00C787DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		6E1B25B63090A3AA00C787DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E1B259D3090A3A800C787DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		6E1B25AA3090A3AA00C787DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		6E1B25B43090A3AA00C787DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E1B25B03090A3AA00C787DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E1B25A03090A3A800C787DB /* VisaDone */;
+			targetProxy = 6E1B25AF3090A3AA00C787DB /* PBXContainerItemProxy */;
+		};
+		6E1B25BA3090A3AA00C787DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E1B25A03090A3A800C787DB /* VisaDone */;
+			targetProxy = 6E1B25B93090A3AA00C787DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6E1B25BE3090A3AA00C787DB /* Debug configuration for PBXProject "VisaDone" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6E1B25BF3090A3AA00C787DB /* Release configuration for PBXProject "VisaDone" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		6E1B25C13090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDone" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6E1B25C23090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDone" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6E1B25C43090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDoneTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDoneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VisaDone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VisaDone";
+			};
+			name = Debug;
+		};
+		6E1B25C53090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDoneTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDoneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VisaDone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VisaDone";
+			};
+			name = Release;
+		};
+		6E1B25C73090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDoneUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDoneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VisaDone;
+			};
+			name = Debug;
+		};
+		6E1B25C83090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDoneUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM5G2M8PV9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lloydME.VisaDoneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VisaDone;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E1B259C3090A3A800C787DB /* Build configuration list for PBXProject "VisaDone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E1B25BE3090A3AA00C787DB /* Debug configuration for PBXProject "VisaDone" */,
+				6E1B25BF3090A3AA00C787DB /* Release configuration for PBXProject "VisaDone" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		6E1B25C03090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E1B25C13090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDone" */,
+				6E1B25C23090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDone" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		6E1B25C33090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E1B25C43090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDoneTests" */,
+				6E1B25C53090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDoneTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		6E1B25C63090A3AA00C787DB /* Build configuration list for PBXNativeTarget "VisaDoneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E1B25C73090A3AA00C787DB /* Debug configuration for PBXNativeTarget "VisaDoneUITests" */,
+				6E1B25C83090A3AA00C787DB /* Release configuration for PBXNativeTarget "VisaDoneUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E1B25993090A3A800C787DB /* Project object */;
+	validationLevel = 1;
+}
