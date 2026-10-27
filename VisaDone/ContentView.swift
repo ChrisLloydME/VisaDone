@@ -14,15 +14,21 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            DiscoveryTheme.canvas
-                .ignoresSafeArea()
+            // Profile uses the system window surface; other destinations keep their styling.
+            if model.section == .profile {
+                Color(nsColor: .windowBackgroundColor).ignoresSafeArea()
+            } else {
+                DiscoveryTheme.canvas.ignoresSafeArea()
+            }
 
             switch model.section {
             case .discovery:
                 DiscoveryView(model: model)
-            case .application, .profile:
+            case .application:
                 // Intentionally blank for now.
                 Color.clear
+            case .profile:
+                ProfileView(model: model)
             }
         }
         .toolbar {
