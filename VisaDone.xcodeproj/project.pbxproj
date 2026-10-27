@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D50000013090A3AA00C787DB /* SwiftUIMasonry in Frameworks */ = {isa = PBXBuildFile; productRef = D50000023090A3AA00C787DB /* SwiftUIMasonry */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6E1B25AF3090A3AA00C787DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -51,6 +55,7 @@
 		6E1B259E3090A3A800C787DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				D50000013090A3AA00C787DB /* SwiftUIMasonry in Frameworks */,
 			);
 		};
 		6E1B25AB3090A3AA00C787DB /* Frameworks */ = {
@@ -103,6 +108,9 @@
 				6E1B25A33090A3A800C787DB /* VisaDone */,
 			);
 			name = VisaDone;
+			packageProductDependencies = (
+				D50000023090A3AA00C787DB /* SwiftUIMasonry */,
+			);
 			productName = VisaDone;
 			productReference = 6E1B25A13090A3A800C787DB /* VisaDone.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +189,9 @@
 			);
 			mainGroup = 6E1B25983090A3A800C787DB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D50000033090A3AA00C787DB /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6E1B25A23090A3A800C787DB /* Products */;
 			projectDirPath = "";
@@ -543,6 +554,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D50000033090A3AA00C787DB /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIMasonry";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D50000023090A3AA00C787DB /* SwiftUIMasonry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D50000033090A3AA00C787DB /* XCRemoteSwiftPackageReference "SwiftUIMasonry" */;
+			productName = SwiftUIMasonry;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E1B25993090A3A800C787DB /* Project object */;
 	validationLevel = 1;
