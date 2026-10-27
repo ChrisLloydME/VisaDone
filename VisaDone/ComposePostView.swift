@@ -123,7 +123,7 @@ struct ComposePostView: View {
                 Text("\(title.count)/110")
                     .font(.system(size: 10, design: .rounded))
                     .monospacedDigit()
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.secondary)
             }
 
             TextField("What would you like to ask?", text: $title)
@@ -165,7 +165,7 @@ struct ComposePostView: View {
                 if bodyText.isEmpty {
                     Text("Share the details that matter — dates, documents, the part you are unsure about. Please keep personal information out.")
                         .font(.system(size: 12.5))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(.secondary)
                         .lineSpacing(2.5)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 11)
@@ -181,7 +181,7 @@ struct ComposePostView: View {
                     .focused($focusedField, equals: .body)
                     .accessibilityLabel("Post context")
             }
-            .frame(minHeight: 148)
+            .frame(height: 148)
             .background {
                 RoundedRectangle(cornerRadius: 9, style: .continuous)
                     .fill(DiscoveryTheme.field)
@@ -223,7 +223,7 @@ struct ComposePostView: View {
                         .font(.system(size: 11, weight: .medium))
                     Text("Local profile")
                         .font(.system(size: 10))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(.secondary)
                 }
             }
             .padding(.bottom, 2)
@@ -261,7 +261,7 @@ struct ComposePostView: View {
         HStack(spacing: 9) {
             Text(canPublish ? "A title is all you need to start." : "Add a title to publish.")
                 .font(.system(size: 10.5))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
 
             Spacer(minLength: 8)
 

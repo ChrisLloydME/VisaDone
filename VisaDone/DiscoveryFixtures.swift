@@ -15,7 +15,7 @@ extension DiscoveryAuthor {
         initials: "YO",
         palette: .tide,
         bio: "Your local profile. Nothing here leaves this Mac.",
-        isFollowing: true
+        isFollowing: false
     )
 
     static let mira = DiscoveryAuthor(
@@ -790,7 +790,7 @@ enum DiscoveryFixtures {
             summary: "The trails were quiet, the light was long, and the villages felt like they exhaled after September.",
             tags: ["Italy", "Coast"],
             body: """
-            October felt like the correct answer. The crowds had thinned, the water was still swimable, and the light lasted long enough to make everything look like a painting.
+            October felt like the correct answer. The crowds had thinned, the water was still swimmable, and the light lasted long enough to make everything look like a painting.
 
             We walked between two villages rather than attempting the whole trail. That was the right decision for our knees and our attention spans. There was a bench halfway up with a view that made the climb worth it and a stray cat who apparently agreed.
 

@@ -63,7 +63,7 @@ enum DiscoveryTheme {
             : NSColor(red: 1, green: 1, blue: 1, alpha: 0.82)
     })
 
-    static let hairline = Color(nsColor: .separatorColor).opacity(0.46)
+    static let hairline = Color(nsColor: .separatorColor)
 
     static let liked = Color(nsColor: NSColor(name: nil) { appearance in
         appearance.isDark
@@ -93,7 +93,7 @@ enum DiscoveryTheme {
     static let contentMaxWidth: CGFloat = 1440
     static let pageInset: CGFloat = 36
     static let cardSpacing: CGFloat = 18
-    static let masonryMinColumnWidth: CGFloat = 255
+    static let masonryMinColumnWidth: CGFloat = 262
 
     static let serifTitle = Font.system(size: 16.5, weight: .semibold, design: .serif)
     static let serifLargeTitle = Font.system(size: 21, weight: .semibold, design: .serif)

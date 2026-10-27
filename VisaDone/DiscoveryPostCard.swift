@@ -150,17 +150,18 @@ struct DiscoveryPostCard: View {
             Text("·")
                 .foregroundStyle(.quaternary)
 
-            Text(post.format.eyebrow.uppercased())
+            Text(post.format.cardLabel.uppercased())
                 .foregroundStyle(.secondary)
 
             Spacer(minLength: 8)
 
             Text(post.timeLabel)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
         }
         .font(.system(size: 9.5, weight: .semibold))
-        .tracking(0.75)
+        .tracking(0.65)
         .lineLimit(1)
+        .minimumScaleFactor(0.9)
     }
 
     private var title: some View {
@@ -214,7 +215,7 @@ struct DiscoveryPostCard: View {
                     Text("\(readMinutes) min read")
                 }
                 .font(.system(size: 10.5))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .lineLimit(1)
             }
         }
@@ -262,9 +263,11 @@ struct DiscoveryPostCard: View {
                         .font(.system(size: 10.5, weight: .medium, design: .rounded))
                         .monospacedDigit()
                 }
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .padding(.trailing, 4)
                 .help("\(post.commentCount) replies in this discussion")
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(post.commentCount) replies")
             }
         }
         .padding(.horizontal, 8)

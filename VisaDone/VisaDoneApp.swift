@@ -16,7 +16,7 @@ struct VisaDoneApp: App {
             ContentView(model: model)
                 .frame(minWidth: 980, minHeight: 660)
         }
-        .defaultSize(width: 1280, height: 840)
+        .defaultSize(width: 1240, height: 800)
         .windowResizability(.contentMinSize)
         .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: true))
         .commands {

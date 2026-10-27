@@ -15,6 +15,17 @@ enum DiscoveryCategory: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
     var title: String { rawValue }
+
+    var helpText: String {
+        switch self {
+        case .forYou: "Show your curated feed"
+        case .following: "Show stories from people you follow"
+        case .schengen: "Show Schengen stories"
+        case .unitedStates: "Show United States stories"
+        case .unitedKingdom: "Show United Kingdom stories"
+        case .experiences: "Show personal experiences and guides"
+        }
+    }
 }
 
 enum PostRegion: String, CaseIterable, Hashable {
@@ -65,6 +76,16 @@ enum PostFormat: String, CaseIterable, Hashable {
         case .photo: "Photo story"
         case .question: "Question"
         case .guide: "Field guide"
+        }
+    }
+
+    /// A compact label that keeps the card's metadata line comfortable at
+    /// every supported column width.
+    var cardLabel: String {
+        switch self {
+        case .photo: "Photo"
+        case .question: "Question"
+        case .guide: "Guide"
         }
     }
 }

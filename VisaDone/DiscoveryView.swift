@@ -53,8 +53,9 @@ struct DiscoveryView: View {
                         .font(DiscoveryTheme.pageTitle)
                         .tracking(-0.4)
                         .foregroundStyle(.primary)
+                        .accessibilityAddTraits(.isHeader)
 
-                    Text("Field notes and honest questions from people navigating the visa journey.")
+                    Text("Field notes and honest questions from the visa community. Not official advice.")
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
@@ -74,7 +75,7 @@ struct DiscoveryView: View {
 
                 Text(resultSummary)
                     .font(.system(size: 11.5))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.secondary)
                     .contentTransition(.numericText())
                     .lineLimit(1)
                     .padding(.trailing, 1)
@@ -190,12 +191,10 @@ struct DiscoveryView: View {
 
             HStack(spacing: 8) {
                 Button(trimmedQuery.isEmpty ? "Explore For You" : "Clear search") {
-                    withAnimation(.easeOut(duration: 0.16)) {
-                        if trimmedQuery.isEmpty {
-                            model.selectedCategory = .forYou
-                        } else {
-                            model.searchText = ""
-                        }
+                    if trimmedQuery.isEmpty {
+                        model.selectedCategory = .forYou
+                    } else {
+                        model.searchText = ""
                     }
                 }
                 .buttonStyle(.bordered)
@@ -203,9 +202,7 @@ struct DiscoveryView: View {
 
                 if !trimmedQuery.isEmpty && model.selectedCategory != .forYou {
                     Button("Search all topics") {
-                        withAnimation(.easeOut(duration: 0.16)) {
-                            model.selectedCategory = .forYou
-                        }
+                        model.selectedCategory = .forYou
                     }
                     .buttonStyle(.borderless)
                     .foregroundStyle(DiscoveryTheme.brandStrong)
@@ -238,14 +235,14 @@ struct DiscoveryView: View {
 
             Text("VisaDone is a local community prototype. Stories are personal experiences, not official immigration advice — always confirm current requirements with the relevant official source.")
                 .font(.system(size: 11))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .lineSpacing(1.5)
                 .frame(maxWidth: 470)
 
             Text("Photography from Unsplash. Edinburgh by Mike McBey (CC BY 2.0); Castle Combe by Michael Garlick (CC BY-SA 2.0), via Wikimedia Commons.")
                 .font(.system(size: 10))
-                .foregroundStyle(.quaternary)
+                .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
                 .lineSpacing(1)
                 .frame(maxWidth: 470)

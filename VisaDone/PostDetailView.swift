@@ -47,7 +47,7 @@ struct PostDetailView: View {
 
             actionBar
         }
-        .frame(width: 720, height: 640)
+        .frame(width: 720, height: 620)
         .background(DiscoveryTheme.canvas)
     }
 
@@ -95,7 +95,7 @@ struct PostDetailView: View {
             Spacer(minLength: 10)
 
             Text(post.timeLabel)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
         }
         .font(.system(size: 10, weight: .semibold))
         .tracking(0.85)
@@ -134,21 +134,15 @@ struct PostDetailView: View {
                         .font(.system(size: 12.5, weight: .semibold))
 
                     if post.author.isFollowing {
-                        Text("Following")
+                        Text("· Following")
                             .font(.system(size: 9.5, weight: .medium))
-                            .foregroundStyle(.tertiary)
-                            .padding(.horizontal, 5)
-                            .frame(height: 16)
-                            .background {
-                                Capsule(style: .continuous)
-                                    .fill(DiscoveryTheme.quietFill)
-                            }
+                            .foregroundStyle(.secondary)
                     }
                 }
 
                 Text(post.author.handle)
                     .font(.system(size: 10.5))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.secondary)
 
                 Text(post.author.bio)
                     .font(.system(size: 11.5))
@@ -167,7 +161,7 @@ struct PostDetailView: View {
                     Text("\(readMinutes) min read")
                 }
                 .font(.system(size: 10.5))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .padding(.top, 2)
             }
         }
@@ -226,7 +220,7 @@ struct PostDetailView: View {
 
                 Text("Experiences vary by nationality, route, and office. Check current requirements with the relevant embassy, consulate, or official visa service.")
                     .font(.system(size: 11))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.secondary)
                     .lineSpacing(1.5)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -260,7 +254,7 @@ struct PostDetailView: View {
                     Text("\(post.commentCount) replies")
                 }
                 .font(.system(size: 10.5))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .padding(.trailing, 6)
             }
 

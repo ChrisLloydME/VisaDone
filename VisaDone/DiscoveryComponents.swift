@@ -69,8 +69,9 @@ struct DiscoverySearchField: View {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 11.5))
-                        .foregroundStyle(.tertiary)
-                        .contentShape(Circle())
+                        .foregroundStyle(.secondary)
+                        .frame(width: 20, height: 20)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(SoftPressButtonStyle())
                 .help("Clear search")
@@ -108,9 +109,7 @@ struct DiscoveryCategoryBar: View {
                     category: category,
                     isSelected: category == selection
                 ) {
-                    withAnimation(.easeOut(duration: 0.18)) {
-                        selection = category
-                    }
+                    selection = category
                 }
             }
         }
@@ -151,7 +150,8 @@ private struct DiscoveryCategoryChip: View {
         .buttonStyle(SoftPressButtonStyle())
         .onHover { isHovering = $0 }
         .animation(.easeOut(duration: 0.14), value: isHovering)
-        .help("Show \(category.title.lowercased())")
+        .animation(.easeOut(duration: 0.16), value: isSelected)
+        .help(category.helpText)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

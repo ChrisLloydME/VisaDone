@@ -35,6 +35,7 @@ struct ContentView: View {
                 .pickerStyle(.segmented)
                 .labelsHidden()
                 .frame(width: 354)
+                .accessibilityLabel("Section")
                 .help("Switch between Discovery, Application, and Profile")
             }
 
