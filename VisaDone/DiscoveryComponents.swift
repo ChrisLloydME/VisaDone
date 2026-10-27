@@ -45,67 +45,6 @@ struct AuthorAvatarView: View {
     }
 }
 
-// MARK: - Search
-
-struct DiscoverySearchField: View {
-    @Binding var text: String
-    @FocusState private var isFocused: Bool
-    @State private var isHovering = false
-
-    var body: some View {
-        HStack(spacing: 7) {
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 11.5, weight: .medium))
-                .foregroundStyle(isFocused ? DiscoveryTheme.brandStrong : .secondary)
-
-            TextField("Search places, questions, documents", text: $text)
-                .textFieldStyle(.plain)
-                .font(.system(size: 12.5))
-                .focused($isFocused)
-                .onSubmit { isFocused = false }
-                .onExitCommand {
-                    if text.isEmpty {
-                        isFocused = false
-                    } else {
-                        text = ""
-                    }
-                }
-                .accessibilityLabel("Search Discovery")
-
-            if !text.isEmpty {
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 11.5))
-                        .foregroundStyle(.secondary)
-                        .frame(width: 20, height: 20)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(SoftPressButtonStyle())
-                .help("Clear search")
-                .accessibilityLabel("Clear search")
-            }
-        }
-        .padding(.horizontal, 10)
-        .frame(height: 32)
-        .background {
-            RoundedRectangle(cornerRadius: 9, style: .continuous)
-                .fill(DiscoveryTheme.field)
-        }
-        .overlay {
-            RoundedRectangle(cornerRadius: 9, style: .continuous)
-                .strokeBorder(
-                    isFocused ? DiscoveryTheme.brand.opacity(0.8) : (isHovering ? DiscoveryTheme.brand.opacity(0.24) : DiscoveryTheme.hairline),
-                    lineWidth: isFocused ? 1.5 : 1
-                )
-        }
-        .shadow(color: .black.opacity(isFocused ? 0.05 : 0), radius: 3, y: 1)
-        .onHover { isHovering = $0 }
-        .animation(.easeOut(duration: 0.14), value: isFocused)
-    }
-}
-
 // MARK: - Category filters
 
 struct DiscoveryCategoryBar: View {

@@ -17,6 +17,7 @@ struct ContentView: View {
             switch model.section {
             case .discovery:
                 DiscoveryView(model: model)
+                    .searchable(text: $model.searchText, placement: .toolbar, prompt: "Search Discovery")
             case .application:
                 // Intentionally blank for now.
                 Color.clear
@@ -24,7 +25,7 @@ struct ContentView: View {
                 ProfileView(model: model)
             }
         }
-        .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
+        .toolbarBackgroundVisibility(model.section == .discovery ? .automatic : .hidden, for: .windowToolbar)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("Section", selection: $model.section) {
@@ -34,20 +35,9 @@ struct ContentView: View {
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
-                .frame(width: 354)
+                .fixedSize(horizontal: true, vertical: true)
                 .accessibilityLabel("Section")
                 .help("Switch between Discovery, Application, and Profile")
-            }
-
-            ToolbarItem(placement: .primaryAction) {
-                if model.section == .discovery {
-                    Button {
-                        model.isComposing = true
-                    } label: {
-                        Label("New Post", systemImage: "square.and.pencil")
-                    }
-                    .help("Write a community post (⌘N)")
-                }
             }
         }
         .navigationTitle("VisaDone")

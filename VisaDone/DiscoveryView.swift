@@ -19,16 +19,30 @@ struct DiscoveryView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            header
-            Rectangle()
-                .fill(DiscoveryTheme.hairline.opacity(0.65))
-                .frame(height: 1)
-            feed
+        feed
+        .overlay(alignment: .bottomTrailing) {
+            composeButton
+                .padding(28)
         }
         .sheet(item: $selectedPost) { post in
             PostDetailView(post: post, model: model)
         }
+    }
+
+    private var composeButton: some View {
+        Button {
+            model.isComposing = true
+        } label: {
+            Image(systemName: "plus")
+                .font(.system(size: 22, weight: .medium))
+                .foregroundStyle(.primary)
+                .frame(width: 44, height: 44)
+        }
+        .buttonStyle(.glass(.regular.tint(Color.accentColor.opacity(0.55)).interactive()))
+        .buttonBorderShape(.circle)
+        .controlSize(.large)
+        .help("Write a community post (⌘N)")
+        .accessibilityLabel("New Post")
     }
 
     // MARK: - Page header
@@ -37,17 +51,6 @@ struct DiscoveryView: View {
         VStack(spacing: 17) {
             HStack(alignment: .bottom, spacing: 28) {
                 VStack(alignment: .leading, spacing: 7) {
-                    HStack(spacing: 6) {
-                        Circle()
-                            .fill(DiscoveryTheme.brandStrong)
-                            .frame(width: 5, height: 5)
-
-                        Text("VISADONE COMMUNITY")
-                            .font(DiscoveryTheme.eyebrow)
-                            .tracking(1.25)
-                            .foregroundStyle(DiscoveryTheme.brandStrong)
-                    }
-
                     Text("Discover")
                         .font(DiscoveryTheme.pageTitle)
                         .tracking(-0.4)
@@ -61,10 +64,6 @@ struct DiscoveryView: View {
                 }
 
                 Spacer(minLength: 20)
-
-                DiscoverySearchField(text: $model.searchText)
-                    .frame(width: 282)
-                    .padding(.bottom, 2)
             }
 
             HStack(spacing: 16) {
@@ -72,12 +71,7 @@ struct DiscoveryView: View {
 
                 Spacer(minLength: 12)
 
-                Text(resultSummary)
-                    .font(.system(size: 11.5))
-                    .foregroundStyle(.secondary)
-                    .contentTransition(.numericText())
-                    .lineLimit(1)
-                    .padding(.trailing, 1)
+
             }
         }
         .padding(.horizontal, DiscoveryTheme.pageInset)
@@ -85,13 +79,6 @@ struct DiscoveryView: View {
         .padding(.bottom, 15)
         .frame(maxWidth: DiscoveryTheme.contentMaxWidth, alignment: .leading)
         .frame(maxWidth: .infinity)
-    }
-
-    private var resultSummary: String {
-        if !trimmedQuery.isEmpty {
-            return posts.isEmpty ? "No results" : DiscoveryNumberFormat.resultCount(posts.count)
-        }
-        return DiscoveryNumberFormat.storyCount(posts.count)
     }
 
     // MARK: - Feed
@@ -103,6 +90,8 @@ struct DiscoveryView: View {
                     Color.clear
                         .frame(height: 0)
                         .id("feedTop")
+
+                    header
 
                     if posts.isEmpty {
                         emptyState
@@ -137,6 +126,8 @@ struct DiscoveryView: View {
                 }
             }
             .scrollIndicators(.automatic)
+            .scrollEdgeEffectStyle(.soft, for: .top)
+            .scrollEdgeEffectHidden(false, for: .top)
             .onChange(of: model.selectedCategory) { _, _ in
                 scrollToTop(proxy: proxy, animated: true)
             }
@@ -164,22 +155,13 @@ struct DiscoveryView: View {
 
     private var emptyState: some View {
         VStack(spacing: 13) {
-            ZStack {
-                Circle()
-                    .fill(DiscoveryTheme.surface)
-                    .frame(width: 58, height: 58)
-                    .overlay {
-                        Circle()
-                            .strokeBorder(DiscoveryTheme.hairline, lineWidth: 1)
-                    }
+            Image(systemName: trimmedQuery.isEmpty ? "rectangle.stack" : "magnifyingglass")
+                .font(.system(size: 24))
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 4)
 
-                Image(systemName: trimmedQuery.isEmpty ? "rectangle.stack" : "magnifyingglass")
-                    .font(.system(size: 20, weight: .regular))
-                    .foregroundStyle(DiscoveryTheme.brandStrong)
-            }
-
-            Text(trimmedQuery.isEmpty ? "Nothing here yet" : "No stories found")
-                .font(.system(size: 22, weight: .semibold, design: .serif))
+            Text(trimmedQuery.isEmpty ? "No posts in this category" : "No matching posts")
+                .font(.system(size: 19, weight: .semibold))
 
             Text(emptyStateMessage)
                 .font(.system(size: 12.5))
@@ -215,43 +197,32 @@ struct DiscoveryView: View {
 
     private var emptyStateMessage: String {
         if trimmedQuery.isEmpty {
-            return "This corner of the community is quiet for now. Try another filter or browse everything."
+            return "Choose another category to see more posts."
         }
-        return "Nothing in \(model.selectedCategory.title) matched “\(trimmedQuery)”. Try a broader phrase, or search across every topic."
+        return "No posts in \(model.selectedCategory.title) match “\(trimmedQuery)”. Try another search or category."
     }
 
     // MARK: - Footer
 
     private var feedFooter: some View {
-        VStack(spacing: 9) {
-            Capsule(style: .continuous)
-                .fill(DiscoveryTheme.hairline)
-                .frame(width: 40, height: 2)
-
-            Text("You're all caught up")
-                .font(.system(size: 11.5, weight: .semibold))
-                .foregroundStyle(.secondary)
-
-            Text("VisaDone is a local community prototype. Stories are personal experiences, not official immigration advice — always confirm current requirements with the relevant official source.")
+        VStack(spacing: 8) {
+            Text("End of feed")
+                .font(.system(size: 12, weight: .medium))
+            Text("Community experiences are not official guidance. Check current requirements with the relevant authority.")
                 .font(.system(size: 11))
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .lineSpacing(1.5)
-                .frame(maxWidth: 470)
-
-            Text("Photography from Unsplash. Edinburgh by Mike McBey (CC BY 2.0); Castle Combe by Michael Garlick (CC BY-SA 2.0), via Wikimedia Commons.")
-                .font(.system(size: 10))
-                .foregroundStyle(.tertiary)
-                .multilineTextAlignment(.center)
-                .lineSpacing(1)
-                .frame(maxWidth: 470)
-                .padding(.top, 2)
+                .frame(maxWidth: 500)
+            Text("Photos: Unsplash. Edinburgh: Mike McBey (CC BY 2.0). Castle Combe: Michael Garlick (CC BY-SA 2.0), via Wikimedia Commons.")
+                .font(.system(size: 11))
+                .frame(maxWidth: 500)
         }
-        .padding(.top, 36)
+        .foregroundStyle(.secondary)
+        .multilineTextAlignment(.center)
+        .lineSpacing(2)
         .padding(.horizontal, DiscoveryTheme.pageInset)
-        .padding(.bottom, 38)
+        .padding(.vertical, 30)
         .frame(maxWidth: DiscoveryTheme.contentMaxWidth)
     }
+
 }
 
 #Preview("Discovery") {

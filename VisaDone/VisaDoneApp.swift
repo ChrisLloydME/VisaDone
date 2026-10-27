@@ -21,7 +21,7 @@ struct VisaDoneApp: App {
         }
         .defaultSize(width: 1240, height: 800)
         .windowResizability(.contentMinSize)
-        .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: true))
+        .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
         .commands {
             CommandGroup(replacing: .newItem) {
                 Button("New Post…") {
