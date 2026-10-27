@@ -12,36 +12,12 @@ struct AuthorAvatarView: View {
     var size: CGFloat = 24
 
     var body: some View {
-        ZStack {
-            if author.id == DiscoveryAuthor.you.id {
-                Image("profileAvatar")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: size, height: size)
-                    .saturation(0.92)
-            } else {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: author.palette.colors,
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-
-                Text(author.initials)
-                    .font(.system(size: size * 0.35, weight: .semibold, design: .rounded))
-                    .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.14), radius: 0.5, y: 0.5)
-            }
-        }
-        .frame(width: size, height: size)
-        .clipShape(Circle())
-        .overlay {
-            Circle()
-                .strokeBorder(.white.opacity(0.28), lineWidth: 0.7)
-        }
-        .accessibilityHidden(true)
+        Image(author.avatarImage)
+            .resizable()
+            .scaledToFill()
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .accessibilityHidden(true)
     }
 }
 
@@ -163,26 +139,13 @@ struct PostTagView: View {
 
 enum DiscoveryNumberFormat {
     static func compact(_ value: Int) -> String {
-        guard value >= 1_000 else { return "\(value)" }
-
-        let thousands = Double(value) / 1_000
-        if thousands >= 10 {
-            return "\(Int(thousands.rounded()))k"
-        }
-
-        let formatted = String(format: "%.1f", thousands)
-        return formatted.hasSuffix(".0")
-            ? "\(formatted.dropLast(2))k"
-            : "\(formatted)k"
+        guard value >= 10_000 else { return "\(value)" }
+        return "\(String(format: "%.1f", Double(value) / 10_000))万"
     }
 
-    static func storyCount(_ count: Int) -> String {
-        count == 1 ? "1 story" : "\(count) stories"
-    }
+    static func storyCount(_ count: Int) -> String { "\(count) 篇帖子" }
+    static func resultCount(_ count: Int) -> String { "\(count) 条结果" }
 
-    static func resultCount(_ count: Int) -> String {
-        count == 1 ? "1 result" : "\(count) results"
-    }
 }
 
 // MARK: - Button feedback

@@ -6,24 +6,24 @@
 import SwiftUI
 
 enum DiscoveryCategory: String, CaseIterable, Identifiable {
-    case forYou = "For You"
-    case following = "Following"
-    case schengen = "Schengen"
-    case unitedStates = "United States"
-    case unitedKingdom = "United Kingdom"
-    case experiences = "Experiences"
+    case forYou = "为你推荐"
+    case following = "关注动态"
+    case schengen = "申根专区"
+    case unitedStates = "美国专区"
+    case unitedKingdom = "英国专区"
+    case experiences = "申请经验"
 
     var id: String { rawValue }
     var title: String { rawValue }
 
     var helpText: String {
         switch self {
-        case .forYou: "Show your curated feed"
-        case .following: "Show stories from people you follow"
-        case .schengen: "Show Schengen stories"
-        case .unitedStates: "Show United States stories"
-        case .unitedKingdom: "Show United Kingdom stories"
-        case .experiences: "Show personal experiences and guides"
+        case .forYou: "浏览推荐帖子"
+        case .following: "查看已关注作者的帖子"
+        case .schengen: "查看申根相关帖子"
+        case .unitedStates: "查看美国相关帖子"
+        case .unitedKingdom: "查看英国相关帖子"
+        case .experiences: "查看申请经历与准备攻略"
         }
     }
 }
@@ -35,17 +35,17 @@ enum PostRegion: String, CaseIterable, Hashable {
 
     var title: String {
         switch self {
-        case .schengen: "Schengen"
-        case .unitedStates: "United States"
-        case .unitedKingdom: "United Kingdom"
+        case .schengen: "申根"
+        case .unitedStates: "美国"
+        case .unitedKingdom: "英国"
         }
     }
 
     var shortTitle: String {
         switch self {
-        case .schengen: "Schengen"
-        case .unitedStates: "United States"
-        case .unitedKingdom: "United Kingdom"
+        case .schengen: "申根"
+        case .unitedStates: "美国"
+        case .unitedKingdom: "英国"
         }
     }
 
@@ -65,17 +65,17 @@ enum PostFormat: String, CaseIterable, Hashable {
 
     var title: String {
         switch self {
-        case .photo: "Photo story"
-        case .question: "Question"
-        case .guide: "Field guide"
+        case .photo: "旅行影像"
+        case .question: "提问"
+        case .guide: "攻略"
         }
     }
 
     var eyebrow: String {
         switch self {
-        case .photo: "Photo story"
-        case .question: "Question"
-        case .guide: "Field guide"
+        case .photo: "旅行影像"
+        case .question: "提问"
+        case .guide: "攻略"
         }
     }
 
@@ -83,9 +83,9 @@ enum PostFormat: String, CaseIterable, Hashable {
     /// every supported column width.
     var cardLabel: String {
         switch self {
-        case .photo: "Photo"
-        case .question: "Question"
-        case .guide: "Guide"
+        case .photo: "旅行"
+        case .question: "提问"
+        case .guide: "攻略"
         }
     }
 }
@@ -98,6 +98,8 @@ struct DiscoveryAuthor: Identifiable, Hashable {
     let palette: AvatarPalette
     let bio: String
     let isFollowing: Bool
+
+    var avatarImage: String { "avatar_\(id)" }
 
     static func == (lhs: DiscoveryAuthor, rhs: DiscoveryAuthor) -> Bool {
         lhs.id == rhs.id

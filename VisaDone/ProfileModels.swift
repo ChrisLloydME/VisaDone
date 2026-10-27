@@ -17,15 +17,15 @@ struct ProfileIdentity: Equatable {
     var avatarImage: String
 
     static let fixture = ProfileIdentity(
-        displayName: "Nora Hale",
-        handle: "@nora.hale",
-        pronouns: "she/her",
-        bio: "Product designer, slow traveller, keeper of very thorough PDFs. I write about the quiet parts of the journey.",
-        location: "Berlin, Germany",
-        joinLabel: "Member since 2023",
+        displayName: "林晚",
+        handle: "@林晚在路上",
+        pronouns: "她",
+        bio: "设计师，慢旅行爱好者。\n把签证材料理清楚，再慢慢去看世界。",
+        location: "杭州",
+        joinLabel: "2023 年",
         followers: 2_846,
         following: 212,
-        avatarImage: "profileAvatar"
+        avatarImage: "avatar_you"
     )
 
     var handleLine: String {
@@ -44,21 +44,21 @@ enum ProfileSetting: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .account: "Account"
-        case .privacy: "Privacy"
-        case .notifications: "Notifications"
-        case .data: "Data & Sharing"
-        case .help: "Help & Support"
+        case .account: "账号设置"
+        case .privacy: "隐私设置"
+        case .notifications: "消息通知"
+        case .data: "数据共享"
+        case .help: "帮助支持"
         }
     }
 
     var subtitle: String {
         switch self {
-        case .account: "Name, handle and sign-in"
-        case .privacy: "Profile visibility"
-        case .notifications: "Replies and updates"
-        case .data: "Saved data and permissions"
-        case .help: "FAQs and guidance"
+        case .account: "昵称、账号与资料"
+        case .privacy: "个人主页可见范围"
+        case .notifications: "回复与关注动态"
+        case .data: "数据与使用偏好"
+        case .help: "常见问题与使用说明"
         }
     }
 
@@ -74,11 +74,11 @@ enum ProfileSetting: String, CaseIterable, Identifiable {
 
     var sheetSubtitle: String {
         switch self {
-        case .account: "The details attached to your VisaDone profile."
-        case .privacy: "Decide what the community can see."
-        case .notifications: "Choose which little updates reach you."
-        case .data: "Review how this local prototype handles your information."
-        case .help: "A few answers, without a ticket queue."
+        case .account: "管理个人资料与账号信息。"
+        case .privacy: "选择希望展示给社区的内容。"
+        case .notifications: "只接收你关心的消息。"
+        case .data: "管理推荐与数据偏好。"
+        case .help: "关于资料、收藏和社区使用的常见问题。"
         }
     }
 }
@@ -91,15 +91,15 @@ enum ProfileCollectionKind: String, Identifiable {
 
     var title: String {
         switch self {
-        case .posts: "All posts"
-        case .favorites: "Saved stories"
+        case .posts: "全部帖子"
+        case .favorites: "全部收藏"
         }
     }
 
     var subtitle: String {
         switch self {
-        case .posts: "Everything you've shared with the VisaDone community."
-        case .favorites: "The guides and stories you've kept for later."
+        case .posts: "记录每一次准备和出发。"
+        case .favorites: "把值得再看的攻略与经历留在这里。"
         }
     }
 
@@ -122,12 +122,12 @@ enum ProfileFixtures {
     ]
 
     static let savedLabels: [String: String] = [
-        "uk-folder-worked": "Saved 2d ago",
-        "document-organisation": "Saved 4d ago",
-        "honeymoon-timeline": "Saved 1w ago",
-        "us-road-trip": "Saved 2w ago",
-        "uk-visitor-differently": "Saved 3w ago",
-        "appointment-prep-guide": "Saved 1mo ago"
+        "uk-folder-worked": "2 天前收藏",
+        "document-organisation": "4 天前收藏",
+        "honeymoon-timeline": "1 周前收藏",
+        "us-road-trip": "2 周前收藏",
+        "uk-visitor-differently": "3 周前收藏",
+        "appointment-prep-guide": "1 个月前收藏"
     ]
 
     static let authoredPosts: [DiscoveryPost] = [
@@ -135,22 +135,20 @@ enum ProfileFixtures {
             id: "profile-schengen-folder",
             format: .guide,
             region: .schengen,
-            title: "The Schengen folder I wish I'd built sooner",
-            summary: "The order, the tabs, and the one-page index that made my application easier to live with.",
+            title: "申根材料，终于整理顺了",
+            summary: "一张目录、六组文件，把临行前的慌乱留在家里。",
             body: """
-            My first folder was a tote bag with good intentions. Everything was in there; nothing was findable. The version I finally trusted was much more boring.
+            第一次准备材料时，我把能找到的文件都堆在一起。后来按身份、行程、资金和工作分类，才发现真正缺的是一张能快速定位的目录。
 
-            I started with a single index page: date, document, and page number. Behind it, six tabs — identity, trip, money, work, accommodation, and copies. Anything that explained a mismatch went directly behind the document it explained, not into a separate pile.
+            现在每份文件都写清日期和用途，纸质版与电子版保持同一顺序。递签前只需按清单核对，不必再把整包材料倒出来。
 
-            The rule that helped most was "one question, one place." If I found myself wondering where something lived, I added it to the index. By the time I printed the folder for the appointment, I could answer almost any question without emptying the bag.
-
-            None of this is official advice. It was just the system that let me stop re-checking the same page long enough to get some sleep.
+            这是我的整理办法。每次申请仍会重新确认当前要求，不直接照搬旧清单。
             """,
             coverImage: "coverTravelDesk",
             coverAspectRatio: 0.8,
-            tags: ["Documents", "Schengen"],
+            tags: ["材料整理", "申根"],
             author: .you,
-            timeLabel: "Apr 8",
+            timeLabel: "4月8日",
             likeCount: 428,
             commentCount: 36,
             readMinutes: 6,
@@ -160,22 +158,18 @@ enum ProfileFixtures {
             id: "profile-vfs-appointment",
             format: .guide,
             region: .schengen,
-            title: "What my VFS appointment actually looked like",
-            summary: "The queue, the small kindnesses, and the one document I was glad I had printed twice.",
+            title: "递签当天，比想象中平静",
+            summary: "从出门到离开，把我记得的几个小细节写下来。",
             body: """
-            I had imagined a room of silent, serious people. What I found was a queue that moved faster than the website suggested, a security guard with very clear directions, and a couple in front of me quietly rehearsing the dates of their trip.
+            出发前把证件和预约信息单独收好，路上没有再反复翻材料。到了现场，按工作人员的指引一步步办理，节奏比想象中清楚。
 
-            Inside, the person at the window was kind and efficient. They asked for the folder, took a few pages, and asked one question about a hotel booking I had almost left at home. I had printed it twice by accident. That accident saved me a week.
-
-            I left with a receipt, a slightly shaky signature, and a feeling that the hardest part was not the conversation but the waiting before it. If you are going soon: take the extra copy, arrive with time to spare, and bring water.
-
-            This was my own experience at one appointment. Requirements and processes vary, so always follow the current instructions for your own application.
+            我多带的一份订单复印件刚好派上用场。离开后去吃了一顿迟到的午饭，才发现最紧张的是来之前的那段等待。
             """,
             coverImage: "coverSigning",
             coverAspectRatio: 1.25,
-            tags: ["Appointment", "Experience"],
+            tags: ["递签", "亲历记录"],
             author: .you,
-            timeLabel: "Apr 2",
+            timeLabel: "4月2日",
             likeCount: 312,
             commentCount: 29,
             readMinutes: 5,
@@ -185,22 +179,18 @@ enum ProfileFixtures {
             id: "profile-iceland-itinerary",
             format: .guide,
             region: .schengen,
-            title: "The Iceland itinerary I keep sending to friends",
-            summary: "A nine-day south-coast loop with weather buffers and no 6 a.m. starts.",
+            title: "冰岛九天，愿意再走一遍的路线",
+            summary: "三个落脚点、两天机动，不用每天清晨赶路。",
             body: """
-            This is the version I send when someone asks for the itinerary, not the highlight reel. It is built around three bases, two flexible days, and the assumption that the weather will change at least once.
+            南岸的路线看起来不长，但天气和路边的风景会让人不断停下来。我们把九天分成三段，每处多住一晚，不把时间全用在收拾行李上。
 
-            We started with two nights near Reykjavík, moved east along the south coast, and finished with a slow morning before the flight home. The distance looks modest on a map. The light, the stops, and the occasional road closure make it feel generous.
-
-            The most useful thing we packed was a thermos. The second most useful was a printed list of the names of the places we were staying. I also kept the booking confirmations offline in one folder, which made check-in feel less like a scavenger hunt.
-
-            Leave one day unplanned. On ours, we found a hot spring with almost nobody there and stayed until our fingers wrinkled.
+            机动日留给大风和临时起意的小路。住宿和租车订单放在同一个离线文件夹里，路上少了一件需要操心的事。
             """,
             coverImage: "coverIcelandSkogafoss",
             coverAspectRatio: 1.5,
-            tags: ["Iceland", "Itinerary"],
+            tags: ["冰岛", "行程安排"],
             author: .you,
-            timeLabel: "Mar 24",
+            timeLabel: "3月24日",
             likeCount: 356,
             commentCount: 31,
             readMinutes: 8,
@@ -210,22 +200,18 @@ enum ProfileFixtures {
             id: "profile-cover-letter",
             format: .guide,
             region: .schengen,
-            title: "A cover letter that sounded like me",
-            summary: "One page, plain language, and a structure that kept the important facts in view.",
+            title: "我的解释信，只写了一页",
+            summary: "行程、工作、费用和回程安排，分段讲清楚就好。",
             body: """
-            The cover letters I found online all sounded like they were written by the same very formal person. Mine needed to sound like me, without becoming an essay.
+            网上的解释信模板都很正式，读起来却不像我。我重新写了一版，只保留自己的行程、工作情况、费用安排和回程计划。
 
-            The structure that worked was simple. One short paragraph on the trip and its dates. One on why I was going and what I was returning to. One on the documents I had included. Then a plain closing line. No adjectives doing the work that evidence should do.
-
-            I wrote it once, left it overnight, and cut it by a third in the morning. The final page had more white space and more useful information. It also gave me a document I could check against the rest of the application without rereading every booking.
-
-            Every application is different. This is just the shape that made mine feel clear.
+            每段回答一个问题，不重复材料里已经清楚的信息。隔天再读一遍，删掉了不少没有实际内容的形容词。
             """,
             coverImage: "coverLaptopNotes",
             coverAspectRatio: 1.5,
-            tags: ["Cover letter", "Documents"],
+            tags: ["解释信", "材料整理"],
             author: .you,
-            timeLabel: "Mar 18",
+            timeLabel: "3月18日",
             likeCount: 228,
             commentCount: 18,
             readMinutes: 4,
@@ -235,22 +221,18 @@ enum ProfileFixtures {
             id: "profile-accommodation-proof",
             format: .guide,
             region: .schengen,
-            title: "Proof of accommodation: the paper trail I kept",
-            summary: "The quiet pile of confirmations that answered more questions than I expected.",
+            title: "住宿证明，别只存一堆截图",
+            summary: "日期、住客姓名和订单状态，核对时放在一起看。",
             body: """
-            I nearly treated accommodation as a single booking confirmation. In the end, it was a small paper trail: the reservation, the cancellation terms, a map showing where it sat relative to the rest of the trip, and the name of the person who would meet us.
+            行程改了几次，手机里留下很多不同版本的订单。我把已取消的移到单独文件夹，只在目录里保留当前有效的信息。
 
-            The map was a last-minute addition. It helped me notice that one of our bookings was on the other side of the city from where I thought. That was a useful discovery before the trip, not during it.
-
-            I kept all confirmations in one place and labelled them with the nights they covered. For the days we stayed with friends, I kept a short invitation note with their address and the dates. Nothing dramatic. Just enough for the trip to make sense on paper.
-
-            Requirements vary. Bring what your own application asks for, plus whatever helps the story stay legible to someone reading it for the first time.
+            最后按入住日期排列，核对是否衔接得上。纸质件和离线文件都用同一份目录，路上找起来也方便。
             """,
             coverImage: "coverNotes",
             coverAspectRatio: 1.25,
-            tags: ["Accommodation", "Documents"],
+            tags: ["住宿", "材料整理"],
             author: .you,
-            timeLabel: "Mar 9",
+            timeLabel: "3月9日",
             likeCount: 187,
             commentCount: 23,
             readMinutes: 5,
@@ -260,22 +242,18 @@ enum ProfileFixtures {
             id: "profile-uk-visit",
             format: .guide,
             region: .unitedKingdom,
-            title: "What I changed for my second UK visitor application",
-            summary: "The second time around, I prepared in layers: facts, explanations, then everything else.",
+            title: "第二次英签，我删掉了哪些材料",
+            summary: "不追求文件夹更厚，只让每份文件更有用。",
             body: """
-            The first time, I prepared in order of worry. The second time, I prepared in order of usefulness.
+            重新申请时，先按这次的情况列一张清单，而不是复制上次的文件夹。重复的说明删掉，变化的地方单独核对。
 
-            Layer one was the facts: dates, booking, work, money, the reason for the trip. Layer two was a short explanation anywhere a fact might look incomplete. Layer three was context I could hand over if it was relevant, but did not need to lead with.
-
-            The folder got thinner. The story got clearer. I also printed a small index page, mostly for myself, and it made the final check calm enough to be useful.
-
-            The application was mine, with its own particular details. Take what is useful from other people's experiences, but let the current official checklist decide what belongs in your folder.
+            准备过程短了一些，心里也更有底。旧经验可以参考，但不能替代每次申请前的重新确认。
             """,
             coverImage: "coverLondonAerial",
             coverAspectRatio: 1.5,
-            tags: ["Documents", "Planning"],
+            tags: ["材料整理", "出行准备"],
             author: .you,
-            timeLabel: "Feb 28",
+            timeLabel: "2月28日",
             likeCount: 261,
             commentCount: 32,
             readMinutes: 7,
@@ -285,20 +263,18 @@ enum ProfileFixtures {
             id: "profile-kirkjufell",
             format: .photo,
             region: .schengen,
-            title: "Kirkjufell, before the weather turned",
-            summary: "The mountain appeared for ninety seconds. I nearly missed it.",
+            title: "教会山，天气转坏之前",
+            summary: "只有十分钟晴天，也值得把脚步放慢。",
             body: """
-            We had been sitting in the car for an hour with the engine off, watching a band of cloud swallow the summit. The forecast promised a break around ten. It arrived eighteen minutes early.
+            远处的云层很厚，我们没有再往远处开。沿着步道走了一小段，刚好看见光落在山坡上。
 
-            I took this through the open window with cold hands and no expectation of a masterpiece. Then the cloud came back, and the mountain was gone for the rest of the day. We drove on to a bakery that was almost closed and bought the last two cinnamon buns.
-
-            That is the whole story. Fine light, a brief window, and breakfast rescued at the last minute.
+            拍完照片回到车里，雨就下起来了。这张照片提醒我，旅行里很多好时候都不需要等太久。
             """,
             coverImage: "coverIcelandKirkjufell",
             coverAspectRatio: 1.5,
-            tags: ["Iceland", "Photography"],
+            tags: ["冰岛", "摄影"],
             author: .you,
-            timeLabel: "Feb 20",
+            timeLabel: "2月20日",
             likeCount: 512,
             commentCount: 16,
             readMinutes: nil,
@@ -308,22 +284,18 @@ enum ProfileFixtures {
             id: "profile-b2-interview",
             format: .guide,
             region: .unitedStates,
-            title: "Notes from a calm B-2 interview",
-            summary: "What the waiting room felt like, and the four questions that still stick with me.",
+            title: "美签面谈，我记住的几句话",
+            summary: "提前理清自己的安排，比背答案更让我安心。",
             body: """
-            The room was smaller and more ordinary than the version in my head. A row of chairs, a ticket screen, and everyone holding a folder a little too tightly.
+            准备时没有写一长串标准答案，只把自己的工作、出行目的和大致行程梳理清楚。材料按问题分组，知道需要时去哪里找。
 
-            When my number came up, the officer asked why I was travelling, what I did, who was paying for the trip, and what I was coming back to. I answered each one with the shortest true version. I had the folder ready, but I did not reach for it unless asked.
-
-            What helped beforehand was writing down the five facts I wanted to be clear about, not memorising a speech. I could still feel my heart going, but my answers were mine.
-
-            The conversation was short. The relief lasted the whole walk to the station. Experiences differ, so I would not treat my questions as a script for anyone else's interview.
+            现场的问题比我预想得少。这里只是一次个人经历，每个人被问到的内容都会不同。
             """,
             coverImage: "coverNYCEmpire",
             coverAspectRatio: 0.8,
-            tags: ["Interview", "Preparation"],
+            tags: ["面谈", "行前准备"],
             author: .you,
-            timeLabel: "Feb 12",
+            timeLabel: "2月12日",
             likeCount: 296,
             commentCount: 27,
             readMinutes: 6,
@@ -333,20 +305,18 @@ enum ProfileFixtures {
             id: "profile-glacier",
             format: .photo,
             region: .schengen,
-            title: "Jökulsárlón in soft rain",
-            summary: "Ice, rain, and the best kind of silence.",
+            title: "冰河湖的小雨，没有拍进照片",
+            summary: "天是灰蓝色的，冰沿着水面缓慢移动。",
             body: """
-            The rain was light enough that we did not notice it until our sleeves were soaked. The lagoon was the colour of old glass, and the icebergs moved so slowly they seemed to be part of the shore.
+            湖边有一点风，雨很细，镜头很快就湿了。我们收起相机，沿着岸边慢慢走到没有人的地方。
 
-            We stood there longer than we meant to. A seal surfaced near the far bank, looked in our direction, and went back under. Nobody said anything. The car heater took ten minutes to forgive us.
-
-            I like this photograph because it is almost grey. There is no drama in it, just the feeling of being very small and very awake.
+            照片记住了颜色，身体记住了温度。有时两种记忆不必完全一样。
             """,
             coverImage: "coverIcelandGlacier",
             coverAspectRatio: 1.0,
-            tags: ["Iceland", "Nature"],
+            tags: ["冰岛", "自然"],
             author: .you,
-            timeLabel: "Jan 28",
+            timeLabel: "1月28日",
             likeCount: 619,
             commentCount: 23,
             readMinutes: nil,
@@ -356,20 +326,18 @@ enum ProfileFixtures {
             id: "profile-copenhagen",
             format: .photo,
             region: .schengen,
-            title: "Copenhagen without the checklist",
-            summary: "A weekend built around bakeries, long walks, and one very sensible train pass.",
+            title: "哥本哈根，今天不按清单走",
+            summary: "从面包店到港边，一张车票就够了。",
             body: """
-            We arrived with one museum booking and no plan for the rest. That turned out to be the right amount of planning for a city that is lovely to walk through without trying very hard.
+            这次只预约了一处参观，其余时间都留给散步。早晨吃面包，中午在市场找热饭，下午沿着港边慢慢走。
 
-            The pattern became: coffee, a long loop through a neighbourhood, one bakery stop, and whatever looked interesting on the way home. We saw the harbour at sunset twice because it was on the way and because it was better than the thing we had planned.
-
-            My favourite hour was spent on a bench watching a family load a small boat with an improbable number of bags. Nothing happened. It was perfect.
+            最喜欢的一小时是在长椅上看船。什么都没完成，却觉得这才是周末。
             """,
             coverImage: "coverCopenhagen",
             coverAspectRatio: 0.8,
-            tags: ["Denmark", "Weekend"],
+            tags: ["丹麦", "周末"],
             author: .you,
-            timeLabel: "Jan 16",
+            timeLabel: "1月16日",
             likeCount: 244,
             commentCount: 15,
             readMinutes: nil,
@@ -385,9 +353,9 @@ struct ProfileVisaExperience: Identifiable {
     let detail: String
 
     static let samples = [
-        ProfileVisaExperience(id: "gb", image: "visaFlagGB", label: "UK", detail: "United Kingdom · Visitor visa application"),
-        ProfileVisaExperience(id: "us", image: "visaFlagUS", label: "US", detail: "United States · B1/B2 visa application"),
-        ProfileVisaExperience(id: "fr", image: "visaFlagFR", label: "France", detail: "France · Schengen application experience shared"),
-        ProfileVisaExperience(id: "is", image: "visaFlagIS", label: "Iceland", detail: "Iceland · Travel and visa experience shared")
+        ProfileVisaExperience(id: "gb", image: "visaFlagGB", label: "英国", detail: "英国 · 访客签证申请"),
+        ProfileVisaExperience(id: "us", image: "visaFlagUS", label: "美国", detail: "美国 · B1/B2 签证申请"),
+        ProfileVisaExperience(id: "fr", image: "visaFlagFR", label: "法国", detail: "法国 · 分享过申根申请经历"),
+        ProfileVisaExperience(id: "is", image: "visaFlagIS", label: "冰岛", detail: "冰岛 · 分享过旅行与签证经历")
     ]
 }
