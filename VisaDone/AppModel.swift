@@ -8,6 +8,7 @@ import SwiftUI
 enum AppSection: String, CaseIterable, Identifiable {
     case discovery
     case application
+    case notifications
     case profile
 
     var id: String { rawValue }
@@ -16,6 +17,7 @@ enum AppSection: String, CaseIterable, Identifiable {
         switch self {
         case .discovery: "社区发现"
         case .application: "签证申请"
+        case .notifications: "通知中心"
         case .profile: "个人主页"
         }
     }
@@ -24,7 +26,8 @@ enum AppSection: String, CaseIterable, Identifiable {
         switch self {
         case .discovery: "1"
         case .application: "2"
-        case .profile: "3"
+        case .notifications: "3"
+        case .profile: "4"
         }
     }
 }
