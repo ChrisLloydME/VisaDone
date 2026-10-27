@@ -89,7 +89,7 @@ enum DiscoveryTheme {
             : NSColor(white: 0, alpha: 0.035)
     })
 
-    static let cardRadius: CGFloat = 18
+    static let cardRadius: CGFloat = 12
     static let contentMaxWidth: CGFloat = 1440
     static let pageInset: CGFloat = 36
     static let cardSpacing: CGFloat = 18

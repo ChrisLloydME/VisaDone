@@ -184,7 +184,6 @@ struct PostActionButton: View {
                 Image(systemName: isActive ? activeSymbol : symbol)
                     .font(.system(size: 11.5, weight: .medium))
                     .contentTransition(.symbolEffect(.replace))
-                    .symbolEffect(.bounce, value: isActive)
 
                 if let count {
                     Text(DiscoveryNumberFormat.compact(count))
@@ -197,14 +196,10 @@ struct PostActionButton: View {
             .padding(.horizontal, 7)
             .frame(height: 24)
             .background {
-                Capsule(style: .continuous)
-                    .fill(
-                        isActive
-                            ? activeColor.opacity(0.10)
-                            : (isHovering ? DiscoveryTheme.hoverFill : .clear)
-                    )
+                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                    .fill(isHovering ? DiscoveryTheme.hoverFill : .clear)
             }
-            .contentShape(Capsule(style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
         }
         .buttonStyle(SoftPressButtonStyle())
         .onHover { isHovering = $0 }
@@ -219,19 +214,9 @@ struct PostTagView: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 10.5, weight: .medium))
+            .font(.system(size: 11))
             .foregroundStyle(.secondary)
             .lineLimit(1)
-            .padding(.horizontal, 7.5)
-            .frame(height: 20)
-            .background {
-                Capsule(style: .continuous)
-                    .fill(DiscoveryTheme.quietFill)
-            }
-            .overlay {
-                Capsule(style: .continuous)
-                    .strokeBorder(DiscoveryTheme.hairline.opacity(0.7), lineWidth: 0.6)
-            }
     }
 }
 

@@ -15,7 +15,6 @@ struct DiscoveryPostCard: View {
     let onToggleSave: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.colorScheme) private var colorScheme
     @State private var isHovering = false
 
     var body: some View {
@@ -41,18 +40,8 @@ struct DiscoveryPostCard: View {
         .clipShape(RoundedRectangle(cornerRadius: DiscoveryTheme.cardRadius, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: DiscoveryTheme.cardRadius, style: .continuous)
-                .strokeBorder(
-                    isHovering ? DiscoveryTheme.brand.opacity(0.30) : DiscoveryTheme.hairline,
-                    lineWidth: 1
-                )
+                .strokeBorder(isHovering ? Color.primary.opacity(0.25) : DiscoveryTheme.hairline, lineWidth: 0.5)
         }
-        .shadow(
-            color: .black.opacity(isHovering ? (colorScheme == .dark ? 0.34 : 0.11) : (colorScheme == .dark ? 0.14 : 0.035)),
-            radius: isHovering ? 16 : 2,
-            x: 0,
-            y: isHovering ? 7 : 1
-        )
-        .offset(y: isHovering && !reduceMotion ? -2 : 0)
         .onHover { hovering in
             isHovering = hovering
         }
@@ -88,18 +77,7 @@ struct DiscoveryPostCard: View {
             .padding(.top, hasCover ? 13 : 16)
             .padding(.bottom, hasCover ? 14 : 16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(alignment: .topTrailing) {
-                if !hasCover {
-                    LinearGradient(
-                        colors: [
-                            post.region.accent.opacity(post.format == .guide ? 0.10 : 0.075),
-                            .clear
-                        ],
-                        startPoint: .topTrailing,
-                        endPoint: .bottomLeading
-                    )
-                }
-            }
+
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
@@ -119,56 +97,27 @@ struct DiscoveryPostCard: View {
                     .scaledToFill()
             }
             .clipped()
-            .overlay(alignment: .topTrailing) {
-                if isHovering {
-                    Image(systemName: "arrow.up.right")
-                        .font(.system(size: 9.5, weight: .semibold))
-                        .foregroundStyle(.primary)
-                        .frame(width: 25, height: 25)
-                        .background(.ultraThinMaterial, in: Circle())
-                        .overlay {
-                            Circle()
-                                .strokeBorder(.white.opacity(0.28), lineWidth: 0.7)
-                        }
-                        .shadow(color: .black.opacity(0.12), radius: 4, y: 1)
-                        .padding(10)
-                        .transition(.opacity.combined(with: .scale(scale: 0.86)))
-                }
-            }
             .accessibilityHidden(true)
     }
 
     private var metadataRow: some View {
         HStack(spacing: 5) {
-            Circle()
-                .fill(post.region.accent)
-                .frame(width: 5, height: 5)
-
-            Text(post.region.shortTitle.uppercased())
-                .foregroundStyle(post.region.accent)
-
+            Text(post.region.shortTitle)
             Text("·")
-                .foregroundStyle(.quaternary)
-
-            Text(post.format.cardLabel.uppercased())
-                .foregroundStyle(.secondary)
-
+            Text(post.format.cardLabel)
             Spacer(minLength: 8)
-
             Text(post.timeLabel)
-                .foregroundStyle(.secondary)
         }
-        .font(.system(size: 9.5, weight: .semibold))
-        .tracking(0.65)
+        .font(.system(size: 11))
+        .foregroundStyle(.secondary)
         .lineLimit(1)
-        .minimumScaleFactor(0.9)
     }
 
     private var title: some View {
         Text(post.title)
             .font(titleFont)
             .foregroundStyle(.primary)
-            .lineSpacing(post.format == .photo ? 1.5 : 2)
+            .lineSpacing(2)
             .lineLimit(post.format == .question ? 5 : 4)
             .multilineTextAlignment(.leading)
             .fixedSize(horizontal: false, vertical: true)
@@ -244,7 +193,7 @@ struct DiscoveryPostCard: View {
                 activeSymbol: "bookmark.fill",
                 isActive: isSaved,
                 count: nil,
-                activeColor: DiscoveryTheme.brandStrong,
+                activeColor: .accentColor,
                 label: isSaved ? "Remove from saved" : "Save this story",
                 action: {
                     withAnimation(.snappy(duration: 0.22)) {
@@ -272,7 +221,6 @@ struct DiscoveryPostCard: View {
         }
         .padding(.horizontal, 8)
         .frame(height: 38)
-        .background(DiscoveryTheme.surfaceMuted)
     }
 
     private var accessibilitySummary: String {
