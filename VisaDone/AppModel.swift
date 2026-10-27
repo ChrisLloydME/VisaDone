@@ -14,9 +14,9 @@ enum AppSection: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .discovery: "Discovery"
-        case .application: "Application"
-        case .profile: "Profile"
+        case .discovery: "社区发现"
+        case .application: "签证申请"
+        case .profile: "个人主页"
         }
     }
 
@@ -114,13 +114,13 @@ final class VisaDoneModel {
             title: trimmedTitle,
             summary: nil,
             body: trimmedBody.isEmpty
-                ? "A new question shared with the VisaDone community."
+                ? "想听听大家的经验，欢迎一起聊聊。"
                 : trimmedBody,
             coverImage: nil,
             coverAspectRatio: nil,
             tags: [],
             author: .you,
-            timeLabel: "Just now",
+            timeLabel: "刚刚",
             likeCount: 0,
             commentCount: 0,
             readMinutes: nil,

@@ -181,10 +181,10 @@
 				};
 			};
 			buildConfigurationList = 6E1B259C3090A3A800C787DB /* Build configuration list for PBXProject "VisaDone" */;
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				"zh-Hans",
 				Base,
 			);
 			mainGroup = 6E1B25983090A3A800C787DB;

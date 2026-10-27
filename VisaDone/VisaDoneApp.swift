@@ -17,6 +17,7 @@ struct VisaDoneApp: App {
         WindowGroup("VisaDone") {
             ContentView(model: model)
                 .frame(minWidth: 980, minHeight: 660)
+                .environment(\.locale, Locale(identifier: "zh_Hans_CN"))
                 .containerBackground(.thinMaterial, for: .window)
         }
         .defaultSize(width: 1240, height: 800)
@@ -24,7 +25,7 @@ struct VisaDoneApp: App {
         .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
         .commands {
             CommandGroup(replacing: .newItem) {
-                Button("New Post…") {
+                Button("发布帖子…") {
                     model.section = .discovery
                     model.isComposing = true
                 }
@@ -32,7 +33,7 @@ struct VisaDoneApp: App {
                 .disabled(model.section != .discovery)
             }
 
-            CommandMenu("Navigate") {
+            CommandMenu("前往") {
                 ForEach(AppSection.allCases) { section in
                     Button(section.title) {
                         model.section = section
