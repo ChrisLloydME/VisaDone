@@ -10,11 +10,11 @@ import SwiftUI
 extension DiscoveryAuthor {
     static let you = DiscoveryAuthor(
         id: "you",
-        name: "You",
-        handle: "@you",
-        initials: "YO",
-        palette: .tide,
-        bio: "Your local profile. Nothing here leaves this Mac.",
+        name: "Nora Hale",
+        handle: "@nora.hale",
+        initials: "NH",
+        palette: .rose,
+        bio: "Product designer, slow traveller, keeper of very thorough PDFs.",
         isFollowing: false
     )
 

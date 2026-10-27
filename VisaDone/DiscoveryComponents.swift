@@ -13,24 +13,33 @@ struct AuthorAvatarView: View {
 
     var body: some View {
         ZStack {
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: author.palette.colors,
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+            if author.id == DiscoveryAuthor.you.id {
+                Image("profileAvatar")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: size, height: size)
+                    .saturation(0.92)
+            } else {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: author.palette.colors,
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
 
-            Text(author.initials)
-                .font(.system(size: size * 0.35, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white)
-                .shadow(color: .black.opacity(0.14), radius: 0.5, y: 0.5)
+                Text(author.initials)
+                    .font(.system(size: size * 0.35, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.14), radius: 0.5, y: 0.5)
+            }
         }
         .frame(width: size, height: size)
+        .clipShape(Circle())
         .overlay {
             Circle()
-                .strokeBorder(.white.opacity(0.22), lineWidth: 0.7)
+                .strokeBorder(.white.opacity(0.28), lineWidth: 0.7)
         }
         .accessibilityHidden(true)
     }

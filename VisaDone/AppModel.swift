@@ -36,9 +36,10 @@ final class VisaDoneModel {
     var isComposing = false
     var posts: [DiscoveryPost] = DiscoveryFixtures.posts
     var likedPostIDs: Set<DiscoveryPost.ID> = []
-    var savedPostIDs: Set<DiscoveryPost.ID> = []
+    var savedPostIDs: Set<DiscoveryPost.ID> = ProfileFixtures.initialFavoriteIDs
     var selectedCategory: DiscoveryCategory = .forYou
     var searchText = ""
+    var profileIdentity: ProfileIdentity = .fixture
 
     var filteredPosts: [DiscoveryPost] {
         let categoryMatches: (DiscoveryPost) -> Bool = { post in
