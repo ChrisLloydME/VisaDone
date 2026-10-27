@@ -62,3 +62,11 @@ Profile visa-experience flags use [flag-icons](https://github.com/lipis/flag-ico
 ## Community avatars
 
 The project owner supplied the original avatar library, preserved in `DesignResources/AvatarLibrary`. Nineteen distinct source images are copied unchanged into `VisaDone/Assets.xcassets/Avatars` for the fictional community members.
+
+## Community document covers
+
+The application-note, itinerary and processing-record covers are fictional, sanitized documents generated for VisaDone with AppKit. Source: `DesignResources/FeedDocuments/generate.swift`. They are not official visa documents or real booking confirmations.
+
+## Social note cover
+
+`visaCoverAccommodation` was generated with the built-in image tool for the fictional accommodation-note post. Prompt and visual-reference details are recorded in `DesignResources/FeedCovers/`. All scenery shown in the feed uses the existing, unchanged licensed photographs; no generated scenery cover is used.

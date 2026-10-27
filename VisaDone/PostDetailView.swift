@@ -350,6 +350,21 @@ private struct PostDetailReply: Identifiable {
 private enum PostDetailFixtures {
     static func images(for post: DiscoveryPost) -> [String] {
         guard let cover = post.coverImage else { return [] }
+        let attachments: [String: [String]] = [
+            "iceland-nine-days": ["visaAccommodationCheck", "visaDocumentChecklist"],
+            "kirkjufell-morning": ["visaIcelandItinerary", "visaItineraryReview"],
+            "new-york-finally": ["visaProcessingTimeline"],
+            "uk-folder-worked": ["visaDocumentChecklist"],
+            "document-organisation": ["visaDocumentChecklist"],
+            "us-road-trip": ["visaItineraryReview"],
+            "honeymoon-timeline": ["visaProcessingComparison"],
+            "edinburgh-weather": ["visaProcessingTimeline"],
+            "first-flight-after-approval": ["visaProcessingComparison"]
+        ]
+        if let pages = attachments[post.id] { return [cover] + pages }
+        if cover == "visaAccommodationCheck" { return [cover, "visaDocumentChecklist"] }
+        if cover == "visaIcelandItinerary" { return [cover, "visaItineraryReview"] }
+        if cover.hasPrefix("visa") { return [cover] }
         let groups = [
             ["coverIcelandSkogafoss", "coverIcelandVestrahorn", "coverIcelandGlacier", "coverIcelandKirkjufell"],
             ["coverLondonPiccadilly", "coverLondonWestminster", "coverLondonAerial"],
@@ -364,22 +379,31 @@ private enum PostDetailFixtures {
     }
 
     static func replies(for post: DiscoveryPost) -> [PostDetailReply] {
-        let documentImages = ["coverTravelDesk", "coverNotes", "coverSigning", "coverLaptopNotes"]
         let texts: [String]
-        if post.format == .question {
+        if post.id == "iceland-nine-days" {
             texts = [
-                "我之前也纠结过。先按自己的申请页面列一张清单，再把拿不准的地方单独标出来，会清楚很多。",
-                "方便说一下是哪个城市递交吗？不同地点的经历可能不一样，对照同一个地点会更有参考价值。"
+                "我在另一个城市递交时没有被要求补这一项。建议把地点、递交时间和同行条件一起记下来，才方便判断是否适用。",
+                "已收藏。官方说明和个人补件经历分开写，更容易知道哪些是需要自己再核对的。"
             ]
-        } else if documentImages.contains(post.coverImage ?? "") {
+        } else if post.tags.contains(where: { $0.contains("进度") || $0.contains("状态") || $0.contains("结果") }) {
             texts = [
-                "一页目录真的好用！我也让纸质件和 PDF 保持同一顺序，最后核对时轻松了很多。",
-                "订单按日期排在一起之后，一眼就能看出有没有漏掉哪一晚。这个方法我也收藏了。"
+                "谢谢补充完整节点。我会先对照签证类别和递交地点，不把单个案例的天数当成自己的预计结果。",
+                "把收到通知和签收护照分开记录很有帮助。也希望之前没更新的朋友有空补一下后续，不用贴任何申请编号。"
+            ]
+        } else if post.tags.contains(where: { $0.contains("行程") || $0.contains("改稿") || $0.contains("交通") || $0.contains("审阅") }) {
+            texts = [
+                "可以先把交通和过夜地点列在一起，再看活动要不要删。转城当天少放一项，会更容易检查衔接。",
+                "建议把已经核实的安排和待确认的部分标开。AI 给出的时间先当检查线索，再去核对对应来源。"
+            ]
+        } else if post.format == .question {
+            texts = [
+                "先把国籍、申请类别和递交地点说明白，大家更容易判断经验能否参考。不需要公开证件或订单原件。",
+                "我会先看当前官方说明，再把看不懂的具体段落单独拿出来讨论。不同个人条件，准备方式也可能不一样。"
             ]
         } else {
             texts = [
-                "已经收藏，留给下一次旅行。给天气留一点余量，比把行程塞满更适合我。",
-                "喜欢这种有照片、也有实际安排的分享。回想起来，旅行里记得最清楚的往往就是慢下来的那几天。"
+                "这个核对思路很实用。我也把官方要求、社区提醒和自己的准备状态分开记录，避免混成一份清单。",
+                "可以把暂时无法判断的字段留在待确认项里，回到原件核对后再标记完成，不必为了全勾上而跳过问题。"
             ]
         }
         let authors = [DiscoveryAuthor.daniel, DiscoveryAuthor.mira]

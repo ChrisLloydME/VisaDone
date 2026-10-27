@@ -56,7 +56,7 @@ struct DiscoveryView: View {
                         .foregroundStyle(.primary)
                         .accessibilityAddTraits(.isHeader)
 
-                    Text("从准备签证到出发，看看大家怎么做。")
+                    Text("材料怎么备，行程怎么改，递交之后等多久。")
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .lineLimit(2)

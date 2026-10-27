@@ -1,0 +1,6 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "https://github.com/Vivixiao980/xhs-cover-skill",
+  "asset": "visaCoverAccommodation",
+  "prompt": "Create ONE square 1:1 Xiaohongshu social-note cover for a Chinese visa application community. It must look like a thoughtfully made user post, not a SaaS UI or a document screenshot. Editorial mixed-media still life: a cool soft gray-blue desk, a plain cream booking printout partly tucked into a muted brick-red paper folder, a pencil and two small unbranded luggage tags as companions. No passport, no government emblems, no real booking brands, no personal names or numbers. The photographic objects fill the lower half and right side; naturally lit, tangible paper texture. Large bold black Chinese sans-serif headline in the upper left in TWO lines, exact text: '住宿订单' then '别漏了同行人'. One restrained brick-red underline beneath '同行人', no other decoration. Small dark subtitle directly underneath: '一次补件经历'. Very little text overall, no dense checklist, no tiny fake text, no app logo, no emojis, no glows, no pastel icon tiles. Strong readability at a 280-pixel card width. Not an advertisement; attractive practical community note, refined and human, asymmetric composition with generous breathing room. Do not add any other words."
+}

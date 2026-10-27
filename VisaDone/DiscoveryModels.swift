@@ -65,7 +65,7 @@ enum PostFormat: String, CaseIterable, Hashable {
 
     var title: String {
         switch self {
-        case .photo: "旅行影像"
+        case .photo: "图文分享"
         case .question: "提问"
         case .guide: "攻略"
         }
@@ -73,7 +73,7 @@ enum PostFormat: String, CaseIterable, Hashable {
 
     var eyebrow: String {
         switch self {
-        case .photo: "旅行影像"
+        case .photo: "图文分享"
         case .question: "提问"
         case .guide: "攻略"
         }
@@ -83,7 +83,7 @@ enum PostFormat: String, CaseIterable, Hashable {
     /// every supported column width.
     var cardLabel: String {
         switch self {
-        case .photo: "旅行"
+        case .photo: "分享"
         case .question: "提问"
         case .guide: "攻略"
         }
