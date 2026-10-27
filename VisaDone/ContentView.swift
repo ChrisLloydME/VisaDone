@@ -14,13 +14,6 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            // Profile uses the system window surface; other destinations keep their styling.
-            if model.section == .profile {
-                Color(nsColor: .windowBackgroundColor).ignoresSafeArea()
-            } else {
-                DiscoveryTheme.canvas.ignoresSafeArea()
-            }
-
             switch model.section {
             case .discovery:
                 DiscoveryView(model: model)
@@ -31,6 +24,7 @@ struct ContentView: View {
                 ProfileView(model: model)
             }
         }
+        .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("Section", selection: $model.section) {

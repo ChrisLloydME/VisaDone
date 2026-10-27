@@ -26,7 +26,6 @@ struct DiscoveryView: View {
                 .frame(height: 1)
             feed
         }
-        .background(pageBackground)
         .sheet(item: $selectedPost) { post in
             PostDetailView(post: post, model: model)
         }
@@ -252,28 +251,6 @@ struct DiscoveryView: View {
         .padding(.horizontal, DiscoveryTheme.pageInset)
         .padding(.bottom, 38)
         .frame(maxWidth: DiscoveryTheme.contentMaxWidth)
-    }
-
-    // MARK: - Background
-
-    private var pageBackground: some View {
-        ZStack(alignment: .top) {
-            DiscoveryTheme.canvas
-
-            LinearGradient(
-                colors: [
-                    DiscoveryTheme.brand.opacity(0.045),
-                    DiscoveryTheme.brand.opacity(0.012),
-                    .clear
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .frame(height: 280)
-            .frame(maxWidth: .infinity, alignment: .top)
-        }
-        .ignoresSafeArea()
-        .allowsHitTesting(false)
     }
 }
 

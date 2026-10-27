@@ -17,6 +17,7 @@ struct VisaDoneApp: App {
         WindowGroup("VisaDone") {
             ContentView(model: model)
                 .frame(minWidth: 980, minHeight: 660)
+                .containerBackground(.thinMaterial, for: .window)
         }
         .defaultSize(width: 1240, height: 800)
         .windowResizability(.contentMinSize)
