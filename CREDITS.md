@@ -4,8 +4,9 @@ VisaDone is a local, non-commercial UI prototype made for a Human–Computer Int
 
 ## Photography
 
-The following travel photographs are used under the [Unsplash License](https://unsplash.com/license). They have been cropped and resized for display in this prototype.
+The following photographs are used under the [Unsplash License](https://unsplash.com/license). They have been cropped and resized for display in this prototype.
 
+- `profileAvatar` — [Unsplash source](https://images.unsplash.com/photo-1506863530036-1efeddceb993)
 - `coverIcelandSkogafoss` — [Unsplash source](https://images.unsplash.com/photo-1476610182048-b716b8518aae)
 - `coverIcelandVestrahorn` — [Unsplash source](https://images.unsplash.com/photo-1504829857797-ddff29c27927)
 - `coverLondonPiccadilly` — [Unsplash source](https://images.unsplash.com/photo-1526129318478-62ed807ebdf9)
@@ -44,7 +45,7 @@ Two photographs are used under Creative Commons licenses via Wikimedia Commons:
 - `coverEdinburgh` — “Historic Edinburgh skyline” by [Mike McBey](https://www.flickr.com/people/158652122@N02), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), [source](https://commons.wikimedia.org/wiki/File:Historic_Edinburgh_skyline_(41195800844).jpg). Cropped and resized.
 - `coverCotswolds` — “Castle Combe, Cottages” by [Michael Garlick](https://www.geograph.org.uk/profile/118660), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0), [source](https://commons.wikimedia.org/wiki/File:Castle_Combe,_Cottages_-_geograph.org.uk_-_6999402.jpg). Cropped and resized.
 
-Community names, stories, avatars, and engagement figures are fictional demonstration content.
+Community names, stories, avatars, and engagement figures are fictional demonstration content. The profile grain texture was generated for this prototype.
 
 ## Software
 
@@ -53,3 +54,7 @@ Community names, stories, avatars, and engagement figures are fictional demonstr
 ## App icon
 
 The VisaDone app icon was created for this prototype.
+
+## Country flags
+
+Profile visa-experience flags use [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, under the MIT License. The original SVGs are bundled locally and cropped to circles at display time. See `Licenses/flag-icons-MIT.txt`.
