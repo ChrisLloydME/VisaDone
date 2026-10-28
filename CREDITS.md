@@ -70,3 +70,7 @@ The application-note, itinerary and processing-record covers are fictional, sani
 ## Social note cover
 
 `visaCoverAccommodation` was generated with the built-in image tool for the fictional accommodation-note post. Prompt and visual-reference details are recorded in `DesignResources/FeedCovers/`. All scenery shown in the feed uses the existing, unchanged licensed photographs; no generated scenery cover is used.
+
+## Notification center
+
+The native AppKit notification center adapts the current [Telegram for macOS](https://github.com/TelegramMessenger/telegram-macos) source at `e18830989542a063dd66c5bdc4dbe6a70cbbd175`, © Telegram contributors, GPL-2.0. `TelegramBubbleImage.swift` ports the current bubble renderer; `TelegramGlassView.swift` extracts the native NSGlassEffectView / NSGlassEffectContainerView surfaces. The floating header and composer follow `ChatHeaderBubblesView` and `ChatInputView`. Source copies and adaptation details: `DesignResources/Notifications/`. License: `Licenses/Telegram-GPL-2.0.txt`. The conversation sidebar follows the supplied Apple Messages reference using AppKit’s native source-list style and system selection, without Telegram’s custom sidebar painting. All conversations use local fictional fixtures; no Telegram service is connected.
