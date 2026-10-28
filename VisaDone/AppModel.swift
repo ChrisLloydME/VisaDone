@@ -37,6 +37,7 @@ enum AppSection: String, CaseIterable, Identifiable {
 final class VisaDoneModel {
     var section: AppSection = .discovery
     var isComposing = false
+    var inbox = NotificationInbox()
     var posts: [DiscoveryPost] = DiscoveryFixtures.posts
     var likedPostIDs: Set<DiscoveryPost.ID> = []
     var savedPostIDs: Set<DiscoveryPost.ID> = ProfileFixtures.initialFavoriteIDs

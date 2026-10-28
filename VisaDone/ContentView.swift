@@ -19,7 +19,9 @@ struct ContentView: View {
             case .discovery:
                 DiscoveryView(model: model)
                     .searchable(text: $model.searchText, placement: .toolbar, prompt: "搜索签证、目的地或攻略")
-            case .application, .notifications:
+            case .notifications:
+                NotificationsView(model: model)
+            case .application:
                 // Intentionally blank for now.
                 Color.clear
             case .profile:
