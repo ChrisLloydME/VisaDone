@@ -17,7 +17,7 @@
 4. `ChatInputView.swift`：沿用附件、文字、发送三个玻璃槽位，共享 5pt spacing 的原生玻璃容器。整栏悬浮在消息之上，底部留 12pt；没有固定底栏背景或分隔线。
 ## iMessage 会话侧栏
 
-侧栏以用户提供的 iMessage 截图为基准，使用 macOS 27 的 `NSTableView.Style.sourceList` 和原生行选择。侧栏及消息区不另铺底色，共同透出其他页面使用的窗口 `.thinMaterial`。不使用 Telegram 自绘的选中背景或仿 macOS 26 的 sidebar。
+侧栏以用户提供的 iMessage 截图为基准，使用 macOS 27 的 `NSTableView.Style.sourceList` 和原生行选择。侧栏及消息区不另铺底色，共同透出其他页面使用的窗口 AppKit `.sidebar` 语义材质（`.behindWindow` 混合）。不使用 Telegram 自绘的选中背景或仿 macOS 26 的 sidebar。
 
 行高 72pt，36pt 头像，13pt semibold 姓名，11pt 次要时间，12.5pt regular 两行摘要。系统 source-list 内缩配合行内坐标，使头像和文字分别对齐 iMessage 的约 26 / 72pt 位置。分隔线从文字起点延伸。未读使用小圆点，而不是 Telegram 的数字胶囊。
 
@@ -50,3 +50,5 @@ Flighty 的已安装 macOS 程序链接 UIKit/Mac Catalyst 并引用 UITabBarCon
 右侧以 720pt 最大阅读宽度展示原帖摘要、根评论和完整回复。所有作者同侧排列，按时间从根部展开，用最多两级缩进、轻连接线、回复对象标注表达关系。首次进入从顶部阅读，不定位到最新消息。帖子入口复用原项目详情 Sheet，头像复用现有 AuthorAvatarView。点赞、指定回复、回复草稿和新增回复全部为本地状态；输入框显示当前回复对象，发布后滚动到新回复。外层没有额外底色，底部使用系统 glassEffect 和原生 soft scroll-edge treatment。
 
 复用调研对照了 IceCubesApp 的 StatusKit 目录和 SwiftyComments 的层级评论方案；本次优先复用当前项目已有的界面组件，避免引入另一套应用页面或 UIKit 组件。此次保留项目现成分栏、头像、帖子详情、素材和系统滚动控件，仅新增本地讨论模型与阅读布局，没有复制这两个项目的代码。
+
+全局窗口背景现由 `VisaDoneApp.swift` 的 `WindowSidebarMaterial` 提供。应用户的整窗统一毛玻璃要求，将公开的 NSVisualEffectView `.sidebar` 语义材质用于整个窗口背景，并以 `.behindWindow` 混合桌面及后方窗口；状态使用 `.followsWindowActiveState`。这是主动将 AppKit 的 Sidebar 材质扩展到整窗，不声称等同于新版 NSSplitViewController 私有的 Sidebar 玻璃呈现。SwiftUI 窗口底色清空，背景视图延伸至 titlebar 安全区，内容面板保持透明，避免原来的 thickMaterial 与新背景重复叠加。现有 Toolbar 和交互控件各自的原生玻璃、滚动边缘效果继续保留。
