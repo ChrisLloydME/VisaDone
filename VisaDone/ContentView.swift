@@ -22,13 +22,12 @@ struct ContentView: View {
             case .notifications:
                 NotificationsView(model: model)
             case .application:
-                // Intentionally blank for now.
-                Color.clear
+                ApplicationDestinationView(model: model)
             case .profile:
                 ProfileView(model: model)
             }
         }
-        .toolbarBackgroundVisibility(model.section == .discovery ? .automatic : .hidden, for: .windowToolbar)
+        .toolbarBackgroundVisibility(model.section == .discovery || model.section == .application ? .automatic : .hidden, for: .windowToolbar)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 SectionNavigation(selection: $model.section)

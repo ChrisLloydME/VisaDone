@@ -32,11 +32,15 @@ enum AppSection: String, CaseIterable, Identifiable {
     }
 }
 
-/// Local-only state for the prototype. Nothing leaves the app.
+/// Local prototype content and presentation state.
 @Observable
 final class VisaDoneModel {
     var section: AppSection = .discovery
     var isComposing = false
+    var ongoingApplication = OngoingVisaApplication()
+    @ObservationIgnored let destinationGlobeStore = DestinationGlobeStore()
+    var destinationRegionID: String?
+    var destinationCountryID: String?
     var inbox = NotificationInbox()
     var posts: [DiscoveryPost] = DiscoveryFixtures.posts
     var likedPostIDs: Set<DiscoveryPost.ID> = []

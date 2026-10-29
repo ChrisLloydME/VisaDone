@@ -8,3 +8,7 @@ DerivedData/
 # Xcode user state
 xcuserdata/
 *.xcuserstate
+
+# Local MapTiler client configuration
+VisaDone/Resources/MapTiler.local.json
+VisaDone/Resources/Mapbox.local.json
