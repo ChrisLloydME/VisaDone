@@ -92,7 +92,8 @@ struct GlobeCountryData: Decodable {
         return context.makeImage()
     }
 
-    private static func outline(_ country: GlobeCountryData) -> SCNNode {
+    static func outline(_ country: GlobeCountryData, color: NSColor = .controlAccentColor,
+                        halfWidth: Float = 0.0005, radius: Float = 1.0022) -> SCNNode {
         var vertices: [SCNVector3] = [], indices: [Int32] = []
         for ring in country.rings where ring.count > 2 {
             for (a,b) in zip(ring,ring.dropFirst()+[ring[0]]) {
@@ -101,11 +102,11 @@ struct GlobeCountryData: Decodable {
                     func position(_ fraction: Double) -> SIMD3<Float> {
                         let p = DestinationGlobeView.position(longitude: (a[0]+(b[0]-a[0])*fraction) * .pi/180,
                             latitude: (a[1]+(b[1]-a[1])*fraction) * .pi/180)
-                        return SIMD3(Float(p.x),Float(p.y),Float(p.z))*1.0022
+                        return SIMD3(Float(p.x),Float(p.y),Float(p.z))*radius
                     }
                     let p = position(Double(step)/Double(steps)), q = position(Double(step+1)/Double(steps))
                     guard simd_length(q-p) > 0.000001 else { continue }
-                    let across = simd_normalize(simd_cross(simd_normalize(p+q),q-p))*0.0005
+                    let across = simd_normalize(simd_cross(simd_normalize(p+q),q-p))*halfWidth
                     let start = Int32(vertices.count)
                     for v in [p-across,p+across,q-across,q+across] { vertices.append(SCNVector3(v)) }
                     indices += [start,start+1,start+2,start+1,start+3,start+2]
@@ -115,7 +116,7 @@ struct GlobeCountryData: Decodable {
         let geometry = SCNGeometry(sources: [.init(vertices: vertices)],elements: [.init(indices: indices,primitiveType: .triangles)])
         let material = SCNMaterial()
         material.lightingModel = .constant
-        material.diffuse.contents = NSColor.controlAccentColor
+        material.diffuse.contents = color
         material.isDoubleSided = true
         material.writesToDepthBuffer = false
         geometry.firstMaterial = material

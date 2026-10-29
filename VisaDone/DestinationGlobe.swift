@@ -54,6 +54,21 @@ final class DestinationGlobeView: SCNView {
     private let countries = GlobeCountryData.bundled
     private lazy var countryPaths = countries.map { ($0.id, $0.hitPath) }
     private var countryNodes: [String: SCNNode] = [:]
+    private lazy var countryBorders: SCNNode = {
+        let group = SCNNode()
+        group.name = "europe-country-boundaries"
+        group.categoryBitMask = 2
+        group.opacity = 0
+        for country in countries {
+            let outline = GlobeCountrySurface.outline(country,
+                color: NSColor(srgbRed: 0.22, green: 0.29, blue: 0.30, alpha: 0.42),
+                halfWidth: 0.0004, radius: 1.0014)
+            outline.renderingOrder = 10
+            group.addChildNode(outline)
+        }
+        earth.addChildNode(group)
+        return group
+    }()
     private var hoveredCountryID: String?
     private var selectedCountryID: String?
     private let earth = SCNNode()
@@ -290,6 +305,7 @@ final class DestinationGlobeView: SCNView {
         }
         SCNTransaction.begin()
         SCNTransaction.animationDuration = reduceMotion ? 0 : 0.12
+        countryBorders.opacity = focusedRegionID == "Europe" ? 1 : 0
         for (id,node) in countryNodes {
             node.opacity = active.contains(id) ? (id == selectedCountryID ? 1 : 0.65) : 0
         }
