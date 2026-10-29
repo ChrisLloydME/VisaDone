@@ -29,12 +29,23 @@
         "opacity" : 0.5
       },
       "translucency" : {
-        "enabled" : true,
+        "enabled" : false,
         "value" : 0.3
       }
     },
     {
       "layers" : [
+        {
+          "image-name" : "Rounded Rectangle 2.png",
+          "name" : "Rounded Rectangle 2",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -43,
+              -11.999999999999943
+            ]
+          }
+        },
         {
           "image-name" : "Rounded Rectangle copy 3.png",
           "name" : "Rounded Rectangle copy 3"
