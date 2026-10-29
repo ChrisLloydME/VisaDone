@@ -57,7 +57,7 @@ The active app icon is the project owner’s `AppIcon.icon`, edited in Icon Comp
 
 ## Country flags
 
-Profile visa-experience flags use [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, under the MIT License. The original SVGs are bundled locally and cropped to circles at display time. See `Licenses/flag-icons-MIT.txt`.
+Profile visa-experience and application destination-selector flags use [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, under the MIT License. The original SVGs are bundled locally and cropped to circles at display time. See `Licenses/flag-icons-MIT.txt`.
 
 ## Community avatars
 
@@ -74,3 +74,13 @@ The application-note, itinerary and processing-record covers are fictional, sani
 ## Notification center
 
 The native AppKit notification center adapts the current [Telegram for macOS](https://github.com/TelegramMessenger/telegram-macos) source at `e18830989542a063dd66c5bdc4dbe6a70cbbd175`, © Telegram contributors, GPL-2.0. `TelegramBubbleImage.swift` ports the current bubble renderer; `TelegramGlassView.swift` extracts the native NSGlassEffectView / NSGlassEffectContainerView surfaces. The floating header and composer follow `ChatHeaderBubblesView` and `ChatInputView`. Source copies and adaptation details: `DesignResources/Notifications/`. License: `Licenses/Telegram-GPL-2.0.txt`. The conversation sidebar follows the supplied Apple Messages reference using AppKit’s native source-list style and system selection, without Telegram’s custom sidebar painting. All conversations use local fictional fixtures; no Telegram service is connected.
+
+## Destination map
+
+The Application destination picker uses public-domain [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) geography, bundled for offline rendering. Natural Earth I projection coefficients are adapted from [d3-geo](https://github.com/d3/d3-geo), © Mike Bostock, ISC license (`Licenses/d3-geo-ISC.txt`). Original data and the reproducible processing script are in `DesignResources/Maps/`.
+
+The destination terrain uses **Natural Earth II** by Tom Patterson ([source and public-domain terms](https://www.shadedrelief.com/NE2/)), downloaded via [Flex Projector](https://www.flexprojector.com/downloaddata/index.html). The source raster and geographic reprojection script are retained in `DesignResources/Maps/`; the derived texture is bundled locally, with no runtime map service.
+
+The native globe can display [MapTiler Landscape](https://www.maptiler.com/maps/) raster tiles with © MapTiler and © OpenStreetMap contributors attribution. The official MapTiler logo is bundled solely for required map attribution; source: https://api.maptiler.com/resources/logo.svg . Tiles are fetched directly through the documented API and use a temporary end-user HTTP cache, subject to [MapTiler Cloud terms](https://www.maptiler.com/terms/cloud/). The client API key is kept in an ignored local configuration, outside version control.
+
+The active globe uses the user-provided **Mapbox Outdoors custom style**, served by [Mapbox Static Tiles API](https://docs.mapbox.com/api/maps/static-tiles/), with © Mapbox / © OpenStreetMap attribution and an Improve this map link. The official Mapbox wordmark is used solely for attribution, extracted from the official Mapbox GL JS CSS logo resource. [Attribution requirements](https://docs.mapbox.com/help/dive-deeper/attribution/). No Mapbox JavaScript renderer is embedded. Client credentials remain in Git-ignored local configuration.
