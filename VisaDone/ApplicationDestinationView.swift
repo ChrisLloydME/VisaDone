@@ -8,7 +8,6 @@ struct ApplicationDestinationView: View {
     @State private var hoveredCountry: String?
     @State private var chromeHeight: CGFloat = 32
     @State private var search = ""
-    @State private var showingCurrentApplication = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorScheme) private var colorScheme
 
@@ -83,8 +82,14 @@ struct ApplicationDestinationView: View {
                                 expandedHeight: min(740, geometry.size.height - 84))
                                 .transition(.opacity)
                         } else {
-                            ApplicationProgressDrawer(application: model.ongoingApplication) {
-                                showingCurrentApplication = true
+                            ApplicationProgressDrawer(application: model.ongoingApplication,
+                                readyCount:model.iceland.readyCount,totalCount:model.iceland.activeDocuments.count,
+                                nextAction:model.iceland.activeDocuments.first(where:{$0.status != .ready})?.title,
+                                overallProgress:model.iceland.overallProgress,activeStage:model.iceland.progressStage,
+                                phaseTitle:model.iceland.completed ? "申请已完成" : (model.iceland.submitted ? model.iceland.timelineStatus : "材料准备中")) {
+                                model.iceland.isCreated = true
+                                model.iceland.section = .overview
+                                model.iceland.isPresented = true
                             }
                             .transition(.opacity)
                         }
@@ -96,8 +101,11 @@ struct ApplicationDestinationView: View {
         .background { Color.black.ignoresSafeArea() }
         .background { DestinationToolbarMetrics(height: $chromeHeight).frame(width: 0, height: 0) }
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: inEurope)
-        .sheet(isPresented: $showingCurrentApplication) {
-            OngoingApplicationSheet(application: model.ongoingApplication)
+        .onChange(of:model.destinationCountryID) { _,id in
+            if id == "ISL" { model.iceland.isPresented = true }
+        }
+        .onAppear {
+            if model.destinationCountryID == "ISL" { model.destinationCountryID = nil }
         }
     }
 

@@ -12,7 +12,7 @@ struct ApplicationPreparationItem: Identifiable {
     let destinationName = "冰岛"
     let visaType = "旅游签证"
     var title: String { destinationName + visaType }
-    let subtitle = "11月12日出发 · 短期旅游"
+    let subtitle = "2027年3月1–13日 · 三人同行"
     var items: [ApplicationPreparationItem] = [
         .init(id: "passport", title: "护照与复印件", note: "已核对个人信息与有效期", isReady: true),
         .init(id: "photo", title: "签证照片", note: "已整理电子版与纸质照片", isReady: true),
@@ -31,18 +31,19 @@ struct ApplicationPreparationItem: Identifiable {
 
 struct ApplicationOrderProgress: View {
     let progress: Double
+    var activeStage: Int = 0
     private let stages = ["准备材料", "预约递交", "等待结果", "申请完成"]
     var body: some View {
         VStack(spacing: 7) {
             ProgressView(value: progress)
                 .progressViewStyle(.linear).controlSize(.small)
                 .accessibilityLabel("申请进度")
-                .accessibilityValue("准备材料")
+                .accessibilityValue(stages[min(3,max(0,activeStage))])
             HStack(spacing: 0) {
                 ForEach(Array(stages.enumerated()), id: \.offset) { index, stage in
                     Text(stage)
-                        .font(.system(size: 11, weight: index == 0 ? .medium : .regular))
-                        .foregroundStyle(index == 0 ? .primary : .secondary)
+                        .font(.system(size: 11, weight: index == activeStage ? .medium : .regular))
+                        .foregroundStyle(index == activeStage ? .primary : .secondary)
                         .frame(maxWidth: .infinity, alignment: index == 0 ? .leading : (index == 3 ? .trailing : .center))
                 }
             }
@@ -54,7 +55,15 @@ struct ApplicationOrderProgress: View {
 // The native macOS sheet is reserved for opening the preparation checklist.
 struct ApplicationProgressDrawer: View {
     @Bindable var application: OngoingVisaApplication
+    var readyCount: Int? = nil
+    var totalCount: Int? = nil
+    var nextAction: String? = nil
+    var overallProgress: Double? = nil
+    var activeStage: Int = 0
+    var phaseTitle: String = "材料准备中"
     let onContinue: () -> Void
+    private var currentReady: Int { readyCount ?? application.readyCount }
+    private var currentTotal: Int { totalCount ?? application.items.count }
     @State private var expanded = true
     @State private var dragHeight: CGFloat?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -102,20 +111,20 @@ struct ApplicationProgressDrawer: View {
                         Text(application.visaType).font(.system(size: 12)).foregroundStyle(.secondary)
                     }
                     Spacer()
-                    Text("正在进行").font(.system(size: 11)).foregroundStyle(.secondary)
+                    Text(activeStage == 3 ? "已完成" : "正在进行").font(.system(size: 11)).foregroundStyle(.secondary)
                 }
                 HStack {
-                    Text("材料准备中").fontWeight(.medium)
+                    Text(phaseTitle).fontWeight(.medium)
                     Spacer()
-                    Text("\(application.readyCount)/\(application.items.count) 项就绪").foregroundStyle(.secondary)
+                    Text("\(currentReady)/\(currentTotal) 项就绪").foregroundStyle(.secondary)
                 }
                 .font(.system(size: 12))
-                ApplicationOrderProgress(progress: application.progress)
+                ApplicationOrderProgress(progress: overallProgress ?? Double(currentReady)/Double(max(1,currentTotal))*0.25,activeStage:activeStage)
                 HStack {
-                    Text("下一项：\(application.items.first { !$0.isReady }?.title ?? "复核准备清单")")
+                    Text("下一项：\(nextAction ?? application.items.first { !$0.isReady }?.title ?? "复核准备清单")")
                         .font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
                     Spacer(minLength: 8)
-                    Button("继续准备", action: onContinue)
+                    Button(activeStage == 3 ? "查看记录" : (activeStage == 2 ? "查看进度" : "继续准备"), action: onContinue)
                         .controlSize(.small).buttonStyle(.bordered)
                 }
             }

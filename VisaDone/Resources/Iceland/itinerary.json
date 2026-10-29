@@ -1,0 +1,540 @@
+[
+  {
+    "id": 0,
+    "title": "出发前夜，机场报到",
+    "route": "上海浦东机场",
+    "transport": "国际航班前报到",
+    "stay": "途中 / 夜间航班",
+    "confirmed": false,
+    "note": "3月1日晚报到；LH727 于3月2日 00:10 起飞。",
+    "activities": [
+      {
+        "id": "0-3",
+        "time": "行程",
+        "title": "上海浦东机场报到，准备搭乘3月2日00:10的 LH727"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "经慕尼黑抵达哥本哈根",
+    "route": "上海 → 慕尼黑 → 哥本哈根",
+    "transport": "LH727 · LH4122 / VL2440 · 市内公共交通",
+    "stay": "Wakeup Copenhagen - Borgergade",
+    "confirmed": false,
+    "note": "慕尼黑为首次申根入境地，中转4小时15分。LH4122 / VL2440 为原草稿中的航班标识。",
+    "activities": [
+      {
+        "id": "1-4",
+        "time": "行程",
+        "title": "LH727 · 上海 00:10 → 慕尼黑 06:35"
+      },
+      {
+        "id": "1-5",
+        "time": "行程",
+        "title": "慕尼黑中转 · 4小时15分"
+      },
+      {
+        "id": "1-6",
+        "time": "行程",
+        "title": "LH4122 / VL2440 · 慕尼黑 10:50 → 哥本哈根 12:25"
+      },
+      {
+        "id": "1-7",
+        "time": "行程",
+        "title": "哥本哈根市区游览"
+      },
+      {
+        "id": "1-8",
+        "time": "行程",
+        "title": "腓特烈教堂"
+      },
+      {
+        "id": "1-9",
+        "time": "行程",
+        "title": "阿美琳堡王宫"
+      },
+      {
+        "id": "1-10",
+        "time": "行程",
+        "title": "卡斯特雷特城堡与吉菲昂喷泉"
+      },
+      {
+        "id": "1-11",
+        "time": "行程",
+        "title": "小美人鱼"
+      },
+      {
+        "id": "1-12",
+        "time": "行程",
+        "title": "新港"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "哥本哈根与冰岛的衔接",
+    "route": "哥本哈根 → 凯夫拉维克 → 雷克雅未克",
+    "transport": "步行与公共交通 · FI213 · Flybus",
+    "stay": "Center Hotels Plaza",
+    "confirmed": false,
+    "note": "FI213 20:45–23:15，之后乘 Flybus 入城；核对深夜抵达与酒店入住。",
+    "activities": [
+      {
+        "id": "2-13",
+        "time": "行程",
+        "title": "哥本哈根市区游览"
+      },
+      {
+        "id": "2-14",
+        "time": "行程",
+        "title": "罗森堡王宫"
+      },
+      {
+        "id": "2-15",
+        "time": "行程",
+        "title": "国王花园"
+      },
+      {
+        "id": "2-16",
+        "time": "行程",
+        "title": "圆塔"
+      },
+      {
+        "id": "2-17",
+        "time": "行程",
+        "title": "克里斯蒂安堡宫"
+      },
+      {
+        "id": "2-18",
+        "time": "行程",
+        "title": "哥本哈根市政厅广场"
+      },
+      {
+        "id": "2-19",
+        "time": "行程",
+        "title": "FI213 · 哥本哈根 20:45 → 凯夫拉维克 23:15"
+      },
+      {
+        "id": "2-20",
+        "time": "行程",
+        "title": "乘 Flybus 从机场前往雷克雅未克酒店"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "雷克雅未克市区",
+    "route": "雷克雅未克市区",
+    "transport": "步行与雷克雅未克公共交通",
+    "stay": "Center Hotels Plaza",
+    "confirmed": false,
+    "note": "深夜抵达后的第一天，原草稿有8个停留点，可按体力删减。",
+    "activities": [
+      {
+        "id": "3-21",
+        "time": "行程",
+        "title": "雷克雅未克市区游览"
+      },
+      {
+        "id": "3-22",
+        "time": "行程",
+        "title": "珍珠楼"
+      },
+      {
+        "id": "3-23",
+        "time": "行程",
+        "title": "哈尔格林姆斯教堂"
+      },
+      {
+        "id": "3-24",
+        "time": "行程",
+        "title": "彩虹街"
+      },
+      {
+        "id": "3-25",
+        "time": "行程",
+        "title": "冰岛国家博物馆"
+      },
+      {
+        "id": "3-26",
+        "time": "行程",
+        "title": "托宁湖"
+      },
+      {
+        "id": "3-27",
+        "time": "行程",
+        "title": "奥斯图沃吕尔广场"
+      },
+      {
+        "id": "3-28",
+        "time": "行程",
+        "title": "哈帕音乐厅"
+      },
+      {
+        "id": "3-29",
+        "time": "行程",
+        "title": "太阳航海者"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "斯奈山半岛一日小团",
+    "route": "雷克雅未克 → 斯奈山半岛 → 雷克雅未克",
+    "transport": "Tröll Expeditions 小巴一日团 [计划]",
+    "stay": "Center Hotels Plaza",
+    "confirmed": false,
+    "note": "Tröll Expeditions 一日小团作为计划保留，尚未据此确认真实预订。",
+    "activities": [
+      {
+        "id": "4-30",
+        "time": "行程",
+        "title": "Tröll Expeditions · 一日小团计划"
+      },
+      {
+        "id": "4-31",
+        "time": "行程",
+        "title": "雷克雅未克集合接驳"
+      },
+      {
+        "id": "4-32",
+        "time": "行程",
+        "title": "博尔加内斯镇"
+      },
+      {
+        "id": "4-33",
+        "time": "行程",
+        "title": "伊特里图恩加海滩"
+      },
+      {
+        "id": "4-34",
+        "time": "行程",
+        "title": "布迪尔村庄遗址"
+      },
+      {
+        "id": "4-35",
+        "time": "行程",
+        "title": "黑教堂"
+      },
+      {
+        "id": "4-36",
+        "time": "行程",
+        "title": "阿尔纳斯塔皮渔村"
+      },
+      {
+        "id": "4-37",
+        "time": "行程",
+        "title": "德尤帕隆桑杜尔黑沙滩"
+      },
+      {
+        "id": "4-38",
+        "time": "行程",
+        "title": "隆德兰加玄武岩海崖"
+      },
+      {
+        "id": "4-39",
+        "time": "行程",
+        "title": "英贾尔德霍尔教堂"
+      },
+      {
+        "id": "4-40",
+        "time": "行程",
+        "title": "草帽山"
+      },
+      {
+        "id": "4-41",
+        "time": "行程",
+        "title": "返回雷克雅未克"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "黄金圈，向南岸出发",
+    "route": "雷克雅未克 → 黄金圈 → 南岸",
+    "transport": "Arctic Adventures 小巴四日团 [计划]",
+    "stay": "Adventure Hotel Geirland",
+    "confirmed": false,
+    "note": "Arctic Adventures 四日小团第1天。黄金圈与南岸衔接较长，停留以实际运营安排为准。",
+    "activities": [
+      {
+        "id": "5-42",
+        "time": "行程",
+        "title": "Arctic Adventures · 四日小团第1天"
+      },
+      {
+        "id": "5-43",
+        "time": "行程",
+        "title": "雷克雅未克集合接驳"
+      },
+      {
+        "id": "5-44",
+        "time": "行程",
+        "title": "辛格韦德利国家公园"
+      },
+      {
+        "id": "5-45",
+        "time": "行程",
+        "title": "盖锡尔地热区"
+      },
+      {
+        "id": "5-46",
+        "time": "行程",
+        "title": "黄金瀑布"
+      },
+      {
+        "id": "5-47",
+        "time": "行程",
+        "title": "塞里雅兰瀑布"
+      },
+      {
+        "id": "5-48",
+        "time": "行程",
+        "title": "前往 Kirkjubæjarklaustur 住宿"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "冰河湖、冰川与冰洞",
+    "route": "冰岛东南部 · 冰河湖与瓦特纳冰川",
+    "transport": "Arctic Adventures 小巴四日团 [计划]",
+    "stay": "Adventure Hotel Geirland",
+    "confirmed": false,
+    "note": "四日小团第2天；冰川徒步、冰洞与道路受天气影响。",
+    "activities": [
+      {
+        "id": "6-49",
+        "time": "行程",
+        "title": "Arctic Adventures · 四日小团第2天"
+      },
+      {
+        "id": "6-50",
+        "time": "行程",
+        "title": "杰古沙龙冰河湖"
+      },
+      {
+        "id": "6-51",
+        "time": "行程",
+        "title": "钻石沙滩"
+      },
+      {
+        "id": "6-52",
+        "time": "行程",
+        "title": "瓦特纳冰川徒步与天然冰洞探索"
+      },
+      {
+        "id": "6-53",
+        "time": "行程",
+        "title": "斯卡夫塔费德地区"
+      },
+      {
+        "id": "6-54",
+        "time": "行程",
+        "title": "返回 Kirkjubæjarklaustur 住宿"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "沿南岸返回雷克雅未克",
+    "route": "南岸 → 雷克雅未克",
+    "transport": "Arctic Adventures 小巴四日团 [计划]",
+    "stay": "Hotel Ísland - Comfort",
+    "confirmed": false,
+    "note": "四日小团第3天；今晚住宿为 Hotel Ísland – Comfort。",
+    "activities": [
+      {
+        "id": "7-55",
+        "time": "行程",
+        "title": "Arctic Adventures · 四日小团第3天"
+      },
+      {
+        "id": "7-56",
+        "time": "行程",
+        "title": "羽毛峡谷"
+      },
+      {
+        "id": "7-57",
+        "time": "行程",
+        "title": "埃尔德赫拉恩熔岩原"
+      },
+      {
+        "id": "7-58",
+        "time": "行程",
+        "title": "雷尼斯黑沙滩"
+      },
+      {
+        "id": "7-59",
+        "time": "行程",
+        "title": "斯科加瀑布"
+      },
+      {
+        "id": "7-60",
+        "time": "行程",
+        "title": "返回雷克雅未克"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "雷克雅内斯半岛与极光",
+    "route": "雷克雅内斯半岛 → 雷克雅未克",
+    "transport": "Arctic Adventures 小巴四日团 [计划]",
+    "stay": "Center Hotels Plaza",
+    "confirmed": false,
+    "note": "四日小团第4天。火山徒步地点由运营方决定；极光不保证可见。",
+    "activities": [
+      {
+        "id": "8-61",
+        "time": "行程",
+        "title": "Arctic Adventures · 四日小团第4天"
+      },
+      {
+        "id": "8-62",
+        "time": "行程",
+        "title": "雷克雅内斯半岛火山遗址徒步 · 具体地点由运营方决定"
+      },
+      {
+        "id": "8-63",
+        "time": "行程",
+        "title": "乡间极光寻找活动 · 视天气情况"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "小团后的机动与休息",
+    "route": "雷克雅未克市区",
+    "transport": "步行与雷克雅未克公共交通",
+    "stay": "Center Hotels Plaza",
+    "confirmed": false,
+    "note": "预计凌晨00:00–01:00返回；白天以休息和机动为主。",
+    "activities": [
+      {
+        "id": "9-64",
+        "time": "行程",
+        "title": "凌晨00:00–01:00返回雷克雅未克"
+      },
+      {
+        "id": "9-65",
+        "time": "行程",
+        "title": "小团结束后的机动休息日"
+      },
+      {
+        "id": "9-66",
+        "time": "行程",
+        "title": "雷克雅未克市区散步"
+      },
+      {
+        "id": "9-67",
+        "time": "行程",
+        "title": "洛加维格街"
+      },
+      {
+        "id": "9-68",
+        "time": "行程",
+        "title": "老港口"
+      },
+      {
+        "id": "9-69",
+        "time": "行程",
+        "title": "前往 Kringlan 购物中心，购买纪念品与旅行用品"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "蓝湖与离开冰岛",
+    "route": "雷克雅未克 → 蓝湖 → 凯夫拉维克 → 哥本哈根",
+    "transport": "蓝湖接驳巴士 · SK2596",
+    "stay": "Comfort Hotel Copenhagen Airport",
+    "confirmed": false,
+    "note": "SK2596 18:05–22:05；蓝湖接驳、机场报到和航班之间需留余量。",
+    "activities": [
+      {
+        "id": "10-70",
+        "time": "行程",
+        "title": "乘接驳车前往蓝湖"
+      },
+      {
+        "id": "10-71",
+        "time": "行程",
+        "title": "蓝湖温泉"
+      },
+      {
+        "id": "10-72",
+        "time": "行程",
+        "title": "接驳前往凯夫拉维克机场"
+      },
+      {
+        "id": "10-73",
+        "time": "行程",
+        "title": "SK2596 · 凯夫拉维克 18:05 → 哥本哈根 22:05"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "哥本哈根，经慕尼黑返程",
+    "route": "哥本哈根 → 慕尼黑",
+    "transport": "步行与公共交通 · LH4133 / VL2443 · LH726",
+    "stay": "途中 / 夜间航班",
+    "confirmed": false,
+    "note": "LH4133 / VL2443 18:20–20:00；慕尼黑中转2小时15分，LH726 于22:15离开申根。",
+    "activities": [
+      {
+        "id": "11-74",
+        "time": "行程",
+        "title": "哥本哈根市区购物与机动"
+      },
+      {
+        "id": "11-75",
+        "time": "行程",
+        "title": "斯楚格步行街"
+      },
+      {
+        "id": "11-76",
+        "time": "行程",
+        "title": "ILLUM"
+      },
+      {
+        "id": "11-77",
+        "time": "行程",
+        "title": "国王新广场"
+      },
+      {
+        "id": "11-78",
+        "time": "行程",
+        "title": "Magasin du Nord"
+      },
+      {
+        "id": "11-79",
+        "time": "行程",
+        "title": "LH4133 / VL2443 · 哥本哈根 18:20 → 慕尼黑 20:00"
+      },
+      {
+        "id": "11-80",
+        "time": "行程",
+        "title": "慕尼黑中转 · 2小时15分"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "返回上海",
+    "route": "慕尼黑 → 上海",
+    "transport": "LH726 国际航班",
+    "stay": "抵达上海，不安排申根住宿",
+    "confirmed": false,
+    "note": "LH726 于3月12日22:15从慕尼黑出发，3月13日16:50抵达上海。",
+    "activities": [
+      {
+        "id": "12-81",
+        "time": "行程",
+        "title": "LH726 · 慕尼黑3月12日22:15 → 上海3月13日16:50"
+      }
+    ]
+  }
+]

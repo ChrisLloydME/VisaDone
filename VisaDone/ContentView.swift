@@ -22,7 +22,11 @@ struct ContentView: View {
             case .notifications:
                 NotificationsView(model: model)
             case .application:
-                ApplicationDestinationView(model: model)
+                if model.iceland.isPresented {
+                    IcelandApplicationView(model:model,application:model.iceland)
+                } else {
+                    ApplicationDestinationView(model: model)
+                }
             case .profile:
                 ProfileView(model: model)
             }

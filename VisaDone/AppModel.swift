@@ -38,11 +38,12 @@ final class VisaDoneModel {
     var section: AppSection = .discovery
     var isComposing = false
     var ongoingApplication = OngoingVisaApplication()
+    var iceland = IcelandApplicationState()
     @ObservationIgnored let destinationGlobeStore = DestinationGlobeStore()
     var destinationRegionID: String?
     var destinationCountryID: String?
     var inbox = NotificationInbox()
-    var posts: [DiscoveryPost] = DiscoveryFixtures.posts
+    var posts: [DiscoveryPost] = DiscoveryFixtures.posts + IcelandCommunityFixtures.posts
     var likedPostIDs: Set<DiscoveryPost.ID> = []
     var savedPostIDs: Set<DiscoveryPost.ID> = ProfileFixtures.initialFavoriteIDs
     var selectedCategory: DiscoveryCategory = .forYou
