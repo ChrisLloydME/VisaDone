@@ -36,4 +36,20 @@ The kill-ai-slop scanner does not recognize Swift source files, so its zero scan
 
 ## Content density and provenance
 
-Materials retain the full bilingual official passages, followed by substantive, expanded community-derived preparation notes. Green identifies official sources; yellow identifies AI-organized community information. Each yellow passage opens a native popover with the full related local post bodies and links into the existing post-detail UI. Accepting an annotation or adding a suggested material preserves its community origin. The drawer has no collapse control or drag gesture.
+Materials retain the full bilingual official passages, followed by substantive, expanded community-derived preparation notes. Source gutters and SF Symbols identify official and AI-organized community information while body text uses system primary color. Each AI passage opens a native popover with the full related local post bodies and links into the existing post-detail UI. Accepting an annotation or adding a suggested material preserves its community origin. The drawer has no collapse control or drag gesture.
+
+## Itinerary collaboration workspace
+
+The itinerary module has two permanent modes: a daily editor alongside an AI conversation, and a complete English/bilingual itinerary document. The conversation keeps local history, targets the selected day / an explicit date range / the whole trip, and presents reversible before-and-after proposals. The supplied first conversation demonstrates a slower Snæfellsnes day with parents; no proposal changes the itinerary until accepted. Later overlapping changes retire older undo controls. Responses are deterministic local examples, with links to the existing community posts. No model service is called.
+
+All 13 days include curated English titles, routes, transport, activities and notes. The native complete-document view retains exact dates, flight numbers and hotel names. Only PNR and confirmation codes are redacted. Language and inclusive date-range selections also control PDF export; Core Text paginates the complete document without a fixed line limit. Moving the departure date shifts the sequence and embedded Chinese date references. Community sharing uses the same full bilingual/English content and redaction rules.
+
+## Destination introduction and applicant form
+
+Before creation, the permanent drawer describes Iceland, Schengen membership, the main-destination rule and the member countries, with official government and VFS source links. It contains no inferred applicant identity, personal travel dates, funding arrangement or application progress. Category and submission city use native menu Pickers. A single grouped-form sheet provides adult applicant name, passport names/number, birth date, nationality, residence, contact, dates, occupation, travel party and funding inputs. The default is an employed, self-funded adult; the original student/parent scenario is no longer forced. Editing an existing application saves information without resetting its itinerary.
+
+## Material reading layout
+
+Each material is a native grouped-form section, with a title/status header and separate official / AI source rows. A fixed 112-point provenance gutter, 20-point column gap, reading-width constraint, paragraph spacing and numbered AI notes establish hierarchy without coloring long body text. PDF hard line wraps are reflowed while retaining every sentence and language block. Original source viewing, status filters, material navigation, source popovers and accepting suggestions keep their existing behavior.
+
+The active AI row uses a scoped Apple Intelligence-style sweep adapted from [Livsy90/IntelligenceGlow](https://github.com/Livsy90/IntelligenceGlow), Copyright (c) 2025 Artem, MIT. The complete license is in `Licenses/IntelligenceGlow-MIT.txt`. The SwiftUI animation runs only while hovered or showing its source popover, respects Reduce Motion, and is not presented as a system Apple Intelligence service or a Liquid Glass material.

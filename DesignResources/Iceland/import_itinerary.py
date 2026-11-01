@@ -56,5 +56,16 @@ for i,(start,end) in enumerate(zip(starts,starts[1:])):
     if stay=='In Transit': stay='途中 / 夜间航班'
     if i==12: stay='抵达上海，不安排申根住宿'
     output.append(dict(id=i,title=titles[i],route=routes[i],transport=transports[i],stay=stay,confirmed=False,note=notes[i],activities=activities))
+# Retain the curated English copy when refreshing the original workbook import.
+existing_path=root/'VisaDone/Resources/Iceland/itinerary.json'
+if existing_path.exists():
+    existing={day['id']:day for day in json.loads(existing_path.read_text())}
+    for day in output:
+        previous=existing.get(day['id'],{})
+        for key in ('titleEnglish','routeEnglish','transportEnglish','noteEnglish','stayDetails','transportDetails'):
+            if key in previous: day[key]=previous[key]
+        english={activity['id']:activity.get('english') for activity in previous.get('activities',[])}
+        for activity in day['activities']:
+            if english.get(activity['id']): activity['english']=english[activity['id']]
 (root/'VisaDone/Resources/Iceland/itinerary.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n')
 print('Imported 13 itinerary sections; March 1–13, 2027; Schengen March 2–12. Original workbook unchanged.')
