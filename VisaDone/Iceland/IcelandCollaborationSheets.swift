@@ -4,8 +4,13 @@ struct IcelandFinanceSheet: View {
     @Bindable var application:IcelandApplicationState
     @State private var draft = ""
     private var generated:String {
-        var paragraphs = ["To the Visa Officer,","I am an adult full-time university student travelling to Iceland with my parents. My mother will sponsor the main costs of this trip. Supporting evidence of her income, bank account and our relationship is provided separately."]
-        if application.funding == "自行承担" { paragraphs[1] = "I am an adult full-time university student travelling to Iceland with my parents. I will cover my travel expenses using my personal savings." }
+        var paragraphs = ["To the Visa Officer,","I plan to visit Iceland from \(IcelandItineraryDocument.dateText(application.startDate)) to \(IcelandItineraryDocument.dateText(application.endDate)). The itinerary, transport arrangements and accommodation details are provided separately."]
+        switch application.funding {
+        case "自行承担":paragraphs.append("I will cover the expenses of this trip using my personal funds. My financial records are provided with the application.")
+        case "家人资助":paragraphs.append("A family member will sponsor this trip. The sponsorship statement and supporting financial records are provided separately.")
+        case "单位承担":paragraphs.append("My employer will cover the travel expenses. The supporting company documents are provided separately.")
+        default:paragraphs.append("The expenses will be shared by the travellers. The arrangement is described in the accompanying financial documents.")
+        }
         if application.confirmedTransactions.contains("savings") { paragraphs.append("The transfer of CNY 12,800 is a withdrawal of my own savings from a personal money-market account into my bank account.") }
         if application.confirmedTransactions.contains("gift") { paragraphs.append("The CNY 5,000 credit is a one-time birthday gift from my family.") }
         if application.confirmedTransactions.contains("allowance") { paragraphs.append("The remaining CNY 3,200 represents accumulated savings from my regular living allowance.") }
@@ -78,14 +83,9 @@ struct IcelandGenerateSheet: View {
 struct IcelandShareSheet: View {
     @Bindable var model:VisaDoneModel
     @Bindable var application:IcelandApplicationState
-    @State private var shareDates = true
-    @State private var shareStays = false
     @State private var consent = false
     private var publicText:String {
-        application.days.map { day in
-            let date = Calendar.current.date(byAdding:.day,value:day.id,to:application.startDate)!
-            return "\(shareDates ? date.formatted(.dateTime.month().day()) : "第 \(day.id+1) 天") · \(day.title)\n\(day.route)\n\(shareStays ? "住宿：" + day.stay + "\n" : "")\(day.confirmed ? "示例预订已关联" : "计划中，待确认")\n\(day.note)"
-        }.joined(separator:"\n\n")
+        IcelandItineraryDocument.text(application,language:application.itineraryLanguage)
     }
     var body: some View {
         VStack(alignment:.leading,spacing:20) {
@@ -93,10 +93,14 @@ struct IcelandShareSheet: View {
             HSplitView {
                 VStack(alignment:.leading,spacing:20) {
                     Text("允许公开的内容").font(.headline)
-                    Toggle("具体旅行日期",isOn:$shareDates).toggleStyle(.checkbox)
-                    Toggle("住宿名称",isOn:$shareStays).toggleStyle(.checkbox)
+                    Picker("行程语言",selection:$application.itineraryLanguage) {
+                        ForEach(IcelandItineraryLanguage.allCases) {Text($0.rawValue).tag($0)}
+                    }
+                    LabeledContent("具体日期") {Text(application.dateSummary)}
                     Divider()
-                    ForEach(["不含申请人姓名与证件信息","不含预订编号和资金文件","不上传原始酒店或机票文件"],id:\.self) { Label($0,systemImage:"checkmark").font(.system(size:12)) }
+                    Text("保留每天的日期、航班号、交通、活动与酒店名称。").font(.body).lineSpacing(4)
+                    Label("仅隐藏 PNR",systemImage:"checkmark").font(.callout)
+                    Label("仅隐藏 confirmation code",systemImage:"checkmark").font(.callout)
                     Spacer()
                     Toggle("我已核对公开内容，同意社区评论",isOn:$consent).toggleStyle(.checkbox).font(.system(size:12))
                 }.padding(16).frame(minWidth:260,maxWidth:300)

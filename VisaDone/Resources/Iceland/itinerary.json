@@ -11,9 +11,14 @@
       {
         "id": "0-3",
         "time": "行程",
-        "title": "上海浦东机场报到，准备搭乘3月2日00:10的 LH727"
+        "title": "上海浦东机场报到，准备搭乘3月2日00:10的 LH727",
+        "english": "Check in at Shanghai Pudong for LH727, departing at 00:10 the following morning."
       }
-    ]
+    ],
+    "titleEnglish": "Airport check-in in Shanghai",
+    "routeEnglish": "Shanghai Pudong International Airport",
+    "transportEnglish": "Airport check-in before the international flight",
+    "noteEnglish": "Check in on the evening before departure. All flight times are local."
   },
   {
     "id": 1,
@@ -27,49 +32,64 @@
       {
         "id": "1-4",
         "time": "行程",
-        "title": "LH727 · 上海 00:10 → 慕尼黑 06:35"
+        "title": "LH727 · 上海 00:10 → 慕尼黑 06:35",
+        "english": "LH727 · Shanghai 00:10 → Munich 06:35"
       },
       {
         "id": "1-5",
         "time": "行程",
-        "title": "慕尼黑中转 · 4小时15分"
+        "title": "慕尼黑中转 · 4小时15分",
+        "english": "Connection in Munich · 4 hours 15 minutes"
       },
       {
         "id": "1-6",
         "time": "行程",
-        "title": "LH4122 / VL2440 · 慕尼黑 10:50 → 哥本哈根 12:25"
+        "title": "LH4122 / VL2440 · 慕尼黑 10:50 → 哥本哈根 12:25",
+        "english": "LH4122 / VL2440 · Munich 10:50 → Copenhagen 12:25"
       },
       {
         "id": "1-7",
         "time": "行程",
-        "title": "哥本哈根市区游览"
+        "title": "哥本哈根市区游览",
+        "english": "Explore central Copenhagen"
       },
       {
         "id": "1-8",
         "time": "行程",
-        "title": "腓特烈教堂"
+        "title": "腓特烈教堂",
+        "english": "Frederik’s Church"
       },
       {
         "id": "1-9",
         "time": "行程",
-        "title": "阿美琳堡王宫"
+        "title": "阿美琳堡王宫",
+        "english": "Amalienborg Palace"
       },
       {
         "id": "1-10",
         "time": "行程",
-        "title": "卡斯特雷特城堡与吉菲昂喷泉"
+        "title": "卡斯特雷特城堡与吉菲昂喷泉",
+        "english": "Kastellet and the Gefion Fountain"
       },
       {
         "id": "1-11",
         "time": "行程",
-        "title": "小美人鱼"
+        "title": "小美人鱼",
+        "english": "The Little Mermaid"
       },
       {
         "id": "1-12",
         "time": "行程",
-        "title": "新港"
+        "title": "新港",
+        "english": "Nyhavn"
       }
-    ]
+    ],
+    "titleEnglish": "Arrival in Copenhagen via Munich",
+    "routeEnglish": "Shanghai → Munich → Copenhagen",
+    "transportEnglish": "LH727 · LH4122 / VL2440 · public transport",
+    "noteEnglish": "Enter the Schengen Area in Munich. Allow 4 hours 15 minutes for the connection.",
+    "stayDetails": "Wakeup Copenhagen - Borgergade\nAddress: Borgergade 9, 1300 Copenhagen, Denmark\nPhone: +4544800091",
+    "transportDetails": "Flight: LH 727\nOperated by Lufthansa\nPVG 00:10 - MUC 06:35"
   },
   {
     "id": 2,
@@ -83,44 +103,58 @@
       {
         "id": "2-13",
         "time": "行程",
-        "title": "哥本哈根市区游览"
+        "title": "哥本哈根市区游览",
+        "english": "Explore central Copenhagen"
       },
       {
         "id": "2-14",
         "time": "行程",
-        "title": "罗森堡王宫"
+        "title": "罗森堡王宫",
+        "english": "Rosenborg Castle"
       },
       {
         "id": "2-15",
         "time": "行程",
-        "title": "国王花园"
+        "title": "国王花园",
+        "english": "The King’s Garden"
       },
       {
         "id": "2-16",
         "time": "行程",
-        "title": "圆塔"
+        "title": "圆塔",
+        "english": "The Round Tower"
       },
       {
         "id": "2-17",
         "time": "行程",
-        "title": "克里斯蒂安堡宫"
+        "title": "克里斯蒂安堡宫",
+        "english": "Christiansborg Palace"
       },
       {
         "id": "2-18",
         "time": "行程",
-        "title": "哥本哈根市政厅广场"
+        "title": "哥本哈根市政厅广场",
+        "english": "Copenhagen City Hall Square"
       },
       {
         "id": "2-19",
         "time": "行程",
-        "title": "FI213 · 哥本哈根 20:45 → 凯夫拉维克 23:15"
+        "title": "FI213 · 哥本哈根 20:45 → 凯夫拉维克 23:15",
+        "english": "FI213 · Copenhagen 20:45 → Keflavík 23:15"
       },
       {
         "id": "2-20",
         "time": "行程",
-        "title": "乘 Flybus 从机场前往雷克雅未克酒店"
+        "title": "乘 Flybus 从机场前往雷克雅未克酒店",
+        "english": "Flybus transfer from Keflavík Airport to the hotel in Reykjavík"
       }
-    ]
+    ],
+    "titleEnglish": "Copenhagen to Iceland",
+    "routeEnglish": "Copenhagen → Keflavík → Reykjavík",
+    "transportEnglish": "Walking and public transport · FI213 · Flybus",
+    "noteEnglish": "FI213 departs at 20:45 and arrives at 23:15. Take Flybus into Reykjavík and arrange late hotel check-in.",
+    "stayDetails": "Center Hotels Plaza\nAddress: Adalstraeti 4, 101 Reykjavík, Iceland\nPhone: +3545958550",
+    "transportDetails": "Walking / Copenhagen public transportation"
   },
   {
     "id": 3,
@@ -134,49 +168,64 @@
       {
         "id": "3-21",
         "time": "行程",
-        "title": "雷克雅未克市区游览"
+        "title": "雷克雅未克市区游览",
+        "english": "Explore Reykjavík"
       },
       {
         "id": "3-22",
         "time": "行程",
-        "title": "珍珠楼"
+        "title": "珍珠楼",
+        "english": "Perlan"
       },
       {
         "id": "3-23",
         "time": "行程",
-        "title": "哈尔格林姆斯教堂"
+        "title": "哈尔格林姆斯教堂",
+        "english": "Hallgrímskirkja"
       },
       {
         "id": "3-24",
         "time": "行程",
-        "title": "彩虹街"
+        "title": "彩虹街",
+        "english": "Rainbow Street"
       },
       {
         "id": "3-25",
         "time": "行程",
-        "title": "冰岛国家博物馆"
+        "title": "冰岛国家博物馆",
+        "english": "National Museum of Iceland"
       },
       {
         "id": "3-26",
         "time": "行程",
-        "title": "托宁湖"
+        "title": "托宁湖",
+        "english": "Tjörnin Lake"
       },
       {
         "id": "3-27",
         "time": "行程",
-        "title": "奥斯图沃吕尔广场"
+        "title": "奥斯图沃吕尔广场",
+        "english": "Austurvöllur Square"
       },
       {
         "id": "3-28",
         "time": "行程",
-        "title": "哈帕音乐厅"
+        "title": "哈帕音乐厅",
+        "english": "Harpa Concert Hall"
       },
       {
         "id": "3-29",
         "time": "行程",
-        "title": "太阳航海者"
+        "title": "太阳航海者",
+        "english": "Sun Voyager"
       }
-    ]
+    ],
+    "titleEnglish": "Reykjavík city day",
+    "routeEnglish": "Central Reykjavík",
+    "transportEnglish": "Walking and Reykjavík public transport",
+    "noteEnglish": "A flexible city day after a late arrival. Adjust the number of stops to the group’s energy.",
+    "stayDetails": "Center Hotels Plaza\nAddress: Adalstraeti 4, 101 Reykjavík, Iceland\nPhone: +3545958550",
+    "transportDetails": "Walking / Reykjavík public transportation"
   },
   {
     "id": 4,
@@ -190,64 +239,82 @@
       {
         "id": "4-30",
         "time": "行程",
-        "title": "Tröll Expeditions · 一日小团计划"
+        "title": "Tröll Expeditions · 一日小团计划",
+        "english": "Tröll Expeditions · planned guided day tour"
       },
       {
         "id": "4-31",
         "time": "行程",
-        "title": "雷克雅未克集合接驳"
+        "title": "雷克雅未克集合接驳",
+        "english": "Hotel pickup in Reykjavík"
       },
       {
         "id": "4-32",
         "time": "行程",
-        "title": "博尔加内斯镇"
+        "title": "博尔加内斯镇",
+        "english": "Borgarnes"
       },
       {
         "id": "4-33",
         "time": "行程",
-        "title": "伊特里图恩加海滩"
+        "title": "伊特里图恩加海滩",
+        "english": "Ytri Tunga Beach"
       },
       {
         "id": "4-34",
         "time": "行程",
-        "title": "布迪尔村庄遗址"
+        "title": "布迪尔村庄遗址",
+        "english": "Búðir village site"
       },
       {
         "id": "4-35",
         "time": "行程",
-        "title": "黑教堂"
+        "title": "黑教堂",
+        "english": "Búðakirkja (Black Church)"
       },
       {
         "id": "4-36",
         "time": "行程",
-        "title": "阿尔纳斯塔皮渔村"
+        "title": "阿尔纳斯塔皮渔村",
+        "english": "Arnarstapi fishing village"
       },
       {
         "id": "4-37",
         "time": "行程",
-        "title": "德尤帕隆桑杜尔黑沙滩"
+        "title": "德尤帕隆桑杜尔黑沙滩",
+        "english": "Djúpalónssandur Beach"
       },
       {
         "id": "4-38",
         "time": "行程",
-        "title": "隆德兰加玄武岩海崖"
+        "title": "隆德兰加玄武岩海崖",
+        "english": "Lóndrangar sea cliffs"
       },
       {
         "id": "4-39",
         "time": "行程",
-        "title": "英贾尔德霍尔教堂"
+        "title": "英贾尔德霍尔教堂",
+        "english": "Ingjaldshólskirkja"
       },
       {
         "id": "4-40",
         "time": "行程",
-        "title": "草帽山"
+        "title": "草帽山",
+        "english": "Kirkjufell"
       },
       {
         "id": "4-41",
         "time": "行程",
-        "title": "返回雷克雅未克"
+        "title": "返回雷克雅未克",
+        "english": "Return to Reykjavík"
       }
-    ]
+    ],
+    "titleEnglish": "Snæfellsnes Peninsula day tour",
+    "routeEnglish": "Reykjavík → Snæfellsnes Peninsula → Reykjavík",
+    "transportEnglish": "Tröll Expeditions · guided minibus day tour (planned)",
+    "noteEnglish": "The guided tour is planned; the operator’s confirmed schedule takes precedence.",
+    "stayDetails": "Center Hotels Plaza\nAddress: Adalstraeti 4, 101 Reykjavík, Iceland\nPhone: +3545958550",
+    "transportDetails": "Guided Minibus Tour [1]"
   },
   {
     "id": 5,
@@ -261,39 +328,52 @@
       {
         "id": "5-42",
         "time": "行程",
-        "title": "Arctic Adventures · 四日小团第1天"
+        "title": "Arctic Adventures · 四日小团第1天",
+        "english": "Arctic Adventures · guided tour, day 1"
       },
       {
         "id": "5-43",
         "time": "行程",
-        "title": "雷克雅未克集合接驳"
+        "title": "雷克雅未克集合接驳",
+        "english": "Pickup in Reykjavík"
       },
       {
         "id": "5-44",
         "time": "行程",
-        "title": "辛格韦德利国家公园"
+        "title": "辛格韦德利国家公园",
+        "english": "Þingvellir National Park"
       },
       {
         "id": "5-45",
         "time": "行程",
-        "title": "盖锡尔地热区"
+        "title": "盖锡尔地热区",
+        "english": "Geysir geothermal area"
       },
       {
         "id": "5-46",
         "time": "行程",
-        "title": "黄金瀑布"
+        "title": "黄金瀑布",
+        "english": "Gullfoss waterfall"
       },
       {
         "id": "5-47",
         "time": "行程",
-        "title": "塞里雅兰瀑布"
+        "title": "塞里雅兰瀑布",
+        "english": "Seljalandsfoss waterfall"
       },
       {
         "id": "5-48",
         "time": "行程",
-        "title": "前往 Kirkjubæjarklaustur 住宿"
+        "title": "前往 Kirkjubæjarklaustur 住宿",
+        "english": "Continue to accommodation near Kirkjubæjarklaustur"
       }
-    ]
+    ],
+    "titleEnglish": "Golden Circle and the South Coast",
+    "routeEnglish": "Reykjavík → Golden Circle → South Coast",
+    "transportEnglish": "Arctic Adventures · four-day minibus tour (planned)",
+    "noteEnglish": "Day 1 of the guided tour. The Golden Circle and South Coast involve a long transfer; the stop order remains flexible.",
+    "stayDetails": "Adventure Hotel Geirland\nAddress: Geirland, 880 Kirkjubæjarklaustur, Iceland\nPhone: +3547903830",
+    "transportDetails": "Guided Minibus Tour [2]"
   },
   {
     "id": 6,
@@ -307,34 +387,46 @@
       {
         "id": "6-49",
         "time": "行程",
-        "title": "Arctic Adventures · 四日小团第2天"
+        "title": "Arctic Adventures · 四日小团第2天",
+        "english": "Arctic Adventures · guided tour, day 2"
       },
       {
         "id": "6-50",
         "time": "行程",
-        "title": "杰古沙龙冰河湖"
+        "title": "杰古沙龙冰河湖",
+        "english": "Jökulsárlón Glacier Lagoon"
       },
       {
         "id": "6-51",
         "time": "行程",
-        "title": "钻石沙滩"
+        "title": "钻石沙滩",
+        "english": "Diamond Beach"
       },
       {
         "id": "6-52",
         "time": "行程",
-        "title": "瓦特纳冰川徒步与天然冰洞探索"
+        "title": "瓦特纳冰川徒步与天然冰洞探索",
+        "english": "Vatnajökull glacier walk and natural ice cave excursion"
       },
       {
         "id": "6-53",
         "time": "行程",
-        "title": "斯卡夫塔费德地区"
+        "title": "斯卡夫塔费德地区",
+        "english": "Skaftafell area"
       },
       {
         "id": "6-54",
         "time": "行程",
-        "title": "返回 Kirkjubæjarklaustur 住宿"
+        "title": "返回 Kirkjubæjarklaustur 住宿",
+        "english": "Return to accommodation near Kirkjubæjarklaustur"
       }
-    ]
+    ],
+    "titleEnglish": "Glacier lagoon, glacier walk and ice cave",
+    "routeEnglish": "Southeast Iceland · Jökulsárlón · Vatnajökull",
+    "transportEnglish": "Arctic Adventures · four-day minibus tour (planned)",
+    "noteEnglish": "Day 2 of the tour. Glacier walks, ice caves and road access are subject to weather and operator decisions.",
+    "stayDetails": "Adventure Hotel Geirland\nAddress: Geirland, 880 Kirkjubæjarklaustur, Iceland\nPhone: +3547903830",
+    "transportDetails": "Guided Minibus Tour [2]"
   },
   {
     "id": 7,
@@ -348,34 +440,46 @@
       {
         "id": "7-55",
         "time": "行程",
-        "title": "Arctic Adventures · 四日小团第3天"
+        "title": "Arctic Adventures · 四日小团第3天",
+        "english": "Arctic Adventures · guided tour, day 3"
       },
       {
         "id": "7-56",
         "time": "行程",
-        "title": "羽毛峡谷"
+        "title": "羽毛峡谷",
+        "english": "Fjaðrárgljúfur canyon"
       },
       {
         "id": "7-57",
         "time": "行程",
-        "title": "埃尔德赫拉恩熔岩原"
+        "title": "埃尔德赫拉恩熔岩原",
+        "english": "Eldhraun lava field"
       },
       {
         "id": "7-58",
         "time": "行程",
-        "title": "雷尼斯黑沙滩"
+        "title": "雷尼斯黑沙滩",
+        "english": "Reynisfjara Black Sand Beach"
       },
       {
         "id": "7-59",
         "time": "行程",
-        "title": "斯科加瀑布"
+        "title": "斯科加瀑布",
+        "english": "Skógafoss waterfall"
       },
       {
         "id": "7-60",
         "time": "行程",
-        "title": "返回雷克雅未克"
+        "title": "返回雷克雅未克",
+        "english": "Return to Reykjavík"
       }
-    ]
+    ],
+    "titleEnglish": "South Coast return to Reykjavík",
+    "routeEnglish": "South Coast → Reykjavík",
+    "transportEnglish": "Arctic Adventures · four-day minibus tour (planned)",
+    "noteEnglish": "Day 3 of the guided tour. Overnight at Hotel Ísland – Comfort.",
+    "stayDetails": "Hotel Ísland - Comfort\nAddress: Hlíðasmári 13, Kópavogur, 201 Reykjavík, Iceland\nPhone: +3545957000",
+    "transportDetails": "Guided Minibus Tour [2]"
   },
   {
     "id": 8,
@@ -389,19 +493,28 @@
       {
         "id": "8-61",
         "time": "行程",
-        "title": "Arctic Adventures · 四日小团第4天"
+        "title": "Arctic Adventures · 四日小团第4天",
+        "english": "Arctic Adventures · guided tour, day 4"
       },
       {
         "id": "8-62",
         "time": "行程",
-        "title": "雷克雅内斯半岛火山遗址徒步 · 具体地点由运营方决定"
+        "title": "雷克雅内斯半岛火山遗址徒步 · 具体地点由运营方决定",
+        "english": "Guided volcanic landscape hike on Reykjanes; site selected by operator"
       },
       {
         "id": "8-63",
         "time": "行程",
-        "title": "乡间极光寻找活动 · 视天气情况"
+        "title": "乡间极光寻找活动 · 视天气情况",
+        "english": "Northern Lights excursion, conditions permitting"
       }
-    ]
+    ],
+    "titleEnglish": "Reykjanes Peninsula and Northern Lights",
+    "routeEnglish": "Reykjanes Peninsula → Reykjavík",
+    "transportEnglish": "Arctic Adventures · four-day minibus tour (planned)",
+    "noteEnglish": "Day 4 of the tour. The operator selects the hiking site. Northern Lights sightings are weather dependent.",
+    "stayDetails": "Center Hotels Plaza\nAddress: Adalstraeti 4, 101 Reykjavík, Iceland\nPhone: +3545958550",
+    "transportDetails": "Guided Minibus Tour [2]"
   },
   {
     "id": 9,
@@ -415,34 +528,46 @@
       {
         "id": "9-64",
         "time": "行程",
-        "title": "凌晨00:00–01:00返回雷克雅未克"
+        "title": "凌晨00:00–01:00返回雷克雅未克",
+        "english": "Return to Reykjavík around 00:00–01:00"
       },
       {
         "id": "9-65",
         "time": "行程",
-        "title": "小团结束后的机动休息日"
+        "title": "小团结束后的机动休息日",
+        "english": "Rest after the multi-day tour"
       },
       {
         "id": "9-66",
         "time": "行程",
-        "title": "雷克雅未克市区散步"
+        "title": "雷克雅未克市区散步",
+        "english": "Walk around central Reykjavík"
       },
       {
         "id": "9-67",
         "time": "行程",
-        "title": "洛加维格街"
+        "title": "洛加维格街",
+        "english": "Laugavegur"
       },
       {
         "id": "9-68",
         "time": "行程",
-        "title": "老港口"
+        "title": "老港口",
+        "english": "Old Harbour"
       },
       {
         "id": "9-69",
         "time": "行程",
-        "title": "前往 Kringlan 购物中心，购买纪念品与旅行用品"
+        "title": "前往 Kringlan 购物中心，购买纪念品与旅行用品",
+        "english": "Kringlan shopping centre for souvenirs and travel supplies"
       }
-    ]
+    ],
+    "titleEnglish": "Rest and a flexible Reykjavík day",
+    "routeEnglish": "Central Reykjavík",
+    "transportEnglish": "Walking and Reykjavík public transport",
+    "noteEnglish": "The preceding tour may return around 00:00–01:00. Keep the morning free for rest.",
+    "stayDetails": "Center Hotels Plaza\nAddress: Adalstraeti 4, 101 Reykjavík, Iceland\nPhone: +3545958550",
+    "transportDetails": "Guided Minibus Tour [2]"
   },
   {
     "id": 10,
@@ -456,24 +581,34 @@
       {
         "id": "10-70",
         "time": "行程",
-        "title": "乘接驳车前往蓝湖"
+        "title": "乘接驳车前往蓝湖",
+        "english": "Shuttle to the Blue Lagoon"
       },
       {
         "id": "10-71",
         "time": "行程",
-        "title": "蓝湖温泉"
+        "title": "蓝湖温泉",
+        "english": "Blue Lagoon visit"
       },
       {
         "id": "10-72",
         "time": "行程",
-        "title": "接驳前往凯夫拉维克机场"
+        "title": "接驳前往凯夫拉维克机场",
+        "english": "Transfer to Keflavík Airport"
       },
       {
         "id": "10-73",
         "time": "行程",
-        "title": "SK2596 · 凯夫拉维克 18:05 → 哥本哈根 22:05"
+        "title": "SK2596 · 凯夫拉维克 18:05 → 哥本哈根 22:05",
+        "english": "SK2596 · Keflavík 18:05 → Copenhagen 22:05"
       }
-    ]
+    ],
+    "titleEnglish": "Blue Lagoon and departure from Iceland",
+    "routeEnglish": "Reykjavík → Blue Lagoon → Keflavík → Copenhagen",
+    "transportEnglish": "Blue Lagoon shuttle · SK2596",
+    "noteEnglish": "SK2596 departs at 18:05 and arrives at 22:05. Leave sufficient time for the airport transfer and check-in.",
+    "stayDetails": "Comfort Hotel Copenhagen Airport\nAddress: Ellehammersvej Kastrup, 2770 Copenhagen, Denmark\nPhone: +4532445430",
+    "transportDetails": "Blue Lagoon shuttle bus"
   },
   {
     "id": 11,
@@ -487,39 +622,51 @@
       {
         "id": "11-74",
         "time": "行程",
-        "title": "哥本哈根市区购物与机动"
+        "title": "哥本哈根市区购物与机动",
+        "english": "Flexible morning in Copenhagen"
       },
       {
         "id": "11-75",
         "time": "行程",
-        "title": "斯楚格步行街"
+        "title": "斯楚格步行街",
+        "english": "Strøget pedestrian street"
       },
       {
         "id": "11-76",
         "time": "行程",
-        "title": "ILLUM"
+        "title": "ILLUM",
+        "english": "ILLUM"
       },
       {
         "id": "11-77",
         "time": "行程",
-        "title": "国王新广场"
+        "title": "国王新广场",
+        "english": "Kongens Nytorv"
       },
       {
         "id": "11-78",
         "time": "行程",
-        "title": "Magasin du Nord"
+        "title": "Magasin du Nord",
+        "english": "Magasin du Nord"
       },
       {
         "id": "11-79",
         "time": "行程",
-        "title": "LH4133 / VL2443 · 哥本哈根 18:20 → 慕尼黑 20:00"
+        "title": "LH4133 / VL2443 · 哥本哈根 18:20 → 慕尼黑 20:00",
+        "english": "LH4133 / VL2443 · Copenhagen 18:20 → Munich 20:00"
       },
       {
         "id": "11-80",
         "time": "行程",
-        "title": "慕尼黑中转 · 2小时15分"
+        "title": "慕尼黑中转 · 2小时15分",
+        "english": "Connection in Munich · 2 hours 15 minutes"
       }
-    ]
+    ],
+    "titleEnglish": "Copenhagen and the journey home",
+    "routeEnglish": "Copenhagen → Munich",
+    "transportEnglish": "Walking and public transport · LH4133 / VL2443 · LH726",
+    "noteEnglish": "LH4133 / VL2443 departs at 18:20 and arrives at 20:00. Connect to LH726 at 22:15; leave the Schengen Area in Munich.",
+    "transportDetails": "Walking / Copenhagen public transportation"
   },
   {
     "id": 12,
@@ -533,8 +680,14 @@
       {
         "id": "12-81",
         "time": "行程",
-        "title": "LH726 · 慕尼黑3月12日22:15 → 上海3月13日16:50"
+        "title": "LH726 · 慕尼黑3月12日22:15 → 上海3月13日16:50",
+        "english": "LH726 · Munich 22:15 (previous day) → Shanghai 16:50"
       }
-    ]
+    ],
+    "titleEnglish": "Arrival in Shanghai",
+    "routeEnglish": "Munich → Shanghai",
+    "transportEnglish": "LH726 international flight",
+    "noteEnglish": "LH726 departs Munich at 22:15 on the preceding day and arrives in Shanghai at 16:50.",
+    "transportDetails": "Flight: LH 726\nOperated by Lufthansa\nMUC 22:15 - PVG 16:50+1"
   }
 ]

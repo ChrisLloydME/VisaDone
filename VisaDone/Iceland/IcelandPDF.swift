@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 import PDFKit
+import CoreText
 import UniformTypeIdentifiers
 
 @MainActor enum IcelandPDF {
@@ -52,17 +53,33 @@ import UniformTypeIdentifiers
         if let data = application.importedBooking, let document = PDFDocument(data:data) { return document }
         return document(title:"",text:bookingText)
     }
-    static func itinerary(_ application:IcelandApplicationState) -> PDFDocument {
-        let days = application.days.map { day in
-            let date = Calendar.current.date(byAdding:.day,value:day.id,to:application.startDate)!
-            return "\(date.formatted(.dateTime.year().month().day()))  |  \(day.title)\n\(day.route)\n交通：\(day.transport)\n住宿：\(day.stay)\n状态：\(day.confirmed ? "已确认预订" : "计划中，尚未预订")\n\(day.activities.map { $0.title }.joined(separator:"\n"))\n\(day.note)\n"
-        }.joined(separator:"\n")
-        return document(title:"ICELAND MARCH JOURNEY · 2027",text:"\(application.dateSummary) · 3 travelers\nMUC–CPH: \(application.flightNumber)\n\n"+days)
+    static func itinerary(_ application:IcelandApplicationState,language:IcelandItineraryLanguage?=nil,days:[IcelandDay]?=nil) -> PDFDocument {
+        let text=IcelandItineraryDocument.text(application,language:language ?? application.itineraryLanguage,days:days)
+        let paragraph=NSMutableParagraphStyle();paragraph.lineSpacing=4;paragraph.paragraphSpacing=5
+        let attributed=NSAttributedString(string:text,attributes:[.font:NSFont.systemFont(ofSize:10),.foregroundColor:NSColor.black,.paragraphStyle:paragraph])
+        let data=NSMutableData()
+        var media=CGRect(x:0,y:0,width:595,height:842)
+        guard let consumer=CGDataConsumer(data:data as CFMutableData),let context=CGContext(consumer:consumer,mediaBox:&media,nil) else {return PDFDocument()}
+        let setter=CTFramesetterCreateWithAttributedString(attributed)
+        var offset=0
+        while offset<attributed.length {
+            context.beginPDFPage(nil)
+            context.setFillColor(CGColor(gray:1,alpha:1));context.fill(media)
+            let path=CGPath(rect:CGRect(x:44,y:42,width:507,height:758),transform:nil)
+            let frame=CTFramesetterCreateFrame(setter,CFRange(location:offset,length:0),path,nil)
+            CTFrameDraw(frame,context)
+            let visible=CTFrameGetVisibleStringRange(frame)
+            context.endPDFPage()
+            guard visible.length>0 else {break}
+            offset+=visible.length
+        }
+        context.closePDF()
+        return PDFDocument(data:data as Data) ?? PDFDocument()
     }
-    static func exportItinerary(_ application:IcelandApplicationState) {
-        let panel = NSSavePanel();panel.nameFieldStringValue = "冰岛三月行程.pdf";panel.allowedContentTypes = [.pdf]
-        guard panel.runModal() == .OK, let url = panel.url else { return }
-        itinerary(application).write(to:url)
+    static func exportItinerary(_ application:IcelandApplicationState,language:IcelandItineraryLanguage?=nil,days:[IcelandDay]?=nil) {
+        let panel=NSSavePanel();panel.nameFieldStringValue="冰岛完整行程.pdf";panel.allowedContentTypes=[.pdf]
+        guard panel.runModal() == .OK,let url=panel.url else {return}
+        itinerary(application,language:language,days:days).write(to:url)
     }
     static func exportChecklist(_ application:IcelandApplicationState) {
         let text = application.activeDocuments.map { "\($0.status == .ready ? "☑" : "☐")  \($0.title) · \($0.requirement.rawValue)\n   \($0.summary)" }.joined(separator:"\n\n")

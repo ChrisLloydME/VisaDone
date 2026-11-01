@@ -18,7 +18,7 @@ struct IcelandOfficialReference: Identifiable {
         case "accommodation": .init(id:id,title:"第7项 · 住宿证明",page:0,start:"7. Proof of accommodation",end:"8. Chinese Identity")
         case "identity": .init(id:id,title:"第8–9项 · 身份证与户口簿",page:0,start:"8. Chinese Identity",end:"10. Proof of sufficient")
         case "bank": .init(id:id,title:"第10项 · 资金证明",page:0,start:"10. Proof of sufficient",end:"11. Proof of employment")
-        case "sponsor": .init(id:id,title:"第11项 · 身份与资金来源",page:0,start:"11. Proof of employment",end:"12. For volunteer")
+        case "sponsor", "employment": .init(id:id,title:"第11项 · 身份与资金来源",page:0,start:"11. Proof of employment",end:"12. For volunteer")
         default:nil
         }
     }
@@ -60,23 +60,38 @@ struct IcelandOfficialExcerpt: View {
     @State private var expanded=false
     @Environment(\.colorScheme) private var scheme
     var body: some View {
-        VStack(alignment:.leading,spacing:8) {
-            Button { expanded=true } label: {
-                Label("官方原文 · " + reference.title,systemImage:"building.columns")
-                    .font(.callout.weight(.medium)).foregroundStyle(IcelandSourceColor.official(scheme))
-            }.buttonStyle(.plain)
-            if let passage=source.passage(reference) {
-                Text(passage).font(.body).lineSpacing(4)
-                    .foregroundStyle(IcelandSourceColor.official(scheme))
-                    .textSelection(.enabled).fixedSize(horizontal:false,vertical:true)
-                    .frame(maxWidth:.infinity,alignment:.leading)
-            } else if source.document != nil {
-                Button("阅读完整官方段落",systemImage:"doc.text") { expanded=true }
-                    .buttonStyle(.link)
-            } else if source.error {
-                HStack { Text("未能载入原始 PDF").foregroundStyle(.secondary);Button("重试") { Task { await source.load() } };Link("打开官方原文",destination:IcelandApplicationState.checklistURL) }
-            } else { ProgressView("载入官方原文…").controlSize(.small) }
+        HStack(alignment:.top,spacing:20) {
+            Button {expanded=true} label: {
+                VStack(alignment:.leading,spacing:8) {
+                    Label {
+                        Text("官方原文").foregroundStyle(.secondary)
+                    } icon: {
+                        Image(systemName:"building.columns").foregroundStyle(IcelandSourceColor.official(scheme))
+                    }.font(.callout.weight(.medium))
+                    Text("VFS Global").font(.caption).foregroundStyle(.secondary)
+                    Text(reference.title).font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+                }.frame(width:112,alignment:.leading).contentShape(Rectangle())
+            }.buttonStyle(.plain).help("打开完整官方 PDF")
+            VStack(alignment:.leading,spacing:14) {
+                if let passage=source.passage(reference) {
+                    ForEach(Array(paragraphs(passage).enumerated()),id:\.offset) { _,paragraph in
+                        Text(paragraph).font(.system(size:13,weight:.regular)).lineSpacing(5)
+                            .foregroundStyle(.primary).textSelection(.enabled)
+                            .fixedSize(horizontal:false,vertical:true)
+                            .frame(maxWidth:.infinity,alignment:.leading)
+                    }
+                } else if source.document != nil {
+                    Button("阅读完整官方段落",systemImage:"doc.text") {expanded=true}.buttonStyle(.link)
+                } else if source.error {
+                    Text("未能载入原始 PDF").foregroundStyle(.secondary)
+                    HStack {
+                        Button("重试") {Task {await source.load()}}
+                        Link("打开官方原文",destination:IcelandApplicationState.checklistURL)
+                    }
+                } else {ProgressView("载入官方原文…").controlSize(.small)}
+            }.frame(maxWidth:.infinity,alignment:.leading)
         }
+        .padding(.horizontal,8)
         .task { await source.load() }
         .sheet(isPresented:$expanded) {
             VStack(spacing:0) {
@@ -91,5 +106,22 @@ struct IcelandOfficialExcerpt: View {
             }.frame(width:870,height:720)
         }
     }
+    // Reflow PDF line wraps while retaining every sentence and language block.
+    private func paragraphs(_ passage:String) -> [String] {
+        var blocks:[String]=[]
+        var previousChinese:Bool?
+        for raw in passage.components(separatedBy:.newlines) {
+            let line=raw.trimmingCharacters(in:.whitespacesAndNewlines)
+            guard !line.isEmpty else {previousChinese=nil;continue}
+            let chinese=line.unicodeScalars.contains { (0x4E00...0x9FFF).contains(Int($0.value)) }
+            let subheading=line.hasPrefix("•") || line.hasPrefix("*") || ["Employed:","Retired:","Unemployed adults:"].contains(where:line.hasPrefix)
+            if previousChinese == chinese,!subheading,!blocks.isEmpty {
+                blocks[blocks.count-1]+=(chinese ? "" : " ")+line
+            } else {blocks.append(line)}
+            previousChinese=chinese
+        }
+        return blocks
+    }
+
 }
 

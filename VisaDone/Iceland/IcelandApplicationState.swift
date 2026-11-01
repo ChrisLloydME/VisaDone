@@ -47,6 +47,7 @@ struct IcelandActivity: Identifiable, Equatable, Decodable {
     let id: String
     var time: String
     var title: String
+    var english: String? = nil
 }
 struct IcelandDay: Identifiable, Decodable {
     let id: Int
@@ -57,6 +58,12 @@ struct IcelandDay: Identifiable, Decodable {
     var confirmed: Bool
     var note: String
     var activities: [IcelandActivity]
+    var titleEnglish: String? = nil
+    var routeEnglish: String? = nil
+    var transportEnglish: String? = nil
+    var noteEnglish: String? = nil
+    var stayDetails: String? = nil
+    var transportDetails: String? = nil
 }
 struct IcelandCase: Identifiable {
     let id: Int
@@ -77,8 +84,23 @@ enum IcelandSheet: String, Identifiable {
     var traveler: IcelandTraveler = .student
     var sheet: IcelandSheet?
     var applicationCity = "上海"
-    var background = "在读大学生"
-    var funding = "母亲资助"
+    var visaCategory = "旅游 · 申根 C 类"
+    var applicantName = ""
+    var familyName = ""
+    var givenName = ""
+    var passportNumber = ""
+    var nationality = "中国"
+    var residence = "中国大陆"
+    var residenceCity = ""
+    var email = ""
+    var birthDate = IcelandApplicationState.date(1998,6,15)
+    var background = "在职人员"
+    var funding = "自行承担"
+    var travelParty = "独自出行"
+    var travelerCount = 1
+    static let visaCategories = ["旅游 · 申根 C 类","商务 · 申根 C 类","探亲访友 · 申根 C 类","文化或体育活动 · 申根 C 类"]
+    static let applicationCities = ["北京","上海","广州","杭州","南京","福州","西安","武汉","成都","重庆"]
+    var applicationTitle:String {"冰岛" + (visaCategory.components(separatedBy:" · ").first ?? "") + "签证"}
     var startDate = IcelandApplicationState.date(2027,3,1)
     var endDate = IcelandApplicationState.date(2027,3,13)
     var selectedDocumentID: String? = "accommodation"
@@ -101,6 +123,8 @@ enum IcelandSheet: String, Identifiable {
     var flightChangeDetected = false
     var flightSynced = false
     var appliedWinterAdvice = false
+    var itineraryAssistant = IcelandItineraryAssistant()
+    var itineraryLanguage: IcelandItineraryLanguage = .bilingual
     var itineraryGenerated = false
     var itineraryPublic = false
     var reviewDecisions: [Int: String] = [:]
@@ -124,7 +148,9 @@ enum IcelandSheet: String, Identifiable {
     static let vfsURL = URL(string: "https://visa.vfsglobal.com/chn/en/isl/")!
     var activeDocuments: [IcelandDocument] {
         documents.filter { doc in
-            if funding == "自行承担", ["sponsor", "relationship"].contains(doc.id) { return false }
+            if funding != "家人资助", ["sponsor", "relationship"].contains(doc.id) { return false }
+            if background != "在读学生",doc.id == "student" {return false}
+            if background == "在读学生",doc.id == "employment" {return false}
             return true
         }
     }
@@ -171,12 +197,36 @@ enum IcelandSheet: String, Identifiable {
             }
         }
     }
+    func shiftItineraryReferences(from previous:Date,to next:Date) {
+        let calendar=Calendar.current
+        let offset=calendar.dateComponents([.day],from:previous,to:next).day ?? 0
+        guard offset != 0,let regex=try? NSRegularExpression(pattern:"([0-9]{1,2})\\s*月\\s*([0-9]{1,2})\\s*日") else {return}
+        func shifted(_ text:String) -> String {
+            let original=text as NSString
+            let result=NSMutableString(string:text)
+            for match in regex.matches(in:text,range:NSRange(location:0,length:original.length)).reversed() {
+                let month=Int(original.substring(with:match.range(at:1))) ?? 3
+                let day=Int(original.substring(with:match.range(at:2))) ?? 1
+                let date=Self.date(calendar.component(.year,from:previous),month,day)
+                let updated=calendar.date(byAdding:.day,value:offset,to:date)!
+                result.replaceCharacters(in:match.range,with:"\(calendar.component(.month,from:updated))月\(calendar.component(.day,from:updated))日")
+            }
+            return result as String
+        }
+        for i in days.indices {
+            days[i].note=shifted(days[i].note)
+            for a in days[i].activities.indices {days[i].activities[a].title=shifted(days[i].activities[a].title)}
+        }
+    }
     func syncFlight() {
         flightNumber = "LH2440"; flightSynced = true
         for index in days.indices {
             days[index].transport = days[index].transport.replacingOccurrences(of:"LH4122 / VL2440",with:"LH2440")
+            days[index].transportDetails=days[index].transportDetails?.replacingOccurrences(of:"LH4122 / VL2440",with:"LH2440")
+            days[index].transportEnglish=days[index].transportEnglish?.replacingOccurrences(of:"LH4122 / VL2440",with:"LH2440")
             days[index].note = days[index].note.replacingOccurrences(of:"LH4122 / VL2440 为原草稿中的航班标识。",with:"航班标识已更新为 LH2440。")
             for activity in days[index].activities.indices {
+                days[index].activities[activity].english=days[index].activities[activity].english?.replacingOccurrences(of:"LH4122 / VL2440",with:"LH2440")
                 days[index].activities[activity].title = days[index].activities[activity].title.replacingOccurrences(of:"LH4122 / VL2440",with:"LH2440")
             }
         }
@@ -189,11 +239,15 @@ enum IcelandSheet: String, Identifiable {
             if let activity = days[index].activities.first(where:{$0.title.contains("塞里雅兰")}),
                let later = days.firstIndex(where:{$0.id == 7}) {
                 days[index].activities.removeAll { $0.id == activity.id }
-                days[later].activities.insert(.init(id:activity.id,time:"沿途",title:activity.title),at:max(0,days[later].activities.count-1))
+                days[later].activities.insert(.init(id:activity.id,time:"沿途",title:activity.title,english:activity.english),at:max(0,days[later].activities.count-1))
             }
+            days[index].noteEnglish="Keep three main stops on the Golden Circle day. Confirm the winter tour sequence with the operator and adapt to the weather."
             appliedWinterAdvice = true
         }
-        if id == 1, let index = days.firstIndex(where: { $0.id == 6 }) { days[index].note = "为冰洞活动预留天气机动时间，取消时返回住宿地。" }
+        if id == 1, let index = days.firstIndex(where: { $0.id == 6 }) {
+            days[index].note = "为冰洞活动预留天气机动时间，取消时返回住宿地。"
+            days[index].noteEnglish="Allow flexibility for the ice cave excursion; return to the accommodation if it is cancelled due to weather."
+        }
         if id == 2 { setStatus("insurance", .review) }
     }
     func recordContribution(hasReturn: Bool) {
@@ -221,8 +275,15 @@ enum IcelandSheet: String, Identifiable {
         .init(id:"insurance",title:"申根旅行医疗保险",english:"Travel medical insurance",group:.insurance,requirement:.official,status:.review,summary:"核对申根全程、医疗保障和不低于 30,000 欧元的保额；留意保单时区。",files:["travel-insurance.pdf"]),
         .init(id:"bank",title:"本人银行流水",english:"Personal bank statements",group:.finance,requirement:.official,status:.progress,summary:"整理连续近期银行对账单，必要时补充资金来源说明。",files:["bank-statement-sample.pdf"]),
         .init(id:"student",title:"在读与假期证明",english:"Student status",group:.finance,requirement:.conditional,status:.ready,summary:"成年学生的个案材料：在读证明、学籍报告、校历和准假情况分别核对。",files:["enrollment-certificate.pdf","chsi-report.pdf","academic-calendar.pdf"]),
-        .init(id:"sponsor",title:"母亲资助材料",english:"Financial sponsorship",group:.finance,requirement:.conditional,status:.progress,summary:"按实际资助关系整理资助人收入、流水、身份文件和资助声明。",files:["sponsor-employment.pdf","sponsor-identity.pdf"]),
+        .init(id:"employment",title:"个人身份与收入证明",english:"Occupation and income",group:.finance,requirement:.conditional,status:.progress,summary:"根据个人职业情况整理相应身份与收入资料。",files:[]),
+        .init(id:"sponsor",title:"资助相关材料",english:"Financial sponsorship",group:.finance,requirement:.conditional,status:.progress,summary:"按实际资助关系整理资助人收入、流水、身份文件和资助声明。",files:["sponsor-employment.pdf","sponsor-identity.pdf"]),
         .init(id:"relationship",title:"亲属关系辅助证明",english:"Relationship evidence",group:.extra,requirement:.suggested,status:.ready,summary:"本案例用于解释资助关系；不将未成年人条款直接套用于成年申请人。",files:["relationship-evidence.pdf"]),
+        .init(id:"marriage",title:"结婚证与婚姻关系材料",english:"Marriage and family ties",group:.extra,requirement:.suggested,status:.notStarted,summary:"已婚申请人可按情况补充结婚证复印件，说明家庭关系；涉及配偶资助时与对应资金资料一起整理。",files:["marriage-certificate-copy.pdf"]),
+        .init(id:"property",title:"房产与长期居住资料",english:"Property and residence",group:.extra,requirement:.suggested,status:.progress,summary:"按情况整理房产证或不动产权证复印件，补充说明国内资产与长期居住情况。",files:["property-certificate-copy.pdf"]),
+        .init(id:"social-insurance",title:"社保缴纳记录",english:"Social insurance contributions",group:.extra,requirement:.suggested,status:.notStarted,summary:"整理近期社保缴纳记录，与工作单位、在职情况及收入资料对应。",files:["social-insurance-record.pdf"]),
+        .init(id:"return-work",title:"返岗与准假说明",english:"Employment and return-to-work arrangements",group:.extra,requirement:.suggested,status:.progress,summary:"在准假说明中列明旅行时间、休假安排与预计返岗时间，补充说明国内工作联系。",files:["leave-and-return-to-work.pdf"]),
+        .init(id:"passport-spares",title:"护照备用复印件与领取资料",english:"Spare passport copies and collection",group:.extra,requirement:.suggested,status:.progress,summary:"额外准备护照信息页复印件，与递交收据、领取通知分开留存，方便后续核对。",files:["passport-biodata-spares.pdf", "passport-collection-receipt.pdf"]),
+        .init(id:"identity-spares",title:"身份证、户口簿备用复印件",english:"Spare identity and household copies",group:.extra,requirement:.suggested,status:.ready,summary:"保留身份证正反面、户口簿户主页及本人页等备用复印件，正式递交份数仍按官方清单核对。",files:["identity-card-spares.pdf", "hukou-spares.pdf"]),
         .init(id:"explanation",title:"补充说明信",english:"Supporting explanation",group:.extra,requirement:.suggested,status:.progress,summary:"简要说明在读、费用承担与特殊资金变动，保留可核对的事实。",files:[])
     ]
     static let dayFixtures: [IcelandDay] = {

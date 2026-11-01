@@ -34,36 +34,62 @@ struct IcelandDocumentsView: View {
                     ForEach(["全部材料","待核对","准备中","已就绪"],id:\.self) { Text($0).tag($0) }
                 }.labelsHidden().fixedSize()
                 Spacer()
-                Label("官方陈述",systemImage:"building.columns").foregroundStyle(IcelandSourceColor.official(scheme))
-                Label("AI 整理 · 点击溯源",systemImage:"sparkles").foregroundStyle(IcelandSourceColor.algorithm(scheme))
+                Label("官方原文",systemImage:"building.columns").foregroundStyle(.secondary)
+                Label("AI 补充",systemImage:"sparkles").foregroundStyle(.secondary)
             }.font(.callout).padding(.horizontal,20).padding(.vertical,12)
             Divider()
-            List {
+            Form {
                 if !priorities.isEmpty {
-                    Section("本次优先整理") { ForEach(priorities) { row($0) } }
+                    ForEach(Array(priorities.enumerated()),id:\.element.id) { index,doc in
+                        materialSection(doc,group:index == 0 ? "本次优先整理" : nil)
+                    }
                 }
                 ForEach(IcelandDocumentGroup.allCases) { group in
                     let entries=visible.filter { $0.group == group && !priorities.map(\.id).contains($0.id) }
-                    if !entries.isEmpty { Section(group.rawValue) { ForEach(entries) { row($0) } } }
+                    ForEach(Array(entries.enumerated()),id:\.element.id) { index,doc in
+                        materialSection(doc,group:index == 0 ? group.rawValue : nil)
+                    }
                 }
-            }.listStyle(.inset).scrollContentBackground(.hidden)
+            }
+            .formStyle(.grouped).scrollContentBackground(.hidden)
+            .frame(maxWidth:1040).frame(maxWidth:.infinity)
         }
     }
-    private func row(_ doc:IcelandDocument) -> some View {
-        VStack(alignment:.leading,spacing:11) {
-            HStack {
-                Button { application.openDocument(doc.id) } label: {
-                    HStack(spacing:8) { Text(doc.title).font(.headline);Image(systemName:"chevron.right").font(.caption).foregroundStyle(.secondary) }
-                }.buttonStyle(.plain)
-                Spacer()
-                Label(doc.status.rawValue,systemImage:doc.status.symbol).font(.callout).foregroundStyle(.secondary)
+    private func materialSection(_ doc:IcelandDocument,group:String?) -> some View {
+        Section {
+            if let reference=IcelandOfficialReference.forDocument(doc.id) {
+                IcelandOfficialExcerpt(reference:reference).padding(.vertical,12)
             }
-            if let reference=IcelandOfficialReference.forDocument(doc.id) { IcelandOfficialExcerpt(reference:reference) }
             if let insight=IcelandCommunityInsight.forDocument(doc.id) {
                 IcelandInsightButton(insight:insight,posts:posts,application:application,openPost:openPost)
+                    .padding(.vertical,8)
             }
-        }.padding(.vertical,10)
+            if IcelandOfficialReference.forDocument(doc.id) == nil && IcelandCommunityInsight.forDocument(doc.id) == nil {
+                Text(doc.summary).font(.body).lineSpacing(5).padding(.vertical,12)
+            }
+        } header: {
+            VStack(alignment:.leading,spacing:12) {
+                if let group {
+                    Text(group).font(.callout).foregroundStyle(.secondary).padding(.top,8)
+                    if group == IcelandDocumentGroup.extra.rawValue {
+                        Text("按个人家庭、工作与居住情况选择准备").font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+                HStack(alignment:.firstTextBaseline) {
+                    Button {application.openDocument(doc.id)} label: {
+                        HStack(spacing:8) {
+                            Text(doc.title).font(.system(size:15,weight:.semibold))
+                            Image(systemName:"chevron.right").font(.caption.weight(.medium)).foregroundStyle(.secondary)
+                        }
+                    }.buttonStyle(.plain)
+                    Spacer(minLength:16)
+                    Label(doc.status.rawValue,systemImage:doc.status.symbol)
+                        .font(.callout).foregroundStyle(.secondary)
+                }.foregroundStyle(.primary).textCase(nil).padding(.bottom,3)
+            }
+        }
     }
+
     private var detail: some View {
         Form {
             Section {

@@ -23,63 +23,43 @@ struct IcelandApplicationSheet: View {
 
 struct IcelandCreateSheet: View {
     @Bindable var application:IcelandApplicationState
-    @State private var step = 0
-    private let titles = ["申请人与旅行","同行与费用","确认这次申请"]
     var body: some View {
-        VStack(alignment:.leading,spacing:20) {
-            IcelandSheetHeader(title:titles[step],subtitle:"冰岛短期旅游签证 · 第 \(step+1) 步，共 3 步")
-            ProgressView(value:Double(step+1),total:3).controlSize(.small)
+        VStack(alignment:.leading,spacing:18) {
+            IcelandSheetHeader(title:application.isCreated ? "编辑申请信息" : "新建冰岛申请",subtitle:"填写成年申请人的个人信息与旅行安排")
             Form {
-                if step == 0 {
-                    Section("申请人") {
-                        LabeledContent("护照") { Text("中国大陆普通护照") }
-                        LabeledContent("年龄") { Text("成年人 · 18 岁及以上") }
-                        LabeledContent("居住地") { Text("中国大陆") }
-                        TextField("申请城市",text:$application.applicationCity)
-                        LabeledContent("申请类别") { Text("短期旅游 · Type C") }
-                    }
-                    Section("预计旅行日期") {
-                        DatePicker("出发",selection:$application.startDate,displayedComponents:[.date])
-                        DatePicker("返回",selection:$application.endDate,in:application.startDate...,displayedComponents:[.date])
-                    }
-                } else if step == 1 {
-                    Section("个人情况") {
-                        LabeledContent("身份") { Text("成年在读大学生") }
-                        LabeledContent("同行人") { Text("母亲、父亲 · 共 3 人") }
-                        Picker("费用承担",selection:$application.funding) {
-                            Text("母亲资助").tag("母亲资助")
-                            Text("自行承担").tag("自行承担")
-                        }
-                        LabeledContent("出行方式") { Text("国际航班 + 当地小团，不自驾") }
-                    }
-                    Section {
-                        Text("个人申请表与资金材料分别管理，三人共享航班、住宿与旅行行程。未成年人监护材料不会加入这份成年学生清单。")
-                            .font(.system(size:12)).foregroundStyle(.secondary)
-                    }
-                } else {
-                    Section("这次申请") {
-                        LabeledContent("目的地") { Text("冰岛 · 申根短期旅游") }
-                        LabeledContent("递交地") { Text(application.applicationCity) }
-                        LabeledContent("个人情况") { Text("成年学生 · \(application.funding)") }
-                        LabeledContent("日期") { Text(application.dateSummary) }
-                        LabeledContent("同行") { Text("父母与本人，3 人") }
-                    }
-                    Section("创建后") {
-                        Text("根据此案例整理材料，保留官方要求、适用条件和社区建议之间的区别。行程将载入提供的旅行草稿。")
-                            .font(.system(size:12)).foregroundStyle(.secondary)
-                    }
+                Section("签证与递交") {IcelandVisaSelectionFields(application:application)}
+                Section("个人信息") {
+                    TextField("姓名",text:$application.applicantName,prompt:Text("中文姓名"))
+                    TextField("护照姓氏",text:$application.familyName,prompt:Text("Surname / Family name"))
+                    TextField("护照名字",text:$application.givenName,prompt:Text("Given name(s)"))
+                    DatePicker("出生日期",selection:$application.birthDate,in:...Date(),displayedComponents:.date)
+                    Picker("国籍",selection:$application.nationality) {
+                        ForEach(["中国","英国","美国","其他"],id:\.self) {Text($0).tag($0)}
+                    }.pickerStyle(.menu)
+                    TextField("护照号码",text:$application.passportNumber,prompt:Text("填写护照号码"))
+                }
+                Section("居住与联系") {
+                    Picker("居住地",selection:$application.residence) {
+                        ForEach(["中国大陆","中国香港","中国澳门","其他国家或地区"],id:\.self) {Text($0).tag($0)}
+                    }.pickerStyle(.menu)
+                    TextField("居住城市",text:$application.residenceCity,prompt:Text("填写城市"))
+                    TextField("联系邮箱",text:$application.email,prompt:Text("name@example.com"))
+                }
+                Section("旅行安排") {
+                    DatePicker("出发日期",selection:$application.startDate,displayedComponents:.date)
+                    DatePicker("返回日期",selection:$application.endDate,in:application.startDate...,displayedComponents:.date)
+                    IcelandApplicantPreferences(application:application)
                 }
             }.formStyle(.grouped).scrollContentBackground(.hidden)
             HStack {
-                Button("取消") { application.sheet = nil }.keyboardShortcut(.cancelAction)
+                Button("取消") {application.sheet=nil}.keyboardShortcut(.cancelAction)
                 Spacer()
-                if step > 0 { Button("上一步") { step -= 1 } }
-                Button(step == 2 ? "创建申请" : "继续") {
-                    if step == 2 { application.create() } else { step += 1 }
+                Button(application.isCreated ? "保存" : "创建申请") {
+                    if application.isCreated {application.sheet=nil} else {application.create()}
                 }.buttonStyle(.borderedProminent).keyboardShortcut(.defaultAction)
-                .disabled(application.applicationCity.trimmingCharacters(in:.whitespaces).isEmpty)
             }
-        }.padding(26).frame(width:650,height:580)
+        }.padding(24).frame(width:700,height:740)
+        .onChange(of:application.startDate) {_,value in if application.endDate<value {application.endDate=value} }
     }
 }
 
@@ -103,7 +83,7 @@ struct IcelandBookingCheckSheet: View {
                 IcelandPDFView(document:IcelandPDF.booking(application),highlight:highlight).frame(minWidth:450,maxWidth:.infinity)
                 Form {
                     Section("关联申请") {
-                        LabeledContent("同行人数") { Text("3 人") }
+                        LabeledContent("出行人数") { Text("\(application.travelerCount) 人") }
                         LabeledContent("住宿") { Text("雷克雅未克") }
                     }
                     if application.checkingBooking {
@@ -128,7 +108,7 @@ struct IcelandBookingCheckSheet: View {
                             if application.importedBooking == nil {
                                 LabeledContent("住宿信息") { Text("已找到") }
                                 LabeledContent("日期") { Text("与该段行程一致") }
-                                LabeledContent("住客") { Text("显示 1 人，共 3 人同行") }
+                                LabeledContent("住客") { Text("显示 1 人，行程共 \(application.travelerCount) 人") }
                             } else { Text("已导入 PDF，字段需人工核对。") }
                         }
                         Section("社区建议") {

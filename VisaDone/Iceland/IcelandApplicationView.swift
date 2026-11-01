@@ -36,8 +36,8 @@ struct IcelandApplicationView: View {
             HStack(spacing:11) {
                 Image("visaFlagIS").resizable().scaledToFill().frame(width:34,height:34).clipShape(Circle())
                 VStack(alignment:.leading,spacing:4) {
-                    Text("冰岛旅游签证").font(.system(size:21,weight:.semibold))
-                    Text(application.dateSummary).font(.caption).foregroundStyle(.secondary)
+                    Text(application.isCreated ? application.applicationTitle : "冰岛 Iceland").font(.system(size:21,weight:.semibold))
+                    Text(application.isCreated ? application.dateSummary : "北欧 · 申根区").font(.caption).foregroundStyle(.secondary)
                 }
             }.padding(22)
             Divider().padding(.horizontal,18)
@@ -48,12 +48,7 @@ struct IcelandApplicationView: View {
                     }
                 }.listStyle(.inset).scrollContentBackground(.hidden).padding(.horizontal,8).padding(.top,8)
             } else {
-                VStack(alignment:.leading,spacing:16) {
-                    Label("申请介绍",systemImage:"info.circle").font(.headline)
-                    Text("申根短期旅游 · 上海递交").foregroundStyle(.secondary)
-                    Text("成年学生与父母同行，主要费用由母亲承担。")
-                }.padding(22)
-                Spacer()
+                IcelandDestinationIntroduction()
             }
             VStack(alignment:.leading,spacing:12) {
                 if application.isCreated {
@@ -78,16 +73,15 @@ struct IcelandApplicationView: View {
                 }.frame(height:165)
             }
             Section("冰岛 Iceland") {
-                LabeledContent("签证类别") { Text("申根短期旅游 · C 类") }
-                LabeledContent("申请地点") { Text("中国 · 上海") }
+                IcelandVisaSelectionFields(application:application)
                 LabeledContent("递交渠道") { Text("VFS Global") }
                 LabeledContent("处理机构") { Text("冰岛驻北京大使馆") }
             }
             Section("新申请") {
-                LabeledContent("申请人") { Text("成年在读学生") }
-                LabeledContent("同行") { Text("父母与本人 · 3 人") }
-                LabeledContent("费用承担") { Text("母亲资助") }
-                Button("开始申请…") { application.sheet = .create }.buttonStyle(.borderedProminent)
+                LabeledContent("申请对象") { Text("成年申请人") }
+                TextField("姓名",text:$application.applicantName,prompt:Text("填写姓名"))
+                IcelandApplicantPreferences(application:application)
+                Button("填写申请信息…") { application.sheet = .create }.buttonStyle(.borderedProminent)
             }
             Section("官方资料") {
                 IcelandResource("冰岛政府 · 签证申请",url:IcelandApplicationState.governmentURL)
@@ -106,7 +100,7 @@ struct IcelandOverviewView: View {
     var body: some View {
         Form {
             Section("申请总览") {
-                LabeledContent("目的地") { Text("冰岛 · 短期旅游") }
+                LabeledContent("目的地") { Text("冰岛 · " + application.visaCategory) }
                 LabeledContent("旅行日期") { Text(application.dateSummary) }
                 LabeledContent("递交地点") { Text(application.applicationCity) }
                 LabeledContent("状态") { Text(application.completed ? "已完成" : (application.submitted ? application.timelineStatus : "材料准备中")) }
@@ -116,14 +110,16 @@ struct IcelandOverviewView: View {
                     HStack { ProgressView(value:application.readiness).frame(width:140);Text("\(application.readyCount) / \(application.activeDocuments.count)").monospacedDigit() }
                 }
                 LabeledContent("住宿预订证明") { Button("核对住客信息") { application.openDocument("accommodation") } }
-                LabeledContent("母亲资助材料") { Button("继续整理") { application.openDocument("sponsor") } }
+                LabeledContent("资金与资助材料") { Button("继续整理") { application.openDocument(application.funding == "自行承担" ? "bank" : "sponsor") } }
                 LabeledContent("旅行医疗保险") { Button("核对覆盖区间") { application.openDocument("insurance") } }
             }
-            Section("同行申请") {
-                Picker("当前申请人",selection:$application.traveler) { ForEach(IcelandTraveler.allCases) { Text($0.rawValue).tag($0) } }
-                LabeledContent("个人情况") { Text(application.traveler == .student ? "成年在读学生" : (application.traveler == .mother ? "母亲 · 资助人" : "父亲 · 同行人")) }
-                LabeledContent("费用承担") { Text(application.funding) }
-                LabeledContent("共享资料") { Text("航班、住宿与行程") }
+            Section("申请人信息") {
+                LabeledContent("姓名") {Text(application.applicantName.isEmpty ? "未填写" : application.applicantName)}
+                LabeledContent("个人情况") {Text(application.background)}
+                LabeledContent("国籍与居住地") {Text(application.nationality + " · " + application.residence)}
+                LabeledContent("同行安排") {Text(application.travelParty + " · \(application.travelerCount) 人")}
+                LabeledContent("费用承担") {Text(application.funding)}
+                Button("编辑申请信息…") {application.sheet = .create}
             }
             Section("旅行与递交") {
                 LabeledContent("行程草稿") { Button("查看 \(application.days.count) 天行程") { application.section = .itinerary } }
