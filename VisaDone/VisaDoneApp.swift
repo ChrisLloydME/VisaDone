@@ -12,12 +12,15 @@ import SwiftUI
 struct VisaDoneApp: App {
     @NSApplicationDelegateAdaptor(VisaDoneAppDelegate.self) private var appDelegate
     @State private var model = VisaDoneModel()
+    @State private var screenshotAppearance = ScreenshotAppearanceController.shared
 
     var body: some Scene {
         WindowGroup("VisaDone") {
             ContentView(model: model)
                 .frame(minWidth: 980, minHeight: 660)
                 .environment(\.locale, Locale(identifier: "zh_Hans_CN"))
+                .preferredColorScheme(screenshotAppearance.mode.colorScheme)
+                .onAppear {screenshotAppearance.showAtLaunch()}
                 .background {
                     WindowSidebarMaterial()
                         .ignoresSafeArea()
@@ -37,6 +40,11 @@ struct VisaDoneApp: App {
                 .disabled(model.section != .discovery)
             }
 
+            CommandGroup(after:.windowArrangement) {
+                Button("截图外观…") {screenshotAppearance.show()}
+                    .keyboardShortcut("a",modifiers:[.command,.option])
+            }
+
             CommandMenu("前往") {
                 ForEach(AppSection.allCases) { section in
                     Button(section.title) {
@@ -50,6 +58,19 @@ struct VisaDoneApp: App {
 }
 
 final class VisaDoneAppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification:Notification) {
+        NotificationCenter.default.addObserver(self,selector:#selector(mainWindowWillClose(_:)),name:NSWindow.willCloseNotification,object:nil)
+    }
+    @objc private func mainWindowWillClose(_ notification:Notification) {
+        guard let window=notification.object as? NSWindow,!(window is NSPanel),window.canBecomeMain else {return}
+        DispatchQueue.main.async {
+            let hasMainWindow=NSApp.windows.contains {$0.isVisible && !($0 is NSPanel) && $0.canBecomeMain}
+            if !hasMainWindow {
+                ScreenshotAppearanceController.shared.close()
+                NSApp.terminate(nil)
+            }
+        }
+    }
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         true
     }
