@@ -55,19 +55,14 @@ struct ApplicationOrderProgress: View {
 // The native macOS sheet is reserved for opening the preparation checklist.
 struct ApplicationProgressDrawer: View {
     @Bindable var application: OngoingVisaApplication
-    var readyCount: Int? = nil
-    var totalCount: Int? = nil
     var nextAction: String? = nil
     var overallProgress: Double? = nil
     var activeStage: Int = 0
-    var phaseTitle: String = "材料准备中"
     let onContinue: () -> Void
-    private var currentReady: Int { readyCount ?? application.readyCount }
-    private var currentTotal: Int { totalCount ?? application.items.count }
     @State private var expanded = true
     @State private var dragHeight: CGFloat?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private let expandedHeight: CGFloat = 270
+    private let expandedHeight: CGFloat = 350
     private let collapsedHeight: CGFloat = 64
     private var restingHeight: CGFloat { expanded ? expandedHeight : collapsedHeight }
     private var height: CGFloat { dragHeight ?? restingHeight }
@@ -101,32 +96,28 @@ struct ApplicationProgressDrawer: View {
                 }
             }
 
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 20) {
                 Divider()
-                HStack(spacing: 10) {
-                    Image("visaFlagIS").resizable().scaledToFill()
-                        .frame(width: 32, height: 32).clipShape(Circle())
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(application.destinationName).font(.system(size: 16, weight: .semibold))
-                        Text(application.visaType).font(.system(size: 12)).foregroundStyle(.secondary)
+                Button(action:onContinue) {
+                    VStack(alignment:.leading,spacing:18) {
+                        applicationHeader(name:application.destinationName,type:application.visaType,flag:"visaFlagIS",
+                            status:"下一项：" + (nextAction ?? "住宿预订证明"))
+                        ApplicationOrderProgress(progress:overallProgress ?? application.progress,activeStage:activeStage)
                     }
-                    Spacer()
-                    Text(activeStage == 3 ? "已完成" : "正在进行").font(.system(size: 11)).foregroundStyle(.secondary)
+                    .padding(.vertical,3)
+                    .frame(maxWidth:.infinity,alignment:.leading)
+                    .contentShape(Rectangle())
                 }
-                HStack {
-                    Text(phaseTitle).fontWeight(.medium)
-                    Spacer()
-                    Text("\(currentReady)/\(currentTotal) 项就绪").foregroundStyle(.secondary)
+                .buttonStyle(.plain)
+                .help("打开冰岛申请")
+                .accessibilityLabel("打开冰岛旅游签证申请")
+                Divider()
+                VStack(alignment:.leading,spacing:18) {
+                    applicationHeader(name:"韩国",type:"旅游签证",flag:"visaFlagKR",status:"等待结果")
+                    ApplicationOrderProgress(progress:0.65,activeStage:2)
                 }
-                .font(.system(size: 12))
-                ApplicationOrderProgress(progress: overallProgress ?? Double(currentReady)/Double(max(1,currentTotal))*0.25,activeStage:activeStage)
-                HStack {
-                    Text("下一项：\(nextAction ?? application.items.first { !$0.isReady }?.title ?? "复核准备清单")")
-                        .font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
-                    Spacer(minLength: 8)
-                    Button(activeStage == 3 ? "查看记录" : (activeStage == 2 ? "查看进度" : "继续准备"), action: onContinue)
-                        .controlSize(.small).buttonStyle(.bordered)
-                }
+                .padding(.vertical,3)
+                .accessibilityElement(children:.combine)
             }
             .padding(.horizontal, 22).padding(.top, 4).padding(.bottom, 22)
             .opacity(min(1, max(0, (height-collapsedHeight)/60)))
@@ -136,6 +127,19 @@ struct ApplicationProgressDrawer: View {
         .frame(height: height, alignment: .top)
         .clipped()
         .glassEffect(.regular, in: .rect(cornerRadius: 26))
+    }
+
+    private func applicationHeader(name:String,type:String,flag:String,status:String) -> some View {
+        HStack(spacing:10) {
+            Image(flag).resizable().scaledToFill().frame(width:32,height:32).clipShape(Circle())
+            VStack(alignment:.leading,spacing:4) {
+                Text(name).font(.system(size:16,weight:.semibold))
+                Text(type).font(.system(size:12)).foregroundStyle(.secondary)
+            }
+            Spacer(minLength:8)
+            Text(status).font(.system(size:11)).foregroundStyle(.secondary)
+                .multilineTextAlignment(.trailing).fixedSize(horizontal:false,vertical:true)
+        }
     }
 
     private var drawerDrag: some Gesture {

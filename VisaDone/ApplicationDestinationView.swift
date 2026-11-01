@@ -83,10 +83,8 @@ struct ApplicationDestinationView: View {
                                 .transition(.opacity)
                         } else {
                             ApplicationProgressDrawer(application: model.ongoingApplication,
-                                readyCount:model.iceland.readyCount,totalCount:model.iceland.activeDocuments.count,
-                                nextAction:model.iceland.activeDocuments.first(where:{$0.status != .ready})?.title,
-                                overallProgress:model.iceland.overallProgress,activeStage:model.iceland.progressStage,
-                                phaseTitle:model.iceland.completed ? "申请已完成" : (model.iceland.submitted ? model.iceland.timelineStatus : "材料准备中")) {
+                                nextAction:"住宿预订证明",
+                                overallProgress:model.iceland.overallProgress,activeStage:model.iceland.progressStage) {
                                 model.iceland.isCreated = true
                                 model.iceland.section = .overview
                                 model.iceland.isPresented = true
